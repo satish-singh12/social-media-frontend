@@ -1,0 +1,36 @@
+.toast {
+    position: fixed;
+    padding: 1rem;
+    top: 5px;
+    right: 5px;
+    z-index: 50;
+    min-width: 260px;
+    color: rgb(11, 11, 109);
+    border-radius: 10px;
+    
+    }
+    
+    .toast-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem .5rem;
+    border-bottom: 3px solid rgb(143, 143, 197);
+    border-radius: 5px;
+    }
+    
+    .toast-header h5{
+        padding: 0rem 0.5rem;
+    font-weight: 800;
+     }
+
+     .toast-close-btn{
+        font-size: 1.5rem;
+        cursor: pointer;
+        }
+   
+   .toast-body {
+          padding: 0rem 0.5rem;
+          font-weight: 800;
+          
+        }

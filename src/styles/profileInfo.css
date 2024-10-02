@@ -1,0 +1,121 @@
+.profile-info{
+ height: 300px;
+ width: 1000px;
+ max-width: 100%;
+ margin: 1rem auto;
+ border-radius: 10px;
+}
+
+.profile-info-container{
+display: flex;
+flex-direction: column;
+background: rgb(204, 240, 73);
+height: 100%;
+width: 100%;
+border-radius: 20px;
+}
+
+.profile-info-top{
+    height: 100px;
+    width: 100%;
+    border-bottom: 2px solid white;
+}
+
+.profile-info-top img {
+    height: 200%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.profile-info-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6rem;
+}
+
+.profile-info-center-avatar{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    transform: translateY(-30px);
+    border-top: 10px solid rgb(209, 101, 186);
+    border-left: 10px solid rgb(131, 41, 111);
+    border-right: 10px solid rgb(82, 16, 67);
+    border-bottom: 10px solid rgb(238, 232, 237);
+    padding: 1px;
+    border-radius: 50%;
+}
+
+.profile-info-center-button{
+position: absolute;
+transform: translateX(200px);
+width: 150px;
+height: 50px;
+
+border-radius: 10px;
+background-color: aqua;
+color: white;
+border: 5px solid rgb(209, 101, 186);
+}
+
+.profile-info-bottom{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info-bottom-left{
+    
+    flex: 0.2;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.profile-info-stat{
+    
+    padding: 5px;
+    
+}
+
+.profile-info-stat-number{
+font-size: large  ;
+text-align: center;
+font-weight: 600;
+color: black;
+}
+
+.profile-info-stat-desc{
+    font-size: 14px;
+text-align: center;
+font-weight: 400;
+text-transform: capitalize;
+color: black
+}
+
+.profile-info-bottom-center{
+    flex: 0.2;
+}
+
+.profile-info-bottom-right{
+    flex: 0.2;
+}
+.profile-info-fullname{
+    text-align: center;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.profile-info-username{
+    text-align: center;
+    color: black;
+    
+    font-size: small ;
+}

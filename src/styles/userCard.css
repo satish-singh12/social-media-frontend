@@ -1,0 +1,23 @@
+.card-header{
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    color: white !important;
+}
+.card-header img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.card-items{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.card-items span{
+    margin-bottom: 2px;
+
+}
+
