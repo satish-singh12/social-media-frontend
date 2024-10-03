@@ -64,13 +64,13 @@ export const refreshToken = () => async (dispatch) => {
     try {
       // Send refresh token request
       const res = await postDataApi("refresh_token");
-
+      const user = res.data && res.data.User;
       // Dispatch token and userdata to authReducder
       dispatch({
         type: "AUTH",
         payload: {
           token: res.data.accessToken,
-          user: res.data.user,
+          user: res.data.User,
         },
       });
 

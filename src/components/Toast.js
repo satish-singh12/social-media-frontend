@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/toast.css";
 
 const Toast = ({ msg, handleShow, bgColor }) => {
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShow(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // If the toast is not visible, return null to hide it
+  if (!show) return null;
+
   return (
     <div className="toast" style={{ backgroundColor: bgColor }}>
       <div className="toast-header">

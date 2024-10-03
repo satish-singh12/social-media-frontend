@@ -141,13 +141,13 @@ body {
     background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
   }
   
-  label {
+  .remember-me--forget-password label {
     display: block;
     position: relative;
     margin-left: 30px;
   }
   
-  label::before {
+  .remember-me--forget-password label::before {
     content: ' \f00c';
     position: absolute;
     font-family: FontAwesome;
@@ -159,7 +159,7 @@ body {
     transition: all 0.2s linear;
   }
   
-  label:hover::before {
+  .remember-me--forget-password label:hover::before {
     font-family: FontAwesome;
     content: ' \f00c';
     color: #fff;
@@ -167,11 +167,11 @@ body {
     background: #70F570;
   }
   
-  label:hover::before .text-checkbox {
+  .remember-me--forget-password label:hover::before .text-checkbox {
     background: #70F570;
   }
   
-  label span.text-checkbox {
+  .remember-me--forget-password label span.text-checkbox {
     display: inline-block;
     height: auto;
     position: relative;
@@ -179,7 +179,7 @@ body {
     transition: all 0.2s linear;
   }
   
-  label input[type="checkbox"] {
+  .remember-me--forget-password label input[type="checkbox"] {
     display: none;
   }
 

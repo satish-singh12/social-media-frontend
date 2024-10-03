@@ -9,10 +9,25 @@
 .profile-info-container{
 display: flex;
 flex-direction: column;
-background: rgb(204, 240, 73);
 height: 100%;
 width: 100%;
 border-radius: 20px;
+background-image: linear-gradient(
+    0deg,
+    hsl(124deg 100% 50%) 0%,
+    hsl(95deg 80% 53%) 8%,
+    hsl(77deg 61% 50%) 17%,
+    hsl(55deg 54% 48%) 25%,
+    hsl(35deg 63% 54%) 33%,
+    hsl(18deg 75% 58%) 42%,
+    hsl(0deg 87% 61%) 50%,
+    hsl(6deg 76% 65%) 58%,
+    hsl(10deg 59% 69%) 67%,
+    hsl(19deg 31% 71%) 75%,
+    hsl(153deg 16% 74%) 83%,
+    hsl(178deg 60% 71%) 92%,
+    hsl(181deg 100% 50%) 100%
+  );
 }
 
 .profile-info-top{
@@ -37,8 +52,8 @@ border-radius: 20px;
 
 .profile-info-center-avatar{
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     transform: translateY(-30px);
     border-top: 10px solid rgb(209, 101, 186);
@@ -56,13 +71,15 @@ width: 150px;
 height: 50px;
 
 border-radius: 10px;
-background-color: aqua;
+background: linear-gradient(to right, #ff9966, #ff5e62, #00c9ff, #92fe9d);
+/* background: radial-gradient(circle, #ff7e5f, #feb47b); */
+/* background: linear-gradient(45deg, #43cea2, #185a9d); */
 color: white;
 border: 5px solid rgb(209, 101, 186);
 }
 
 .profile-info-bottom{
-    margin-top: 1rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

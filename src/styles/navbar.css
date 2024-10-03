@@ -8,6 +8,9 @@
   color: #333;
   font-family: 'Arial', sans-serif;
   flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  position: sticky;
+  top: 0;
+  z-index: 4
 }
 
 .navbar-section{
@@ -22,6 +25,7 @@
   display: flex;
   align-items: center;
 }
+
 
 .logo-img {
   width: 40px;
@@ -144,33 +148,50 @@
   background-color: transparent;
 }
 .input-box .button {
-  right: 15px;
+  position: absolute;
+  right: 19;
+  top: 30;
+  right: .5rem;
+  bottom: 80;
   font-size: 16px;
   font-weight: 400;
   color: #fff;
   border: none;
   padding: 12px 30px;
-  background-color: rgb(129, 129, 240);
+  background-color: transparent;
   cursor: pointer;
 } 
  .input-box .button:active {
   transform: translateY(-50%) scale(0.98);
 }
 .search-lists{
-  border: 1px solid rgb(226, 209, 209);
+  position: absolute;
+  top: 0;
+  
+  margin-top: 3.2rem;
+  border:none;
   color: black;
   background-color: rgb(129, 129, 240);
   border-radius: 10px;
+  width: 100%;
+  z-index: 5;
+  
+  
+  
 } 
 
 .search-close-btn{
-  display: flex;
-  justify-content: right;
-  width: 99%;
-  height: 50px;
+  position: absolute;
+  /* display: flex;
+  justify-content: right; */
+  width: 20px;
+  height: 30px;
+  bottom: 9px;
+  right: 10px;
   position: absolute;
   color: white;
   margin-top: -10px;
+  background-color: transparent;
 }
 .search-close-btn span{
 cursor: pointer;
@@ -233,7 +254,9 @@ margin-top: -30px;
 
   .search-bar {
     display: block; /* Hide the search bar on small mobile screens */
+    
   }
+  
 
   .user-icons {
     flex-direction: column;

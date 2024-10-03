@@ -1,31 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import "../styles/profileInfo.css";
-import { getProfileUsers } from "../redux/actions/profileActions";
+import EditProfile from "./EditProfile";
+import GlobalFriendBtn from "./GlobalFriendBtn";
 
-const Info = () => {
-  const [userData, setUserData] = useState([]);
-  const { id } = useParams();
-  const { auth, profile } = useSelector((state) => state);
-  const dispatcth = useDispatch();
-
-  //At the start redux store is undefined, it will take time.
-  useEffect(() => {
-    if (auth && auth.user && id === auth.user._id) {
-      setUserData([auth.user]);
-    } else {
-      dispatcth(getProfileUsers({ users: profile.users, id, auth }));
-      const newData = profile.users.filter((user) => user._id === id);
-      setUserData(newData);
-    }
-  }, [id, auth.user, auth]);
-
-  //console.log(userData);
+const Info = ({ userData, profile, auth, id }) => {
+  const [onEdit, setOnEdit] = useState(false);
 
   return (
     <div className="profile-info">
-      {userData.length > 0 &&
+      {userData && userData.length > 0 ? (
         userData.map((user) => (
           <div className="profile-info-container" key={user._id}>
             <div className="profile-info-top">
@@ -36,9 +20,18 @@ const Info = () => {
               <img
                 className="profile-info-center-avatar"
                 src={user.avatar}
-                alt="user.username"
+                alt={user.username}
               />
-              <button className="profile-info-center-button">Add Friend</button>
+              {user._id && auth && user._id === auth.user._id ? (
+                <button
+                  className="profile-info-center-button"
+                  onClick={() => setOnEdit(true)}
+                >
+                  EDIT PROFILE
+                </button>
+              ) : (
+                <GlobalFriendBtn classBtn="profile-info-center-button" />
+              )}
             </div>
 
             <div className="profile-info-bottom">
@@ -71,8 +64,12 @@ const Info = () => {
                 </div>
               </div>
             </div>
+            {onEdit && <EditProfile user={user} setOnEdit={setOnEdit} />}
           </div>
-        ))}
+        ))
+      ) : (
+        <p>Loading user data...</p> // Add this fallback or some loading indicator
+      )}
     </div>
   );
 };

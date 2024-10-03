@@ -129,13 +129,13 @@ const Navbar = () => {
             <div className="user-profile-icon">
               <img
                 src={auth?.user?.avatar || '<i className="fa fa-user"></i> '}
-                alt=""
+                alt="auth?.user?.fullname"
               />
             </div>
           </Link>
 
           <h4 style={{ color: "white", marginLeft: "5px" }}>
-            {auth?.user?.fullname}
+            {auth && auth.user?.fullname}
           </h4>
         </div>
         <div>
