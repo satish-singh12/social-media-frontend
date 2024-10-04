@@ -43,7 +43,7 @@ const Info = ({ userData, profile, auth, id }) => {
                   <h6 className="profile-info-stat-number">
                     {user && user.friends.length}
                   </h6>
-                  <h6 className="profile-info-stat-desc">FRIENDS</h6>
+                  <h6 className="profile-info-stat-desc">FLLOWERS</h6>
                 </div>
                 <div className="profile-info-stat">
                   <h6 className="profile-info-stat-number">
