@@ -147,63 +147,7 @@ align-items: center;
     margin-bottom: 1rem;
   }
 
-
   
-  /* Tablets in portrait and below */
-@media (min-width: 481px) and (max-width: 768px) {
-    .edit-profile {
-      padding: 15px;
-        min-width: 100%;
-        height:auto;
-        margin: 5px auto;
-        
-      }
- 
-    .edit-profile-head {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-  
-    .edit-profile-avatar img {
-      width: 120px;
-      height: 120px;
-    }
-  
-    .edit-profile-head-title {
-      font-size: 20px;
-    }
-      }
-
-  
-/* Small Devices (Smartphones) */
-@media (max-width: 480px) {
-    .edit-profile {
-      padding: 10px;
-      min-width: 100%;
-      height:auto;
-      margin: 5px auto;
-    }
-
-   
-    .edit-profile-head-title {
-      font-size: 18px;
-    }
-  
-    .edit-profile-avatar img {
-      width: 100px;
-      height: 100px;
-    }
-  
-    .edit-profile-user-data input {
-      padding: 8px;
-      font-size: 14px;
-      
-    }
-  }
-  
-
-
   .stage {
     box-sizing: border-box;
    
@@ -289,3 +233,59 @@ align-items: center;
       background-position: 0 0;
     }
   }
+
+  
+  /* Tablets in portrait and below */
+@media (min-width: 481px) and (max-width: 768px) {
+    .edit-profile {
+      padding: 15px;
+        min-width: 100%;
+        height:auto;
+        margin: 5px auto;
+        
+      }
+ 
+    .edit-profile-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .edit-profile-avatar img {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .edit-profile-head-title {
+      font-size: 20px;
+    }
+      }
+
+  
+/* Small Devices (Smartphones) */
+@media (max-width: 480px) {
+    .edit-profile {
+      padding: 10px;
+      min-width: 100%;
+      height:auto;
+      margin: 5px auto;
+    }
+
+   
+    .edit-profile-head-title {
+      font-size: 18px;
+    }
+  
+    .edit-profile-avatar img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .edit-profile-user-data input {
+      padding: 8px;
+      font-size: 14px;
+      
+    }
+  }
+  
+

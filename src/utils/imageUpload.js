@@ -7,8 +7,10 @@ export const checkImage = (file) => {
     return (err = "file format should be jpeg or png");
 };
 
-const CLOUDINARY_URL =
-  "cloudinary://316854135965451:DXIkr-fSZHwMlVfb18m0nzqFi1I@div1d3c29";
+// const CLOUDINARY_URL =
+//   "cloudinary://316854135965451:DXIkr-fSZHwMlVfb18m0nzqFi1I@div1d3c29";
+
+const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL;
 
 export const imageUpload = async (images) => {
   const imgArr = [];
@@ -36,9 +38,20 @@ export const imageUpload = async (images) => {
     );
 
     const data = await res.json();
-    imgArr.push({ public_id: data.public_id, secure_url: data.secure_url }); // Store uploaded image data
-    console.log(data);
+
+    if (res.ok) {
+      imgArr.push({ public_id: data.public_id, secure_url: data.secure_url }); // Store uploaded image data
+    } else {
+      console.error("Cloudinary upload failed:", data);
+      throw new Error(data.error.message);
+    }
   }
 
   return imgArr; // Return array of uploaded images
 };
+
+//   imgArr.push({ public_id: data.public_id, secure_url: data.secure_url }); // Store uploaded image data
+//   // console.log(data);
+// }
+// return imgArr; // Return array of uploaded images
+// };

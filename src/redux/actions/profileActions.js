@@ -1,6 +1,7 @@
 import { ALERT_TYPES } from "./alertActions";
 import { getDataApi, patchDataApi } from "../../utils/fetchDataApi";
 import { imageUpload } from "../../utils/imageUpload";
+import axios from "axios";
 
 export const PROFILE_TYPES = {
   LOADING: "LOADING",
@@ -66,18 +67,47 @@ export const updatedProfile =
       dispatch({ type: "ALERT", payload: { loading: true } });
       if (avatar) media = await imageUpload([avatar]);
       //console.log(media);
+      console.log(avatar, media[0].secure_url);
 
-      const res = await patchDataApi(
-        `user/${auth.user._id}`,
+      // const res = await patchDataApi(`user/${auth?.user._id},
+      const res = await axios.patch(
+        `http://localhost:5000/api/user/${auth?.user._id}`,
         {
           ...editData,
-          avatar: avatar ? media[0].secure_url : auth.user.avatar,
+          avatar: media ? media[0].secure_url : auth.user.avatar,
         },
-        auth.token
+        {
+          headers: { Authorization: auth.token },
+        }
       );
+      dispatch({
+        type: "AUTH",
+        payload: {
+          auth,
+          user: {
+            ...auth.user,
+            ...editData,
+            avatar: avatar ? media[0].secure_url : auth.user.avatar,
+          },
+        },
+      });
+      if (res && res.data) {
+        console.log(res);
+        dispatch({ type: "ALERT", payload: { loading: false } });
+      }
 
-      console.log(res);
-      dispatch({ type: "ALERT", payload: { loading: false } });
+      //  const res = await patchDataApi(
+      //     `user/${auth.user._id}`,
+      //     {
+      //       ...editData,
+      //       avatar: avatar ? media[0].secure_url : auth.user.avatar,
+      //     },
+      //     auth.token
+      //   );
+      //   if (res && res.data) {
+      //     console.log(res);
+      //     dispatch({ type: "ALERT", payload: { loading: false } });
+      //   }
     } catch (err) {
       dispatch({
         type: "ALERT",
