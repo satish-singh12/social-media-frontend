@@ -18,7 +18,7 @@ const About = ({ userData, profile, auth, id }) => {
 
             <div className="profile-about-content-center">
               <h4 className="profile-about-content-center-story">Story</h4>
-              <p>{user.address}</p>
+              <p>{user.story}</p>
             </div>
 
             <div className="profile-about-content-bottom">

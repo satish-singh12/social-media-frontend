@@ -4,7 +4,7 @@
     border-radius: 10px;
     box-shadow: 5px 5px 300px 20px rgb(241, 236, 236);
     min-width: 260px;
-    height: 300px;
+    min-height: 500px;
 }
 
 .profile-about-container{
@@ -25,7 +25,13 @@
     padding: .5rem;
 }
 
-.profile-about-content-center{}
+.profile-about-content-center{
+    min-height: 30%;
+    background-color: rgb(234, 244, 253);
+    min-height: 6rem;
+    border-radius:10px;
+    
+}
 
 .profile-about-content-bottom{
     display: flex;

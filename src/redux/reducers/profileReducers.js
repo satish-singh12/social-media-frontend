@@ -1,4 +1,5 @@
 import { PROFILE_TYPES } from "../actions/profileActions";
+import { EditData } from "../actions/alertActions";
 
 const initialState = {
   loading: false,
@@ -21,6 +22,20 @@ const profileReducers = (state = initialState, action) => {
         ...state,
 
         users: userExists ? state.users : [...state.users, action.payload.user],
+      };
+    case PROFILE_TYPES.FRIEND:
+      return {
+        ...state,
+        users: EditData(state.users, action.payload._id, action.payload),
+      };
+    case PROFILE_TYPES.UNFRIEND:
+      return {
+        ...state,
+        users: EditData(state.users, action.payload._id, action.payload),
+
+        // state.users.map((user) =>
+        //   user._id === action.payload._id ? action.payload : user
+        // ),
       };
     default:
       return state;

@@ -30,7 +30,10 @@ const Info = ({ userData, profile, auth, id }) => {
                   EDIT PROFILE
                 </button>
               ) : (
-                <GlobalFriendBtn classBtn="profile-info-center-button" />
+                <GlobalFriendBtn
+                  classBtn="profile-info-center-button"
+                  user={user && user}
+                />
               )}
             </div>
 
@@ -38,7 +41,7 @@ const Info = ({ userData, profile, auth, id }) => {
               <div className="profile-info-bottom-left">
                 <div className="profile-info-state">
                   <h6 className="profile-info-stat-number">
-                    {user.friends.length}
+                    {user && user.friends.length}
                   </h6>
                   <h6 className="profile-info-stat-desc">FRIENDS</h6>
                 </div>

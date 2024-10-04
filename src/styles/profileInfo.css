@@ -69,13 +69,13 @@ position: absolute;
 transform: translateX(200px);
 width: 150px;
 height: 50px;
-
-border-radius: 10px;
+font-size: 16px;
+border-radius: 20px;
+font-weight: bolder;
 background: linear-gradient(to right, #ff9966, #ff5e62, #00c9ff, #92fe9d);
-/* background: radial-gradient(circle, #ff7e5f, #feb47b); */
-/* background: linear-gradient(45deg, #43cea2, #185a9d); */
 color: white;
-border: 5px solid rgb(209, 101, 186);
+border: 5px solid rgb(255, 254, 255);
+cursor: pointer;
 }
 
 .profile-info-bottom{

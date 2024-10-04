@@ -1,3 +1,4 @@
+import { EditData, DeleteData } from "./alertActions";
 import { ALERT_TYPES } from "./alertActions";
 import { getDataApi, patchDataApi } from "../../utils/fetchDataApi";
 import { imageUpload } from "../../utils/imageUpload";
@@ -6,6 +7,8 @@ import axios from "axios";
 export const PROFILE_TYPES = {
   LOADING: "LOADING",
   GET_USER: "GET_USER",
+  FRIEND: "FRIEND",
+  UNFRIEND: "UNFRIEND",
 };
 
 export const getProfileUsers =
@@ -108,6 +111,65 @@ export const updatedProfile =
       //     console.log(res);
       //     dispatch({ type: "ALERT", payload: { loading: false } });
       //   }
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const addFriends =
+  ({ users, user, auth }) =>
+  async (dispatch) => {
+    const newUser = { ...users, friends: [...user.friends, auth.user] };
+    //   console.log(newUser);
+    dispatch({
+      type: PROFILE_TYPES.FRIEND,
+      payload: newUser,
+    });
+
+    dispatch({
+      type: "AUTH",
+      payload: {
+        ...auth,
+        user: { ...auth.user, following: [...auth.user.following, newUser] },
+      },
+    });
+    try {
+      await patchDataApi(`user/${user._id}/friend`, null, auth.token);
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const unFriends =
+  ({ users, user, auth }) =>
+  async (dispatch) => {
+    const newUser = {
+      ...users,
+      friends: DeleteData(user.friends, auth.user._id),
+    };
+    dispatch({
+      type: PROFILE_TYPES.UNFRIEND,
+      payload: newUser,
+    });
+
+    dispatch({
+      type: "AUTH",
+      payload: {
+        ...auth,
+        user: {
+          ...auth.user,
+          following: DeleteData(auth.user.following, newUser._id),
+        },
+      },
+    });
+    try {
+      await patchDataApi(`user/${user._id}/unfriend`, null, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",
