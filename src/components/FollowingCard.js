@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalCard from "./GlobalCard";
 
-const FriendsCard = ({ user }) => {
+const FollowingCard = ({ user }) => {
   console.log(user);
   return (
     <>
@@ -16,7 +16,7 @@ const FriendsCard = ({ user }) => {
         }}
       >
         <h4 style={{ textAlign: "center" }}>
-          {user.length} <span>Friends</span>
+          {user.length} <span>Following</span>
         </h4>
       </div>
       <div
@@ -30,10 +30,10 @@ const FriendsCard = ({ user }) => {
           gridAutoFlow: "row", // Ensures that items are placed row by row
         }}
       >
-        {user.length > 0 && user.map((frd) => <GlobalCard user={frd} />)}
+        {user.length > 0 && user.map((flw) => <GlobalCard user={flw} />)}
       </div>
     </>
   );
 };
 
-export default FriendsCard;
+export default FollowingCard;

@@ -17,7 +17,7 @@ export const getProfileUsers =
     if (users.every((user) => user._id !== id)) {
       try {
         dispatch({
-          type: "PROFILE_TYPES.LOADING",
+          type: PROFILE_TYPES.LOADING,
           payload: { loading: true },
         });
         const res = await getDataApi(`user/${id}`, auth.token);
@@ -27,7 +27,7 @@ export const getProfileUsers =
           payload: res && res.data,
         });
         dispatch({
-          type: "PROFILE_TYPES.LOADING",
+          type: PROFILE_TYPES.LOADING,
           payload: { loading: false },
         });
       } catch (err) {
@@ -90,7 +90,7 @@ export const updatedProfile =
           user: {
             ...auth.user,
             ...editData,
-            avatar: avatar ? media[0].secure_url : auth.user.avatar,
+            avatar: avatar ? media[0].secure_url : auth?.user?.avatar,
           },
         },
       });
@@ -112,9 +112,10 @@ export const updatedProfile =
       //     dispatch({ type: "ALERT", payload: { loading: false } });
       //   }
     } catch (err) {
+      const errorMessage = err.response?.data?.message || "An error occurred";
       dispatch({
         type: "ALERT",
-        payload: { error: err.response.data.message },
+        payload: { error: errorMessage },
       });
     }
   };

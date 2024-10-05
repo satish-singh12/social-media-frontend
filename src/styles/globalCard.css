@@ -9,6 +9,16 @@
     margin: 20px auto;
     transition: transform 0.2s ease-in-out;
   }
+
+  .global-card-content-bottom-btn{
+    width: 100px;
+    height: 20x;
+    margin-top: 2.5rem;
+    border: 3px solid blueviolet;
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+  }
   
   .global-card:hover {
     transform: translateY(-5px);
@@ -78,11 +88,12 @@
   /* Gender Icon */
   .global-card-content-bottom-gender {
     position: absolute;
-    margin-top: 20%;
+    margin-top: 25%;
     font-size: 34px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgb(150, 50, 67);
     
   }
   
@@ -113,7 +124,7 @@
   .global-card-content-bottom-navigate {
     display: flex;
     justify-content: center;
-    padding: 35px 0;
+    padding: 20px 0;
   }
   
   .global-card-content-bottom-navigate span {
@@ -148,6 +159,16 @@
     .global-card-content-bottom-stat h6 {
       font-size: 14px;
     }
+    .global-card-content-bottom-gender {
+      margin-top: 30%;
+    }
+    .global-card-content-bottom-btn{
+      margin-top: 2.3rem;
+    }
+    
+    .global-card-content-bottom-navigate{
+      padding-top: .8rem;
+    }
   }
   
   @media (max-width: 480px) {
@@ -176,6 +197,16 @@
       font-size: 12px;
     }
   
+    .global-card-content-bottom-btn{
+      margin-top: 1.7rem;
+    }
+    .global-card-content-bottom-gender {
+      margin-top: 30%;
+    }
+    .global-card-content-bottom-navigate{
+      padding-top: 1rem;
+    }
+
     .global-card-content-bottom-navigate span {
       width: 8px;
       height: 8px;

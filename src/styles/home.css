@@ -1,0 +1,81 @@
+/* styles.css */
+
+/* General styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light background color for the whole page */
+}
+
+.home-page-header {
+    text-align: center; /* Center-align header content */
+    padding: 20px; /* Padding around header */
+    background-color: #ffffff; /* White background for header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.home-page-header h1 {
+    color: #333; /* Dark text color */
+    margin: 0; /* Remove default margin */
+}
+
+/* Home body area styles */
+.home-body-area {
+    display: flex;
+    justify-content: space-between; /* Space between left, middle, and right sections */
+    padding: 20px; /* Padding around the body area */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.home-left,
+.home-mid,
+.home-right {
+    background-color: #ffffff; /* White background for components */
+    border: 1px solid #e6ecf0; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Padding inside components */
+    margin: 10px; /* Margin between components */
+    flex: 1; /* Allow components to grow equally */
+    min-width: 300px; /* Minimum width for components */
+    max-width: 32%; /* Max width to keep layout organized */
+}
+
+/* Adjust styles for left, middle, and right sections */
+.home-left {
+    flex-basis: 25%; /* Fixed width for left section */
+}
+
+.home-mid {
+    flex-basis: 50%; /* Wider middle section */
+}
+
+.home-right {
+    flex-basis: 25%; /* Fixed width for right section */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .home-body-area {
+        flex-direction: column; /* Stack components vertically on small screens */
+    }
+
+    .home-left,
+    .home-mid,
+    .home-right {
+        max-width: 100%; /* Full width for components */
+        min-width: 100%; /* Min width for components */
+    }
+}
+
+@media (max-width: 480px) {
+    .home-page-header h1 {
+        font-size: 20px; /* Smaller heading size for mobile */
+    }
+
+    .home-left,
+    .home-mid,
+    .home-right {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+}
