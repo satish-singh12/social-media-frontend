@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaCamera } from "react-icons/fa";
 import { MdInsertPhoto } from "react-icons/md";
 import "../styles/status.css";
+import { createPost } from "../redux/actions/postActions";
 
 const Status = () => {
   const { auth } = useSelector((state) => state);
@@ -78,10 +79,31 @@ const Status = () => {
     tracks && tracks.stop(); // Only stop if tracks exists
     setStream(false);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (images.length === 0) {
+      dispatch({ type: "ALERT", payload: { error: "Add your image" } });
+    } else {
+      dispatch(createPost({ content, images, auth }));
+    }
+    setContent("");
+    setImages([]);
+    if (tracks) tracks.stop();
+    setContent("");
+    setImages([]);
+    if (tracks) tracks.stop();
+  };
+
+  const handleDiscard = (e) => {
+    e.preventDefault();
+    setContent("");
+    setImages([]);
+    if (tracks) tracks.stop();
+  };
 
   return (
     <div className="status">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="status-header">
           <img src={auth.user && auth.user.avatar} alt="" />
           <h4>Status</h4>
@@ -165,8 +187,12 @@ const Status = () => {
             </span>
           </div>
           <div className="status-footer-left">
-            <button className="status-footer-discard">Discard</button>
-            <button className="status-footer-left-create">Create</button>
+            <button className="status-footer-discard" onClick={handleDiscard}>
+              Discard
+            </button>
+            <button className="status-footer-left-create" type="submit">
+              Create
+            </button>
           </div>
         </div>
       </form>

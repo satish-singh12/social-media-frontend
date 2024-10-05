@@ -7,9 +7,6 @@ export const checkImage = (file) => {
     return (err = "file format should be jpeg or png");
 };
 
-// const CLOUDINARY_URL =
-//   "cloudinary://316854135965451:DXIkr-fSZHwMlVfb18m0nzqFi1I@div1d3c29";
-
 const CLOUDINARY_URL = process.env.REACT_APP_CLOUDINARY_URL;
 
 export const imageUpload = async (images) => {
@@ -22,7 +19,11 @@ export const imageUpload = async (images) => {
 
   for (const item of images) {
     const formData = new FormData();
-    formData.append("file", item);
+    if (item.camera) {
+      formData.append("file", item.camera);
+    } else {
+      formData.append("file", item);
+    }
     formData.append("upload_preset", "iuiqlvok");
     formData.append("cloud_name", cloudName); // Using cloud_name from URL
 
