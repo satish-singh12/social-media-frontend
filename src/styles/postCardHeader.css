@@ -1,0 +1,146 @@
+/* Main Container for Post Card Header */
+.post-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  /* Avatar */
+  .post-card-header-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+  }
+  
+  .post-card-header-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* User Info */
+  .post-card-header-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-card-header-info h4 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  .post-card-header-info h4 span {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .post-card-header-info h6 {
+    font-size: 12px;
+    color: #888;
+    margin: 5px 0 0;
+  }
+  
+  /* Dropdown Container */
+  .post-card-header-down {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .post-card-header-down p {
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .post-card-header-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .post-card-header-down:hover .post-card-header-dropdown {
+    display: block;
+  }
+  
+  .post-card-header-dropdown div {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .post-card-header-dropdown div:last-child {
+    border-bottom: none;
+  }
+  
+  .post-card-header-dropdown div:hover {
+    background: #f1f1f1;
+  }
+  
+  /* No Text Decoration for Links */
+  .no-decoration {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .post-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .post-card-header-avatar {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+  
+    .post-card-header-info h4 {
+      font-size: 16px;
+    }
+  
+    .post-card-header-info h6 {
+      font-size: 10px;
+    }
+  
+    .post-card-header-dropdown {
+      width: 100px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .post-card-header-avatar {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .post-card-header-info h4 {
+      font-size: 14px;
+    }
+  
+    .post-card-header-info h6 {
+      font-size: 9px;
+    }
+  
+    .post-card-header-dropdown div {
+      padding: 8px 10px;
+    }
+  }
+  
+  

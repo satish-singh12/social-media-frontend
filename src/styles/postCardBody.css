@@ -1,0 +1,73 @@
+/* Main Body Container */
+.post-card-body {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  /* Text Container for Post Content */
+  .post-card-body-container {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    word-break: break-word;
+  }
+  
+  /* Images Styling */
+  .post-card-body img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  /* Read More Link */
+  .post-card-body-container a {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .post-card-body-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Styling */
+  
+  /* Tablet (max-width: 768px) */
+  @media (max-width: 768px) {
+    .post-card-body {
+      padding: 10px;
+    }
+  
+    .post-card-body-container {
+      font-size: 15px;
+    }
+  
+    .post-card-body img {
+      margin-top: 8px;
+      border-radius: 6px;
+    }
+  }
+  
+  /* Mobile (max-width: 480px) */
+  @media (max-width: 480px) {
+    .post-card-body {
+      padding: 8px;
+    }
+  
+    .post-card-body-container {
+      font-size: 14px;
+    }
+  
+    .post-card-body img {
+      margin-top: 6px;
+      border-radius: 4px;
+    }
+  }
+  

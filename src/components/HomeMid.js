@@ -1,10 +1,20 @@
 import React from "react";
 import Status from "./Status";
+import Post from "./Posts";
+import { useSelector } from "react-redux";
 
 const HomeMid = () => {
+  const { homePost } = useSelector((state) => state);
   return (
-    <div>
+    <div className="home-min">
       <Status />
+      {homePost && homePost.loading ? (
+        <p>Loading... </p>
+      ) : homePost.results === 0 ? (
+        <h4>No Post Available</h4>
+      ) : (
+        <Post />
+      )}
     </div>
   );
 };

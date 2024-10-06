@@ -7,7 +7,7 @@ const Toast = ({ msg, handleShow, bgColor }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(false);
-    }, 2000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);

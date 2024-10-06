@@ -13,18 +13,21 @@ import Explore from "./pages/Explore";
 import Message from "./pages/Message";
 import PrivateRouter from "./utils/PrivateRouter";
 import Profile from "./pages/Profile";
-
 import { useEffect } from "react";
 import { refreshToken } from "./redux/actions/authActions";
+import { getPost } from "./redux/actions/postActions";
 
 function App() {
   const { auth } = useSelector((state) => state);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshToken());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getPost(auth.token));
+  }, [auth.token, dispatch]);
 
   return (
     <div className="App">
