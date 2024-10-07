@@ -9,7 +9,7 @@ const GlobalCard = ({ user }) => {
   const [showInfo, setShowInfo] = useState(true);
   const [showInfoAbout, setShowInforAbout] = useState(false);
 
-  const { auth } = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
 
   const toggleShowInfo = (sinfo) => {
     if (sinfo === "showInfo") {
@@ -20,7 +20,6 @@ const GlobalCard = ({ user }) => {
       setShowInforAbout(true);
     }
   };
-  console.log(user);
   return (
     <div className="global-card">
       <div className="global-card-content">

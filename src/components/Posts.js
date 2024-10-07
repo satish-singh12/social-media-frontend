@@ -5,20 +5,23 @@ import PostCardBody from "./PostCardBody";
 import PostCardFooter from "./PostCardFooter";
 
 const Posts = () => {
-  const { homePost } = useSelector((state) => state);
+  // const { homePost } = useSelector((state) => state);
+  const posts = useSelector((state) => state.homePost.post);
 
   return (
     <div>
-      {homePost &&
-        homePost.post.length > 0 &&
-        homePost.post.map((pos) => (
+      {posts &&
+        posts.length > 0 &&
+        posts.map((pos) => (
           <div
             className="post-card"
             key={pos._id}
             style={{
-              backgroundColor: "orange",
+              backgroundColor: "black",
               padding: "1rem",
               margin: "1rem",
+              borderRadius: "10px",
+              boxShadow: "3px 3px gray",
             }}
           >
             <PostCardHeader pos={pos} />

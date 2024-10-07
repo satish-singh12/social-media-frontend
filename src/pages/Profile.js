@@ -47,18 +47,27 @@ const Profile = () => {
 
   const { id } = useParams();
   const { auth, profile } = useSelector((state) => state);
-  const dispatcth = useDispatch();
+  const dispatch = useDispatch();
 
   //At the start redux store is undefined, it will take time.
   useEffect(() => {
     if (auth && auth.user && id === auth.user._id) {
       setUserData([auth.user]);
     } else {
-      dispatcth(getProfileUsers({ users: profile.users, id, auth }));
-      const newData = profile.users.filter((user) => user._id === id);
-      setUserData(newData);
+      dispatch(
+        getProfileUsers({ users: profile.users && profile.users, id, auth })
+      );
     }
-  }, [id, auth, profile.users, dispatcth]);
+  }, [id, auth, profile.users, dispatch]);
+
+  useEffect(() => {
+    if (profile.users) {
+      const newData = profile.users.filter((user) => user._id === id);
+      if (newData.length > 0) {
+        setUserData(newData);
+      }
+    }
+  }, [profile.users, id]);
 
   return (
     <div className="profile">
@@ -104,16 +113,16 @@ const Profile = () => {
           <div className="profile-body-center">
             <Posts />
           </div>
-
+          {/* 
           <div className="profile-body-right">
             <Posts />
-          </div>
+          </div> */}
         </div>
       )}
-      {showFriend && (
+      {showFriend && userData.length > 0 && (
         <Friends userData={userData} profile={profile} auth={auth} id={id} />
       )}
-      {showFollowing && (
+      {showFollowing && userData.length > 0 && (
         <Following userData={userData} profile={profile} auth={auth} id={id} />
       )}
       {showSaved && <h3>Saved</h3>}

@@ -14,7 +14,8 @@ const Navbar = () => {
   const [load, setLoad] = useState(false);
 
   const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
+  // const { auth } = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
   const { pathname } = useLocation();
 
   useEffect(() => {

@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import "../styles/postCardBody.css";
+import { GrCaretNext } from "react-icons/gr";
+import { GrCaretPrevious } from "react-icons/gr";
 
 const PostCardBody = ({ pos }) => {
   const [readMore, setReadMore] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
 
-  // const totalImage = pos.images.length;
+  const showNextImage = (images) => {
+    setCurrentImage((prev) => {
+      // Ensure the next index does not exceed the bounds
+      return (prev + 1) % images.length;
+    });
+  };
 
-  console.log(pos);
+  const showPrevImage = (images) => {
+    setCurrentImage((prev) => {
+      // Ensure the previous index wraps around correctly
+      return (prev - 1 + images.length) % images.length;
+    });
+  };
 
   return (
     <div className="post-card-body">
-      {console.log(pos)}
       <div className="post-card-body-container">
         {pos.content.length > 60 ? (
           <>
@@ -26,12 +37,33 @@ const PostCardBody = ({ pos }) => {
       </div>
 
       <div className="post-card-body-image">
-        <span className="post-card-body-image-next">V</span>
-        <span className="post-card-body-image-prev">V</span>
+        {/* Only show buttons if there is more than one image */}
+        {pos.images.length > 1 && (
+          <>
+            <span
+              className="post-card-body-image-next"
+              onClick={() => showNextImage(pos.images)}
+            >
+              <GrCaretPrevious />
+            </span>
+            <span
+              className="post-card-body-image-prev"
+              onClick={() => showPrevImage(pos.images)}
+            >
+              <GrCaretNext />
+            </span>
+          </>
+        )}
+
         {pos.images.length > 0 &&
-          pos.images.map((image) => (
-            <img src={image.secure_url} alt={pos.user.fullname} />
-          ))}
+          pos.images.map(
+            (image, index) =>
+              index === currentImage && (
+                <div className="post-card-body-image" key={image.secure_url}>
+                  <img src={image.secure_url} alt={pos.user.fullname} />
+                </div>
+              )
+          )}
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import GlobalCard from "./GlobalCard";
 
 const FriendsCard = ({ user }) => {
-  console.log(user);
   return (
     <>
       <div

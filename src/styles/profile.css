@@ -1,10 +1,10 @@
 .profile{
-    background-color: #ffebf6;
+  background-color: #ffebf6;
 }
 
 .profile-body{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .profile-body-left{}
@@ -14,68 +14,68 @@
 .profile-body-right{}
 
 .profile-header {
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    width: 95%;
-    padding: 20px;
-    border-radius: 20px;
-  }
-  
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 95%;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.profile-header-items {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding-top: 0px;
+}
+
+.profile-header-items .button-icons {
+  display: flex;
+  justify-content: center;
+  padding: .4rem;
+  font-size: 34px;
+  margin: 0 10px;
+  cursor: pointer;
+  color: rgb(21, 111, 214);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  border-radius: 50%;
+}
+
+.profile-header-items .button-icons:hover {
+  background-color: rgb(177, 175, 175);
+  color: #007bff; /* Hover color */
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
   .profile-header-items {
-    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  .profile-header-items .button-icons {
+    font-size: 20px; /* Smaller icons for medium screens */
+    margin: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .profile-header-items {
+    flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
-    padding-top: 0px;
   }
-  
+
   .profile-header-items .button-icons {
-    display: flex;
-    justify-content: center;
-    padding: .4rem;
-    font-size: 34px;
-    margin: 0 10px;
-    cursor: pointer;
-    color: rgb(21, 111, 214);
-    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
-    border-radius: 50%;
+    font-size: 18px; /* Even smaller icons for small screens */
+    margin: 0 6px;
   }
-  
-  .profile-header-items .button-icons:hover {
-    background-color: rgb(177, 175, 175);
-    color: #007bff; /* Hover color */
-    transform: scale(1.1); /* Slight zoom on hover */
-  }
-  
-  /* Responsive behavior */
-  @media (max-width: 768px) {
-    .profile-header-items {
-      justify-content: space-between;
-      max-width: 100%;
-    }
-  
-    .profile-header-items .button-icons {
-      font-size: 20px; /* Smaller icons for medium screens */
-      margin: 0 8px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .profile-header {
-      flex-direction: column;
-      padding: 10px;
-    }
-  
-    .profile-header-items {
-      flex-direction: row;
-      justify-content: space-evenly;
-      width: 100%;
-    }
-  
-    .profile-header-items .button-icons {
-      font-size: 18px; /* Even smaller icons for small screens */
-      margin: 0 6px;
-    }
-  }
+}

@@ -14,6 +14,7 @@ export const PROFILE_TYPES = {
 export const getProfileUsers =
   ({ users, id, auth }) =>
   async (dispatch) => {
+    //console.log(users, id, auth);
     if (users.every((user) => user._id !== id)) {
       try {
         dispatch({
@@ -21,11 +22,12 @@ export const getProfileUsers =
           payload: { loading: true },
         });
         const res = await getDataApi(`user/${id}`, auth.token);
-        console.log(res);
+
         dispatch({
           type: PROFILE_TYPES.GET_USER,
           payload: res && res.data,
         });
+
         dispatch({
           type: PROFILE_TYPES.LOADING,
           payload: { loading: false },
@@ -42,7 +44,6 @@ export const getProfileUsers =
 export const updatedProfile =
   ({ editData, avatar, auth }) =>
   async (dispatch) => {
-    //   console.log({ editData, avatar });
     if (!editData.fullname)
       return dispatch({
         type: "ALERT",
@@ -69,7 +70,6 @@ export const updatedProfile =
       let media;
       dispatch({ type: "ALERT", payload: { loading: true } });
       if (avatar) media = await imageUpload([avatar]);
-      //console.log(media);
       console.log(avatar, media[0].secure_url);
 
       // const res = await patchDataApi(`user/${auth?.user._id},
@@ -98,19 +98,6 @@ export const updatedProfile =
         console.log(res);
         dispatch({ type: "ALERT", payload: { loading: false } });
       }
-
-      //  const res = await patchDataApi(
-      //     `user/${auth.user._id}`,
-      //     {
-      //       ...editData,
-      //       avatar: avatar ? media[0].secure_url : auth.user.avatar,
-      //     },
-      //     auth.token
-      //   );
-      //   if (res && res.data) {
-      //     console.log(res);
-      //     dispatch({ type: "ALERT", payload: { loading: false } });
-      //   }
     } catch (err) {
       const errorMessage = err.response?.data?.message || "An error occurred";
       dispatch({
@@ -124,7 +111,7 @@ export const addFriends =
   ({ users, user, auth }) =>
   async (dispatch) => {
     const newUser = { ...users, friends: [...user.friends, auth.user] };
-    //   console.log(newUser);
+
     dispatch({
       type: PROFILE_TYPES.FRIEND,
       payload: newUser,

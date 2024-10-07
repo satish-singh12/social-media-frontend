@@ -5,7 +5,9 @@ const Friends = ({ userData, profile, auth, id }) => {
   return (
     <div>
       {userData.length > 0 &&
-        userData.map((user) => <FriendsCard user={user.friends} />)}
+        userData.map((user) => (
+          <FriendsCard key={user._id} user={user.friends} />
+        ))}
     </div>
   );
 };

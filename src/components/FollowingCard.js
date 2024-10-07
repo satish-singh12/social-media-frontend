@@ -2,7 +2,6 @@ import React from "react";
 import GlobalCard from "./GlobalCard";
 
 const FollowingCard = ({ user }) => {
-  console.log(user);
   return (
     <>
       <div

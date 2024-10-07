@@ -22,8 +22,6 @@ const GlobalFriendBtn = ({ classBtn, user }) => {
     dispatch(unFriends({ users: profile.users, user, auth }));
   };
 
-  console.log(user);
-
   return (
     <>
       {friend ? (

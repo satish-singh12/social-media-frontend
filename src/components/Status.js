@@ -6,7 +6,8 @@ import "../styles/status.css";
 import { createPost } from "../redux/actions/postActions";
 
 const Status = () => {
-  const { auth } = useSelector((state) => state);
+  // const {auth} = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);

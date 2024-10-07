@@ -5,8 +5,8 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 
 const PostCardHeader = ({ pos }) => {
-  const { auth } = useSelector((state) => state);
-  console.log(pos);
+  const auth = useSelector((state) => state.auth);
+
   return (
     <div>
       <Link to={`/profile/${pos.user._id}`} className="no-decoration">
