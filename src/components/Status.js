@@ -1,13 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCamera } from "react-icons/fa";
 import { MdInsertPhoto } from "react-icons/md";
 import "../styles/status.css";
-import { createPost } from "../redux/actions/postActions";
+import { createPost, updatePost } from "../redux/actions/postActions";
+import { ALERT_TYPES } from "../redux/actions/alertActions";
 
 const Status = () => {
   // const {auth} = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
+  const status = useSelector((state) => state.status);
+
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
@@ -16,6 +19,13 @@ const Status = () => {
 
   const refVideo = useRef();
   const refCanvas = useRef();
+
+  useEffect(() => {
+    if (status.edit) {
+      setContent(status.content);
+      setImages(status.images);
+    }
+  }, [status]);
 
   const uploadImages = (e) => {
     const files = [...e.target.files];
@@ -31,10 +41,12 @@ const Status = () => {
 
     if (err) dispatch({ type: "ALERT", payload: { error: err } });
 
-    // setImages([...images, imagesArr]);
-    setImages((prevImages) => [...prevImages, ...imagesArr]);
+    setImages((prevImages) => {
+      return [...prevImages, ...imagesArr];
+    });
 
-    console.log(images);
+    // setImages([...images, imagesArr]);
+    // setImages((prevImages) => [...prevImages, ...imagesArr]);
   };
 
   const handleDeleteImage = (inde) => {
@@ -82,8 +94,12 @@ const Status = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (images.length === 0) {
-      dispatch({ type: "ALERT", payload: { error: "Add your image" } });
+    if (images.length === 0)
+      return dispatch({ type: "ALERT", payload: { error: "Add your image" } });
+
+    if (status.edit) {
+      dispatch(updatePost({ content, images, auth, status }));
+      dispatch({ type: ALERT_TYPES.STATUS, payload: { edit: false } });
     } else {
       dispatch(createPost({ content, images, auth }));
     }
@@ -100,10 +116,11 @@ const Status = () => {
     setContent("");
     setImages([]);
     if (tracks) tracks.stop();
+    dispatch({ type: ALERT_TYPES.STATUS, payload: { edit: false } });
   };
 
   return (
-    <div className="status">
+    <div className={status.edit ? "edit-status" : "status"}>
       <form onSubmit={handleSubmit}>
         <div className="status-header">
           <img src={auth.user && auth.user.avatar} alt="" />
@@ -129,9 +146,16 @@ const Status = () => {
                   <img
                     className="status-show-images"
                     src={
-                      image.camera ? image.camera : URL.createObjectURL(image)
+                      image.camera
+                        ? image.camera
+                        : image.secure_url
+                        ? image.secure_url
+                        : // : URL.createObjectURL(image)
+                        image instanceof File || image instanceof Blob // Image uploaded by the user
+                        ? URL.createObjectURL(image)
+                        : ""
                     }
-                    alt=""
+                    alt="no"
                   />
                   <span
                     className="status-show-middle-images-delete"

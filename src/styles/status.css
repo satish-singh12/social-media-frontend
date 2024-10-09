@@ -10,6 +10,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
+.edit-status{
+    position: fixed;
+    background-color: rgb(108, 138, 28);
+    z-index: 5;
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 400px; /* Max width for the container */
+}
 
 .status-header {
     display: flex;
@@ -45,7 +53,7 @@
     font-size: 14px;
     resize: none;
     outline: none;
-    background-color: #d2e0ee;
+    background-color: white;
 }
 
 .status-middle textarea:focus {
@@ -193,6 +201,9 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
+    .status{
+        margin-top: 4rem;
+    }
     .status-header {
         flex-direction: column; /* Stack header items */
         align-items: flex-start;
@@ -221,7 +232,9 @@
 }
 
 @media (max-width: 480px) {
-    
+        .status{
+            margin-top: 10rem;
+        }
     .status-header h4 {
         font-size: 14px; /* Reduce header font size */
     }

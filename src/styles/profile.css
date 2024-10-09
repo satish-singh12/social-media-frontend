@@ -1,5 +1,8 @@
 .profile{
-  background-color: #ffebf6;
+  background-color: #e44da0;
+  max-width: 100%;
+  position:sticky;
+  margin-top: 5.7rem;
 }
 
 .profile-body{
@@ -51,6 +54,12 @@
 
 /* Responsive behavior */
 @media (max-width: 768px) {
+  .profile{
+    max-width: 720px;
+    margin-top: 11.2rem;
+    /* min-width:fit-content; */
+    /* margin-left: 1.8rem; */
+   }
   .profile-header-items {
     justify-content: space-between;
     max-width: 100%;
@@ -63,6 +72,11 @@
 }
 
 @media (max-width: 480px) {
+  .profile{
+   margin-top: 17rem;
+   min-width:fit-content;
+   margin-left: 1.8rem;
+  }
   .profile-header {
     flex-direction: column;
     padding: 10px;

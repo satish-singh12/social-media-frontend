@@ -29,7 +29,8 @@ const FriendsCard = ({ user }) => {
           gridAutoFlow: "row", // Ensures that items are placed row by row
         }}
       >
-        {user.length > 0 && user.map((frd) => <GlobalCard user={frd} />)}
+        {user.length > 0 &&
+          user.map((frd) => <GlobalCard user={frd} key={user._id} />)}
       </div>
     </>
   );

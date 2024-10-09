@@ -27,7 +27,7 @@ const GlobalFriendBtn = ({ classBtn, user }) => {
       {friend ? (
         <button
           className={classBtn}
-          style={{ color: "red" }}
+          style={{ color: "white", backgroundColor: "red" }}
           onClick={removeFriend}
         >
           UnFriend
@@ -35,7 +35,7 @@ const GlobalFriendBtn = ({ classBtn, user }) => {
       ) : (
         <button
           className={classBtn}
-          style={{ color: "green" }}
+          style={{ color: "white", backgroundColor: "green" }}
           onClick={addFriend}
         >
           Add Friend

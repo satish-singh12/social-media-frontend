@@ -69,9 +69,7 @@ const Navbar = () => {
         <img src={logoImage} alt="Logo" className="logo-img" />
         <h2>Website Name</h2>
       </div>
-      {/* <h3 style={{ textAlign: "center" }}>
-        “Don’t use social media to impress people; use it to impact people.”
-      </h3> */}
+
       {/* Section 2: Search Bar */}
       {/* <form className="input-box" onSubmit={handleSearch}> HANDELINGNG SEARCH */}
       <form className="input-box">

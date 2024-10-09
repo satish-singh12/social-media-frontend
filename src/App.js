@@ -34,7 +34,7 @@ function App() {
     <div className="App">
       <Router>
         <Alerts />
-        {auth.token && <Navbar />}
+        <div className="main-content">{auth.token && <Navbar />}</div>
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/" element={auth.token ? <Home /> : <Login />} />

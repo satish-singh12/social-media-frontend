@@ -1,5 +1,6 @@
 export const ALERT_TYPES = {
   ALERT: "ALERT",
+  STATUS: "STATUS",
 };
 
 export const EditData = (data, id, post) => {

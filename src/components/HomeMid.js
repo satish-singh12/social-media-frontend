@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const HomeMid = () => {
   const { homePost } = useSelector((state) => state);
   return (
-    <div className="home-min">
+    <div className="home-mid">
       <Status />
       {homePost && homePost.loading ? (
         <p>Loading... </p>

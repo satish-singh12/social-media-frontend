@@ -30,7 +30,10 @@ const Login = () => {
         <div className="overlay">
           {/* <h1>The Gram</h1> */}
           <h1>Social Media</h1>
-          <p>Connect with friends and the world around you on TheGram.</p>
+
+          <h3>
+            “Don’t use social media to impress people; use it to impact people.”
+          </h3>
           <span>
             <p>login with social media</p>
             <Link to="">

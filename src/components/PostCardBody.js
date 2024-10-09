@@ -28,7 +28,7 @@ const PostCardBody = ({ pos }) => {
           <>
             {readMore ? pos.content : pos.content.slice(0, 60) + "... "}
             <button onClick={() => setReadMore(!readMore)}>
-              {readMore ? "Show less" : "...Read more"}
+              {readMore ? <span>Show less</span> : <span>...Read more</span>}
             </button>
           </>
         ) : (
