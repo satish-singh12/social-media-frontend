@@ -64,7 +64,7 @@ export const refreshToken = () => async (dispatch) => {
     try {
       // Send refresh token request
       const res = await postDataApi("refresh_token");
-      const user = res.data && res.data.User;
+
       // Dispatch token and userdata to authReducder
       dispatch({
         type: "AUTH",
@@ -141,6 +141,17 @@ export const logout = () => async (dispatch) => {
   try {
     localStorage.removeItem("login");
     await postDataApi("logout");
+
+    // Clear the auth state
+    dispatch({
+      type: "AUTH",
+      payload: {
+        token: null,
+        user: null,
+      },
+    });
+
+    // Redirect after clearing auth state
     window.location.href = "/";
   } catch (error) {
     console.log(error);

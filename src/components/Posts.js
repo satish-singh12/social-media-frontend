@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import PostCardHeader from "./PostCardHeader";
 import PostCardBody from "./PostCardBody";
 import PostCardFooter from "./PostCardFooter";
+import PostComment from "./PostComment";
+import InputPostComment from "./InputPostComment";
 
 const Posts = () => {
   // const { homePost } = useSelector((state) => state);
@@ -17,7 +19,7 @@ const Posts = () => {
             className="post-card"
             key={pos._id}
             style={{
-              backgroundColor: "black",
+              backgroundColor: "rgb(82, 113, 179)",
               padding: "1rem",
               margin: "1rem",
               borderRadius: "10px",
@@ -27,6 +29,8 @@ const Posts = () => {
             <PostCardHeader pos={pos} />
             <PostCardBody pos={pos} />
             <PostCardFooter pos={pos} />
+            <PostComment pos={pos} />
+            <InputPostComment pos={pos} />
           </div>
         ))}
     </div>

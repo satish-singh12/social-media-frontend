@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getProfileUsers } from "../redux/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/profileAbout.css";
+import moment from "moment";
 
 const About = ({ userData, profile, auth, id }) => {
   return (
@@ -17,7 +18,7 @@ const About = ({ userData, profile, auth, id }) => {
             </div>
 
             <div className="profile-about-content-center">
-              <h4 className="profile-about-content-center-story">Story</h4>
+              {/* <h4 className="profile-about-content-center-story">Story</h4> */}
               <p>{user.story}</p>
             </div>
 
@@ -27,7 +28,7 @@ const About = ({ userData, profile, auth, id }) => {
                   Joined
                 </h6>
                 <p className="profile-about-content-bottom-info-body">
-                  {user.createdAt}
+                  {moment(user.createdAt).format("DD-MM-YYYY")}
                 </p>
               </div>
               <div className="profile-about-content-bottom-info">

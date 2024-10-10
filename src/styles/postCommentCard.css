@@ -1,0 +1,137 @@
+.post-comment-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 2px 0;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-comment-card-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .post-comment-card-user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-comment-card-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .post-comment-card-avatar-info h4 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .post-comment-card-avatar-info h6 {
+    font-size: 0.8rem;
+    color: gray;
+  }
+  
+  .post-comment-card-content {
+    margin-top: 10px;
+  }
+  
+  .post-comment-card-content-content {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  
+  .post-comment-card-content-content button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+  }
+  
+  .post-comment-card-content-content-likes {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .post-comment-card-content-content-likes-count {
+    margin-right: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .post-comment-card-content-content-reply {
+    margin-left: 20px;
+    font-size: 0.9rem;
+    color: gray;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* Tablet view */
+    .post-comment-card {
+      padding: 8px;
+    }
+  
+    .post-comment-card-avatar {
+      width: 35px;
+      height: 35px;
+    }
+  
+    .post-comment-card-avatar-info h4 {
+      font-size: 0.9rem;
+    }
+  
+    .post-comment-card-avatar-info h6 {
+      font-size: 0.7rem;
+    }
+  
+    .post-comment-card-content-content {
+      font-size: 0.85rem;
+    }
+  
+    .post-comment-card-content-content-likes-count {
+      font-size: 0.8rem;
+    }
+  
+    .post-comment-card-content-content-reply {
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Mobile view */
+    .post-comment-card {
+      padding: 6px;
+    }
+  
+    .post-comment-card-avatar {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .post-comment-card-avatar-info h4 {
+      font-size: 0.8rem;
+    }
+  
+    .post-comment-card-avatar-info h6 {
+      font-size: 0.6rem;
+    }
+  
+    .post-comment-card-content-content {
+      font-size: 0.8rem;
+    }
+  
+    .post-comment-card-content-content-likes-count {
+      font-size: 0.75rem;
+    }
+  
+    .post-comment-card-content-content-reply {
+      font-size: 0.75rem;
+    }
+  }
+  

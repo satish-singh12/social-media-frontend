@@ -1,0 +1,117 @@
+/* General styles for Comment Menu Item */
+.comment-menu-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    background-color: #ebe6e6;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    margin-top: -2rem;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    height: .5rem;
+
+  }
+  
+  /* Menu item styles */
+  .comment-menu-itme {
+    font-size: 1.2rem;
+    /* padding: 5px; */
+    color: #333;
+  }
+  
+  .comment-menu-item-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #9e9cbe;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    text-align: left;
+    max-width: 80px;
+  }
+  
+  .comment-menu-item-edit,
+  .comment-menu-item-delete {
+    font-size: 1rem;
+    margin: 5px 0;
+    cursor: pointer;
+    color: #424547;
+  }
+  
+  .comment-menu-item-edit:hover,
+  .comment-menu-item-delete:hover {
+    text-decoration: underline;
+  }
+  
+  /* Mobile (up to 600px) */
+  @media only screen and (max-width: 600px) {
+    .comment-menu-item {
+      font-size: 0.8rem;
+      padding: 5px;
+    }
+  
+    .comment-menu-item-list {
+      padding: 8px;
+      width: 150px;
+    }
+  
+    .comment-menu-item-edit,
+    .comment-menu-item-delete {
+      font-size: 0.9rem;
+    }
+  
+    .comment-menu-itme {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Tablet (601px to 768px) */
+  @media only screen and (min-width: 601px) and (max-width: 768px) {
+    .comment-menu-item {
+      font-size: 1rem;
+      padding: 8px;
+    }
+  
+    .comment-menu-item-list {
+      padding: 10px;
+      width: 200px;
+    }
+  
+    .comment-menu-item-edit,
+    .comment-menu-item-delete {
+      font-size: 1rem;
+    }
+  
+    .comment-menu-itme {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Desktop (769px and up) */
+  @media only screen and (min-width: 769px) {
+    .comment-menu-item {
+      font-size: 1.2rem;
+      padding: 10px;
+    }
+  
+    .comment-menu-item-list {
+      padding: 15px;
+      width: 250px;
+    }
+  
+    .comment-menu-item-edit,
+    .comment-menu-item-delete {
+      font-size: 1.1rem;
+    }
+  
+    .comment-menu-itme {
+      font-size: 1.4rem;
+    }
+  }
+  

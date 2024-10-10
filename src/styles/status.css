@@ -1,8 +1,9 @@
 
 /* Status component styles */
 .status {
+    /* display: flex; */
     margin: 0 auto; /* Center the container */
-    min-width: 500px; /* Max width for the container */
+    min-width: 100%; /* Max width for the container */
     border: 1px solid #e6ecf0;
     border-radius: 8px;
     padding: 20px;

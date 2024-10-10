@@ -5,20 +5,19 @@ const Loading = () => {
   return (
     <div className="loading">
       <svg width="400" height="180">
-        <rect
-          x="50"
-          y="20"
-          width="150"
-          height="150"
+        <circle
+          cx="125" // Center X position
+          cy="100" // Center Y position
+          r="75" // Radius
           fill="none"
           stroke="#fff"
           strokeWidth="5"
-        ></rect>
+        ></circle>
         <text
           className="loading-text"
-          style={{ transform: "translateX(45px, -40px)" }}
+          style={{ transform: "translate(45px, -40px)" }}
           fill="#fff"
-          x="4"
+          x="50"
           y="147"
         >
           Loading

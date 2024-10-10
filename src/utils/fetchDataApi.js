@@ -13,7 +13,7 @@ export const postDataApi = async (url, post, token) => {
       `http://localhost:5000/api/${url}`,
       post,
       {
-        headers: { Authorization: token },
+        headers: { Authorization: token ? token : "" },
         withCredentials: true, // Allow cookies to be sent with the request
       }
     );

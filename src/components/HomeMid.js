@@ -2,6 +2,7 @@ import React from "react";
 import Status from "./Status";
 import Post from "./Posts";
 import { useSelector } from "react-redux";
+import "../styles/homeMid.css";
 
 const HomeMid = () => {
   const { homePost } = useSelector((state) => state);

@@ -1,15 +1,8 @@
-/* styles.css */
-
-/* General styles */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Light background color for the whole page */
-}
 
 .home-page-header {
+    margin-top: 5rem;
     text-align: center; /* Center-align header content */
-    padding: 20px; /* Padding around header */
+    padding: 10px; /* Padding around header */
     background-color: #ffffff; /* White background for header */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
@@ -22,7 +15,7 @@ body {
 /* Home body area styles */
 .home-body-area {
     display: flex;
-    justify-content: space-between; /* Space between left, middle, and right sections */
+    justify-content:space-between; /* Space between left, middle, and right sections */
     padding: 20px; /* Padding around the body area */
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }

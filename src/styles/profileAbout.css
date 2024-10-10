@@ -1,60 +1,169 @@
-.profile-about{
-    background-color: rgb(60, 171, 179);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 300px 20px rgb(241, 236, 236);
-    min-width: 260px;
-    min-height: 500px;
-}
 
-.profile-about-container{
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-about-containt-top-head{
-    padding: 2rem;
-}
-
-.profile-about-content-top{
-    padding: .3rem;
-    font-weight: bolder;
-    font-size: large;
-}
-.profile-about-content-center-story{
-    padding: .5rem;
-}
-
-.profile-about-content-center{
-    min-height: 30%;
-    background-color: rgb(234, 244, 253);
-    min-height: 6rem;
-    border-radius:10px;
+  /* Profile About Container */
+  .profile-about {
+    /* width: 100%; */
+    max-width: 1200px;
+    margin: 1rem auto;
     
-}
-
-.profile-about-content-bottom{
+    padding: 20px;
+    background-color: #cde950;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-container {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(126, 122, 122);
+  }
+  
+  .profile-about-containt-top h4 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid rgb(126, 122, 122);
+    width:100%;
+  }
+  
+  /* .profile-about-content-center-story {
+    font-size: 15px;
+    color: #555;
+    margin-top: 20px;
+  }
+   */
+  .profile-about-content-center p {
+    font-size: 15px;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.6;
+    border-bottom: 2px solid rgb(126, 122, 122);
+  }
+  
+  .profile-about-content-bottom {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.profile-about-content-bottom-info{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .profile-about-content-bottom-info {
+    flex: 1 1 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-about-content-bottom-info-head {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 5px;
+  }
+  
+  .profile-about-content-bottom-info-body {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Desktop Styles (default) */
+  @media only screen and (min-width: 1024px) {
+    .profile-about {
+      padding: 30px;
     }
-
-.profile-about-content-bottom-info-head{
-    font-size: medium;
-    font-weight: 600;
-    color:rgb(230, 233, 236);
-    margin-top: .5rem;
-}
-
-.profile-about-content-bottom-info-body{
-    align-items: flex-end;
-    font-size: small;
-    font-weight: 200;
-
-}
+  
+    .about-container {
+      padding: 30px;
+    }
+  
+    .profile-about-containt-top h4 {
+      font-size: 26px;
+    }
+  
+    .profile-about-content-center-story {
+      font-size: 22px;
+    }
+  
+    .profile-about-content-center p {
+      font-size: 18px;
+    }
+  
+    .profile-about-content-bottom-info {
+      flex: 1 1 220px;
+    }
+  
+    .profile-about-content-bottom-info-head {
+      font-size: 20px;
+    }
+  
+    .profile-about-content-bottom-info-body {
+      font-size: 18px;
+    }
+  }
+  
+  /* Tablet Styles */
+  @media only screen and (max-width: 1023px) and (min-width: 768px) {
+    .profile-about {
+      padding: 20px;
+    }
+  
+    .profile-about-containt-top h4 {
+      font-size: 22px;
+    }
+  
+    .profile-about-content-center-story {
+      font-size: 18px;
+    }
+  
+    .profile-about-content-center p {
+      font-size: 16px;
+    }
+  
+    .profile-about-content-bottom-info {
+      flex: 1 1 250px;
+    }
+  
+    .profile-about-content-bottom-info-head {
+      font-size: 18px;
+    }
+  
+    .profile-about-content-bottom-info-body {
+      font-size: 16px;
+    }
+  }
+  
+  /* Mobile Styles */
+  @media only screen and (max-width: 767px) {
+    .profile-about {
+      padding: 15px;
+    }
+  
+    .about-container {
+      padding: 15px;
+    }
+  
+    .profile-about-containt-top h4 {
+      font-size: 20px;
+    }
+  
+    .profile-about-content-center-story {
+      font-size: 16px;
+    }
+  
+    .profile-about-content-center p {
+      font-size: 14px;
+    }
+  
+    .profile-about-content-bottom {
+      flex-direction: column;
+    }
+  
+    .profile-about-content-bottom-info {
+      flex: 1 1 100%;
+      margin-right: 0;
+    }
+  
+    .profile-about-content-bottom-info-head {
+      font-size: 16px;
+    }
+  
+    .profile-about-content-bottom-info-body {
+      font-size: 14px;
+    }
+  }
+  
