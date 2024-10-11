@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/globalCard.css";
+import "../../styles/globalCard.css";
 import { IoPerson } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import GlobalFriendBtn from "./GlobalFriendBtn";

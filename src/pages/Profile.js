@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Info from "../components/Info";
-import Posts from "../components/Posts";
-import About from "../components/About";
+import Info from "../components/ProfileComponents/Info";
+import Posts from "../components/PostsComponents/Posts";
+import About from "../components/ProfileComponents/About";
 import "../styles/profile.css";
 import { getProfileUsers } from "../redux/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,8 +10,8 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { IoPersonAdd } from "react-icons/io5";
 import { MdPeopleAlt } from "react-icons/md";
 import { IoBookmarks } from "react-icons/io5";
-import Following from "../components/Following";
-import Friends from "../components/Friends";
+import Following from "../components/ProfileComponents/Following";
+import Friends from "../components/ProfileComponents/Friends";
 
 const Profile = () => {
   const [userData, setUserData] = useState([]);

@@ -40,6 +40,7 @@ body {
   /* background-image: url("https://media.istockphoto.com/id/1453501312/photo/3d-icon-of-abstract-technology-group-and-data-network-with-blurred-blue-background.jpg?s=1024x1024&w=is&k=20&c=fIdPLeDIooD2Jsz8UHT1njrASglyhnE7ZT1qFdx3WaI="); */
   background: url('../images/loginbg.png') no-repeat center;
   overflow: hidden;
+  font-family: cursive;
   
 }
 .box-form .left .overlay {
@@ -49,13 +50,15 @@ body {
   background: #5961f9ad;
   overflow: hidden;
   box-sizing: border-box;
+  
 }
 .box-form .left .overlay h1 {
   font-size: 5vmax;
   line-height: 1;
   font-weight: 900;
   margin-top: 40px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  margin-top: 1rem;
 }
 .box-form .left .overlay span p {
   margin-top: 30px;

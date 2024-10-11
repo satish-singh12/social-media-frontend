@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import GlobalCard from "./GlobalCard";
+import GlobalCard from "../ProfileComponents/GlobalCard";
 
 const HomeLeft = () => {
   const auth = useSelector((state) => state.auth);

@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCamera } from "react-icons/fa";
 import { MdInsertPhoto } from "react-icons/md";
-import "../styles/status.css";
-import { createPost, updatePost } from "../redux/actions/postActions";
-import { ALERT_TYPES } from "../redux/actions/alertActions";
+import "../../styles/status.css";
+import { createPost, updatePost } from "../../redux/actions/postActions";
+import { ALERT_TYPES } from "../../redux/actions/alertActions";
 
 const Status = () => {
   // const {auth} = useSelector((state) => state);

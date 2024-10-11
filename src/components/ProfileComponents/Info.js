@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/profileInfo.css";
+import "../../styles/profileInfo.css";
 import EditProfile from "./EditProfile";
 import GlobalFriendBtn from "./GlobalFriendBtn";
 

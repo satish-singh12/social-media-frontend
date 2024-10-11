@@ -1,6 +1,7 @@
 import React from "react";
 import GlobalCard from "./GlobalCard";
 
+//receiving props from Friends.js
 const FriendsCard = ({ user }) => {
   return (
     <>

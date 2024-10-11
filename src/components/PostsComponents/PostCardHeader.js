@@ -1,9 +1,9 @@
 import React from "react";
-import "../styles/postCardHeader.css";
+import "../../styles/postCardHeader.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { ALERT_TYPES } from "../redux/actions/alertActions";
+import { ALERT_TYPES } from "../../redux/actions/alertActions";
 
 const PostCardHeader = ({ pos }) => {
   const auth = useSelector((state) => state.auth);

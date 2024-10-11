@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../styles/inputPostComment.css";
+import "../../styles/inputPostComment.css";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment } from "../redux/actions/commentActions";
+import { createComment } from "../../redux/actions/commentActions";
 
 const InputPostComment = ({ pos }) => {
   const auth = useSelector((state) => state.auth);

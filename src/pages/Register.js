@@ -3,6 +3,7 @@ import "../styles/loginRegister.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../redux/actions/authActions";
+import logoImage from "../images/logo.png";
 
 const Register = () => {
   const initialState = {
@@ -44,10 +45,12 @@ const Register = () => {
     <div className="box-form">
       <div className="left">
         <div className="overlay">
-          {/* <h1>The Gram</h1> */}
-          <h1>Social Media</h1>
-          <h3>
-            “Don’t use social media to impress people; use it to impact people.”
+          <h1>
+            <img src={logoImage} alt="Logo" className="logo-img" />
+          </h1>
+          {/* <h1>Social Media</h1> */}
+          <h3 style={{ marginTop: "1rem" }}>
+            “Don’t use "TheGram" to impress people; use it to impact people.”
           </h3>
         </div>
       </div>
@@ -58,107 +61,111 @@ const Register = () => {
           You already have an account? <Link to="/">Login your account</Link>
         </p>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={fullname}
-            name="fullname"
-            onChange={handleChange}
-            placeholder={
-              alert.fullname ? `${alert.fullname}` : "Enter your fullname"
-            }
-            style={{ backgroundColor: `${alert.fullname ? "#0006" : " "}` }}
-          />
-          {alert.fullname ? (
-            <small className="alert-input">{alert.fullname}*</small>
-          ) : (
-            " "
-          )}
-          <input
-            type="text"
-            value={username.toLocaleLowerCase().replace(/ /g, "")}
-            name="username"
-            onChange={handleChange}
-            placeholder={
-              alert.username ? `${alert.username}` : "Enter your username"
-            }
-          />
-          {alert.username ? (
-            <small className="alert-input">{alert.username}*</small>
-          ) : (
-            " "
-          )}
           <div className="inputs">
             <input
-              type="email"
-              value={email}
-              name="email"
+              type="text"
+              value={fullname}
+              name="fullname"
               onChange={handleChange}
-              placeholder={alert.email ? `${alert.email}` : "Enter your email"}
+              placeholder={
+                alert.fullname ? `${alert.fullname}` : "Enter your fullname"
+              }
+              style={{ backgroundColor: `${alert.fullname ? "#0006" : " "}` }}
             />
-            {alert.email ? (
-              <small className="alert-input">{alert.email}*</small>
+            {alert.fullname ? (
+              <small className="alert-input">{alert.fullname}*</small>
             ) : (
               " "
             )}
-            <div className="password-input">
+            <input
+              type="text"
+              value={username.toLocaleLowerCase().replace(/ /g, "")}
+              name="username"
+              onChange={handleChange}
+              placeholder={
+                alert.username ? `${alert.username}` : "Enter your username"
+              }
+            />
+            {alert.username ? (
+              <small className="alert-input">{alert.username}*</small>
+            ) : (
+              " "
+            )}
+            <div className="inputs">
               <input
-                type={showPass ? "type" : "password"}
-                value={password}
-                name="password"
+                type="email"
+                value={email}
+                name="email"
                 onChange={handleChange}
                 placeholder={
-                  alert.password ? `${alert.password}` : "Enter your password"
+                  alert.email ? `${alert.email}` : "Enter your email"
                 }
               />
-              {alert.password ? (
-                <small className="alert-input">{alert.password}*</small>
+              {alert.email ? (
+                <small className="alert-input">{alert.email}*</small>
               ) : (
                 " "
               )}
-              <small
-                className="show-hide-password"
-                onClick={() => setShowPass(!showPass)}
-              >
-                {showPass ? "Hide" : "Show"}
-              </small>
-            </div>
-            <div className="password-input">
-              <input
-                type={showcfPass ? "type" : "password"}
-                value={confirmPassword}
-                name="confirmPassword"
+              <div className="password-input">
+                <input
+                  type={showPass ? "type" : "password"}
+                  value={password}
+                  name="password"
+                  onChange={handleChange}
+                  placeholder={
+                    alert.password ? `${alert.password}` : "Enter your password"
+                  }
+                />
+                {alert.password ? (
+                  <small className="alert-input">{alert.password}*</small>
+                ) : (
+                  " "
+                )}
+                <small
+                  className="show-hide-password"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? "Hide" : "Show"}
+                </small>
+              </div>
+              <div className="password-input">
+                <input
+                  type={showcfPass ? "type" : "password"}
+                  value={confirmPassword}
+                  name="confirmPassword"
+                  onChange={handleChange}
+                  placeholder={
+                    alert.confirmPassword
+                      ? `${alert.confirmPassword}`
+                      : "Enter your password again"
+                  }
+                />
+                <small
+                  className="show-hide-password"
+                  onClick={() => setShowcfPass(!showcfPass)}
+                >
+                  {showcfPass ? "Hide" : "Show"}
+                </small>
+              </div>
+              {alert.confirmPassword ? (
+                <small>{alert.confirmPassword}</small>
+              ) : (
+                " "
+              )}
+              <select
+                className="select-gender"
+                value={gender}
+                name="gender"
                 onChange={handleChange}
-                placeholder={
-                  alert.confirmPassword
-                    ? `${alert.confirmPassword}`
-                    : "Enter your password again"
-                }
-              />
-              <small
-                className="show-hide-password"
-                onClick={() => setShowcfPass(!showcfPass)}
               >
-                {showcfPass ? "Hide" : "Show"}
-              </small>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
             </div>
-            {alert.confirmPassword ? (
-              <small>{alert.confirmPassword}</small>
-            ) : (
-              " "
-            )}
-            <select
-              className="select-gender"
-              value={gender}
-              name="gender"
-              onChange={handleChange}
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
 
-          <button type="submit">Register</button>
+            <button type="submit">Register</button>
+          </div>
         </form>
       </div>
     </div>

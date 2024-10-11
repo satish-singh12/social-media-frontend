@@ -1,0 +1,79 @@
+
+.post-comments-header {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    max-width: 600px; 
+    margin: 0 auto; 
+  }
+  
+  /* Style for individual comments */
+  .post-comment {
+    margin-bottom: 12px; 
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 4px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+  }
+  
+  /* Show more/less button styles */
+  .show-more, .show-less {
+    color: #007bff; 
+    cursor: pointer; 
+    font-weight: bold; 
+    margin-top: 12px;
+  }
+  
+  
+  .show-more:hover, .show-less:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media Queries for Responsive Design */
+  
+  /* Mobile Devices */
+  @media (max-width: 480px) {
+    .post-comments-header {
+      padding: 12px;
+    }
+    
+    .post-comment {
+      font-size: 14px;
+    }
+  
+    .show-more, .show-less {
+      font-size: 14px;
+    }
+  }
+  
+  /* Tablets */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .post-comments-header {
+      padding: 14px;
+    }
+    
+    .post-comment {
+      font-size: 15px;
+    }
+  
+    .show-more, .show-less {
+      font-size: 15px;
+    }
+  }
+  
+  /* Laptops and Desktops */
+  @media (min-width: 769px) {
+    .post-comments-header {
+      padding: 16px; 
+    }
+    
+    .post-comment {
+      font-size: 16px;
+    }
+  
+    .show-more, .show-less {
+      font-size: 16px; 
+    }
+  }
+  

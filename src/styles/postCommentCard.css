@@ -14,7 +14,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+    
   .post-comment-card-user-info {
     display: flex;
     align-items: center;
@@ -44,6 +44,12 @@
   .post-comment-card-content-content {
     font-size: 0.9rem;
     text-align: left;
+  }
+
+  .post-comment-card-content-content textarea{
+    width:100%;
+    background: transparent;
+    resize: none;
   }
   
   .post-comment-card-content-content button {

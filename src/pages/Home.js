@@ -1,9 +1,9 @@
 import React from "react";
-import HomeLeft from "../components/HomeLeft";
-import HomeMid from "../components/HomeMid";
-import HomeRight from "../components/HomeRight";
+import HomeLeft from "../components/HomeComponents/HomeLeft";
+import HomeMid from "../components/HomeComponents/HomeMid";
+import HomeRight from "../components/HomeComponents/HomeRight";
 import "../styles/home.css";
-import Banner from "../components/Banner";
+import Banner from "../components/HomeComponents/Banner";
 
 const Home = () => {
   return (

@@ -38,7 +38,7 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
-import "../styles/banner.css"; // Import external CSS
+import "../../styles/banner.css"; // Import external CSS
 
 const Banner = () => {
   const auth = useSelector((state) => state.auth);

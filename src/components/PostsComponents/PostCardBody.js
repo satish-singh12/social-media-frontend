@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/postCardBody.css";
+import "../../styles/postCardBody.css";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
 

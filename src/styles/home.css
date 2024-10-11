@@ -23,8 +23,8 @@
 .home-left,
 .home-mid,
 .home-right {
-    background-color: #ffffff; /* White background for components */
-    border: 1px solid #e6ecf0; /* Light border */
+    background-color: #832020; /* White background for components */
+    border: 1px solid #3f6279; /* Light border */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 20px; /* Padding inside components */

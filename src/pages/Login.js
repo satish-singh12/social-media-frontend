@@ -3,6 +3,7 @@ import "../styles/loginRegister.css";
 import { Link } from "react-router-dom";
 import { login } from "../redux/actions/authActions";
 import { useDispatch } from "react-redux";
+import logoImage from "../images/logo.png";
 
 const Login = () => {
   const initialState = { email: "", password: "" };
@@ -28,11 +29,12 @@ const Login = () => {
     <div className="box-form">
       <div className="left">
         <div className="overlay">
-          {/* <h1>The Gram</h1> */}
-          <h1>Social Media</h1>
-
+          <h1>
+            <img src={logoImage} alt="Logo" className="logo-img" />
+          </h1>
+          {/* <h1>Social Media</h1> */}
           <h3>
-            “Don’t use social media to impress people; use it to impact people.”
+            “Don’t use "TheGram" to impress people; use it to impact people.”
           </h3>
           <span>
             <p>login with social media</p>

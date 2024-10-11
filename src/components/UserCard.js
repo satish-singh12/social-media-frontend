@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/userCard.css";
 import { Link } from "react-router-dom";
 
+//child of Navbar.js
 const UserCard = ({ user, handleClose }) => {
   const handleCloseAll = () => {
     if (handleClose) handleClose();
