@@ -41,6 +41,8 @@
 
 .home-mid {
     flex-basis: 50%; /* Wider middle section */
+    width: 200px;
+    max-width: 100%;
 }
 
 .home-right {
@@ -58,6 +60,7 @@
     .home-right {
         max-width: 100%; /* Full width for components */
         min-width: 100%; /* Min width for components */
+        margin: auto;
     }
 }
 

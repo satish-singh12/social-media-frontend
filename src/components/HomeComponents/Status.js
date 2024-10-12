@@ -7,7 +7,6 @@ import { createPost, updatePost } from "../../redux/actions/postActions";
 import { ALERT_TYPES } from "../../redux/actions/alertActions";
 
 const Status = () => {
-  // const {auth} = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
   const status = useSelector((state) => state.status);
 
@@ -34,8 +33,9 @@ const Status = () => {
 
     files.forEach((file) => {
       if (!file) return (err = "no file found");
-      if (file.type !== "image/jpeg" && file.type !== "image/png")
-        return (err = "Invalid format");
+      if (file.size > 1024 * 1024 * 5) return (err = "File is too long");
+      // if (file.type !== "image/jpeg" && file.type !== "image/png")
+      // return (err = "Invalid format");
       return imagesArr.push(file);
     });
 
@@ -44,9 +44,6 @@ const Status = () => {
     setImages((prevImages) => {
       return [...prevImages, ...imagesArr];
     });
-
-    // setImages([...images, imagesArr]);
-    // setImages((prevImages) => [...prevImages, ...imagesArr]);
   };
 
   const handleDeleteImage = (inde) => {
@@ -119,6 +116,14 @@ const Status = () => {
     dispatch({ type: ALERT_TYPES.STATUS, payload: { edit: false } });
   };
 
+  const imagesShow = (src) => {
+    return (
+      <>
+        <img src={src} alt="" className="status-show-images-middle" />
+      </>
+    );
+  };
+
   return (
     <div className={status.edit ? "edit-status" : "status"}>
       <form onSubmit={handleSubmit}>
@@ -143,20 +148,36 @@ const Status = () => {
                   className="status-show-middle-images-container"
                   key={index}
                 >
-                  <img
-                    className="status-show-images"
-                    src={
-                      image.camera
-                        ? image.camera
-                        : image.secure_url
-                        ? image.secure_url
-                        : // : URL.createObjectURL(image)
-                        image instanceof File || image instanceof Blob // Image uploaded by the user
-                        ? URL.createObjectURL(image)
-                        : ""
-                    }
-                    alt="no"
-                  />
+                  image?.camera ? imagesShow(image.camera) : image.secure_url ?
+                  (
+                  <>
+                    {image?.secure_url?.match(/video/i) ? (
+                      <video
+                        controls
+                        src={image.secure_url} // Use correct URL here
+                        className="status-show-images-middle"
+                        alt="video"
+                        style={{ width: "100%" }}
+                      />
+                    ) : (
+                      imagesShow(image.secure_url)
+                    )}
+                  </>
+                  ) : (
+                  <>
+                    {image?.type && image?.type?.match(/video/i) ? (
+                      <video
+                        controls
+                        src={URL.createObjectURL(image)} // For local video files
+                        className="status-show-images-middle"
+                        alt="video"
+                        style={{ width: "100%" }}
+                      />
+                    ) : (
+                      imagesShow(URL.createObjectURL(image))
+                    )}
+                  </>
+                  )
                   <span
                     className="status-show-middle-images-delete"
                     onClick={() => handleDeleteImage(index)}
@@ -207,7 +228,6 @@ const Status = () => {
                 id="post-upload"
                 onChange={uploadImages}
                 multiple
-                accept="image/*"
               />
             </span>
           </div>

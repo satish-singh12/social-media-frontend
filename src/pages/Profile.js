@@ -12,15 +12,16 @@ import { MdPeopleAlt } from "react-icons/md";
 import { IoBookmarks } from "react-icons/io5";
 import Following from "../components/ProfileComponents/Following";
 import Friends from "../components/ProfileComponents/Friends";
+import SingleUserPosts from "../components/PostsComponents/SingleUserPosts";
 
 const Profile = () => {
   const [userData, setUserData] = useState([]);
-
+  const [userPosts, setUserPosts] = useState([]);
   const [showAccount, setShowAccount] = useState(true);
   const [showFriend, setShowFriend] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showSaved, setShowSaved] = useState(false);
-
+  // console.log(userPosts);
   const handleToggle = (ht) => {
     if (ht === "showAccount") {
       setShowFriend(false);
@@ -48,26 +49,46 @@ const Profile = () => {
   const { id } = useParams();
   const { auth, profile } = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  // console.log(profile.users);
   //At the start redux store is undefined, it will take time.
+
   useEffect(() => {
     if (auth && auth.user && id === auth.user._id) {
       setUserData([auth.user]);
+      dispatch(getProfileUsers({ users: profile.users, id, auth }));
+      const newPosts = profile.userposts.find((item) => item._id === id);
+      if (newPosts) {
+        setUserPosts(newPosts);
+      }
+      // dispatch(
+      //   getProfileUsers({ users: profile.users && profile.users, id, auth })
+      // );
+      // const newPosts = profile.userposts.find((item) => item._id === id);
+      // if (newPosts) {
+      //   setUserPosts(newPosts);
+      // }
     } else {
-      dispatch(
-        getProfileUsers({ users: profile.users && profile.users, id, auth })
-      );
-    }
-  }, [id, auth, profile.users, dispatch]);
+      if (profile.ids.every((item) => item !== id))
+        dispatch(getProfileUsers({ users: profile.users, id, auth }));
 
-  useEffect(() => {
-    if (profile.users) {
       const newData = profile.users.filter((user) => user._id === id);
-      if (newData.length > 0) {
-        setUserData(newData);
+      setUserData(newData);
+
+      const newPosts = profile.userposts.find((item) => item._id === id);
+      if (newPosts) {
+        setUserPosts(newPosts);
       }
     }
-  }, [profile.users, id]);
+  }, [id, auth, profile.users, profile.userposts, dispatch]);
+
+  // useEffect(() => {
+  //   if (profile.users) {
+  //     const newData = profile.users.filter((user) => user._id === id);
+  //     if (newData.length > 0) {
+  //       setUserData(newData);
+  //     }
+  //   }
+  // }, [profile.users, id]);
 
   return (
     <div className="profile">
@@ -111,12 +132,15 @@ const Profile = () => {
           </div>
 
           <div className="profile-body-center">
-            <Posts />
+            <SingleUserPosts
+              userPosts={userPosts}
+              profile={profile}
+              auth={auth}
+              id={id}
+            />
           </div>
-          {/* 
-          <div className="profile-body-right">
-            <Posts />
-          </div> */}
+
+          <div className="profile-body-right">{/* <Posts /> */}</div>
         </div>
       )}
       {showFriend && userData.length > 0 && (

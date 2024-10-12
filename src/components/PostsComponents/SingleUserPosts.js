@@ -6,19 +6,16 @@ import PostCardFooter from "./PostCardFooter";
 import PostComment from "./PostComment";
 import InputPostComment from "./InputPostComment";
 
-const Posts = () => {
+const SingleUserPosts = ({ userPosts, profile, auth, id }) => {
   // const { homePost } = useSelector((state) => state);
-  const posts = useSelector((state) => state.homePost.post);
-  // console.log(homePost);
+  //   const posts = useSelector((state) => state.homePost.post);
+  // console.log(userPosts);
 
   return (
     <div>
-      {posts &&
-        posts.length > 0 &&
-        posts.map((pos) => (
-          // {homePost &&
-          //   homePost.posts.length > 0 &&
-          //   homePost.posts.map((pos) => (
+      {userPosts &&
+        userPosts?.posts?.length > 0 &&
+        userPosts.posts.map((pos) => (
           <div
             className="post-card"
             key={pos._id}
@@ -41,4 +38,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default SingleUserPosts;

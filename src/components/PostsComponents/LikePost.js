@@ -1,13 +1,19 @@
 import React from "react";
-import { MdFavorite } from "react-icons/md";
+import { MdOutlineFavorite } from "react-icons/md";
 
 const LikePost = ({ isLike, handleLike, handleUnlike }) => {
   return (
     <div>
       {isLike ? (
-        <MdFavorite onClick={handleUnlike} style={{ color: "green" }} />
+        <MdOutlineFavorite
+          onClick={handleUnlike}
+          style={{ color: "green", fontSize: "1.5rem" }}
+        />
       ) : (
-        <MdFavorite onClick={handleLike} style={{ color: "white" }} />
+        <MdOutlineFavorite
+          onClick={handleLike}
+          style={{ color: "black", fontSize: "1.5rem" }}
+        />
       )}
     </div>
   );

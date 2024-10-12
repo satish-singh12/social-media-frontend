@@ -13,20 +13,29 @@ const PostComment = ({ pos }) => {
     setShowComments(newCmt.slice(newCmt.length - next));
   }, [pos.comments, next]);
   return (
-    <div className="post-comments-header">
+    <div>
       {showComments &&
         showComments.map((comment) => (
-          <div className="post-comment">
+          <div>
             <PostCommentDisplay comment={comment} key={comment._id} pos={pos} />
           </div>
         ))}
-      <div className="show-more">
-        {comments.length - next > 0 ? (
-          <div onClick={() => setNext((prev) => prev + 10)}>Show more</div>
-        ) : (
-          comments.length > 2 && <div onClick={() => setNext(2)}>Show less</div>
-        )}
-      </div>
+      {/* <div className="show-more"> */}
+      {comments.length - next > 0 ? (
+        <div
+          className="post-comments-show-more"
+          onClick={() => setNext((prev) => prev + 10)}
+        >
+          Show more
+        </div>
+      ) : (
+        comments.length > 2 && (
+          <div className="post-comments-show-less" onClick={() => setNext(2)}>
+            Show less
+          </div>
+        )
+      )}
+      {/* </div> */}
     </div>
   );
 };

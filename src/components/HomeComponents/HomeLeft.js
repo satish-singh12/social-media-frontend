@@ -5,7 +5,7 @@ import GlobalCard from "../ProfileComponents/GlobalCard";
 const HomeLeft = () => {
   const auth = useSelector((state) => state.auth);
   return (
-    <div>
+    <div style={{ minWidth: "300px" }}>
       <GlobalCard user={auth.user} />
     </div>
   );

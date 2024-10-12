@@ -1,11 +1,14 @@
 
-.post-comments-header {
-    padding: 16px;
-    background-color: #f9f9f9;
+.post-comments-show-more, .post-comments-show-less {
+    background-color: transparent;
+    color: red;
     border: 1px solid #ddd; 
     border-radius: 8px; 
-    max-width: 600px; 
+    max-width: 100px; 
     margin: 0 auto; 
+    cursor: pointer; 
+    font-weight: bold; 
+    text-align: center;
   }
   
   /* Style for individual comments */
@@ -26,54 +29,25 @@
   }
   
   
-  .show-more:hover, .show-less:hover {
-    text-decoration: underline;
-  }
-  
-  /* Media Queries for Responsive Design */
-  
+   
   /* Mobile Devices */
   @media (max-width: 480px) {
-    .post-comments-header {
-      padding: 12px;
-    }
-    
-    .post-comment {
-      font-size: 14px;
-    }
-  
-    .show-more, .show-less {
-      font-size: 14px;
+    .post-comments-show-more, .post-commentsshow-less {
+      font-size: 12px;
     }
   }
   
   /* Tablets */
   @media (min-width: 481px) and (max-width: 768px) {
-    .post-comments-header {
-      padding: 14px;
-    }
-    
-    .post-comment {
-      font-size: 15px;
-    }
-  
-    .show-more, .show-less {
-      font-size: 15px;
+    .post-comments-show-more, .post-commentsshow-less {
+      font-size: 13px;
     }
   }
   
   /* Laptops and Desktops */
   @media (min-width: 769px) {
-    .post-comments-header {
-      padding: 16px; 
-    }
-    
-    .post-comment {
-      font-size: 16px;
-    }
-  
-    .show-more, .show-less {
-      font-size: 16px; 
+    .post-comments-show-more, .post-commentsshow-less {
+      font-size: 14px; 
     }
   }
   

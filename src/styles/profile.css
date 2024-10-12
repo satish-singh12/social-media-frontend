@@ -10,7 +10,9 @@
   justify-content: space-between;
 }
 
-.profile-body-left{}
+.profile-body-left{
+  max-width: 30%;
+}
 
 .profile-body-center{}
 

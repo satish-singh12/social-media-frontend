@@ -3,6 +3,7 @@ import Status from "./Status";
 import Post from "../PostsComponents/Posts";
 import { useSelector } from "react-redux";
 import "../../styles/homeMid.css";
+import Posts from "../PostsComponents/Posts";
 
 const HomeMid = () => {
   const { homePost } = useSelector((state) => state);
@@ -14,7 +15,8 @@ const HomeMid = () => {
       ) : homePost.results === 0 ? (
         <h4>No Post Available</h4>
       ) : (
-        <Post />
+        // <Post />
+        <Posts />
       )}
     </div>
   );

@@ -60,7 +60,15 @@ const PostCardBody = ({ pos }) => {
             (image, index) =>
               index === currentImage && (
                 <div className="post-card-body-image" key={image.secure_url}>
-                  <img src={image.secure_url} alt={pos.user.fullname} />
+                  {image.secure_url.match(/video/i) ? (
+                    <video
+                      controls
+                      src={image.secure_url}
+                      alt={pos.user.fullname}
+                    />
+                  ) : (
+                    <img src={image.secure_url} alt={pos.user.fullname} />
+                  )}
                 </div>
               )
           )}

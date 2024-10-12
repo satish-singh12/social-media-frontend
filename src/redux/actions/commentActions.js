@@ -3,7 +3,7 @@ import {
   postDataApi,
   patchDataApi,
 } from "../../utils/fetchDataApi";
-import { EditData } from "./alertActions";
+import { EditData, DeleteData } from "./alertActions";
 import { POST_TYPES } from "./postActions";
 
 export const createComment =
@@ -15,7 +15,6 @@ export const createComment =
     try {
       const data = { ...newComment, postId: pos._id };
       const res = await postDataApi("comment", data, auth.token);
-      console.log(res);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -39,6 +38,54 @@ export const updateComment =
         { content },
         auth.token
       );
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const likeComment =
+  ({ comment, pos, auth }) =>
+  async (dispatch) => {
+    // console.log({ comment, pos, auth });
+    const newComment = { ...comment, likes: [...comment.likes, auth.user] };
+    const newComments = EditData(pos.comments, comment._id, newComment);
+    const newPost = { ...pos, comments: newComments };
+    dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+    try {
+      const res = await patchDataApi(
+        `comment/${comment._id}/like`,
+        null,
+        auth.token
+      );
+      console.log(res);
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const unlikeComment =
+  ({ comment, pos, auth }) =>
+  async (dispatch) => {
+    const newComment = {
+      ...comment,
+      likes: DeleteData(comment.likes, auth.user._id),
+    };
+    const newComments = EditData(pos.comments, comment._id, newComment);
+    const newPost = { ...pos, comments: newComments };
+    dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+    try {
+      const res = await patchDataApi(
+        `comment/${comment._id}/unlike`,
+        null,
+        auth.token
+      );
+      console.log(res);
     } catch (err) {
       dispatch({
         type: "ALERT",

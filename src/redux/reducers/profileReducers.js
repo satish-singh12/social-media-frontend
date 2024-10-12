@@ -5,6 +5,8 @@ const initialState = {
   loading: false,
   users: [],
   posts: [],
+  ids: [],
+  userposts: [],
 };
 
 const profileReducers = (state = initialState, action) => {
@@ -21,7 +23,17 @@ const profileReducers = (state = initialState, action) => {
       return {
         ...state,
 
-        users: userExists ? state.users : [...state.users, action.payload.user],
+        users: userExists ? state.users : [...state.users, action.payload],
+      };
+    case PROFILE_TYPES.GET_IDS:
+      return {
+        ...state,
+        ids: [...state.ids, action.payload],
+      };
+    case PROFILE_TYPES.USER_POSTS:
+      return {
+        ...state,
+        userposts: [...state.userposts, action.payload],
       };
     case PROFILE_TYPES.FRIEND:
       return {

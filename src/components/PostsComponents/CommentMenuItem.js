@@ -10,7 +10,10 @@ const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
         <div className="comment-menu-item-list">
           <h6
             className="comment-menu-item-edit"
-            onClick={() => setOnEdit(true)}
+            onClick={() => {
+              setOnEdit(true);
+              setMenuItem(false); // Close the menu when Edit is clicked
+            }}
           >
             Edit
           </h6>
@@ -24,11 +27,10 @@ const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
       {(pos.user._id === auth.user._id ||
         comment.user._id === auth.user._id) && (
         <div
-          className="comment-menu-itme"
+          className="comment-menu-item"
           onClick={() => setMenuItem(!menuItem)}
         >
-          {" "}
-          ooo{" "}
+          ooo
         </div>
       )}
       {menuItem ? (

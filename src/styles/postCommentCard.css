@@ -38,6 +38,7 @@
   }
   
   .post-comment-card-content {
+    position:relative;
     margin-top: 10px;
   }
   
@@ -75,6 +76,16 @@
     font-size: 0.9rem;
     color: gray;
     cursor: pointer;
+  }
+
+  .post-comment-card-like-button{
+    position: absolute;
+    right:5rem;
+    top:-3.5rem;
+    cursor:pointer;
+    font-size: 18px;
+    
+
   }
   
   @media screen and (max-width: 768px) {

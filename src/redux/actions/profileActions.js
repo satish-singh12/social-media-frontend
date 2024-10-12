@@ -9,35 +9,42 @@ export const PROFILE_TYPES = {
   GET_USER: "GET_USER",
   FRIEND: "FRIEND",
   UNFRIEND: "UNFRIEND",
+  GET_IDS: "GET_IDS",
+  USER_POSTS: "USER_POSTS",
 };
 
 export const getProfileUsers =
   ({ users, id, auth }) =>
   async (dispatch) => {
-    //console.log(users, id, auth);
-    if (users.every((user) => user._id !== id)) {
-      try {
-        dispatch({
-          type: PROFILE_TYPES.LOADING,
-          payload: { loading: true },
-        });
-        const res = await getDataApi(`user/${id}`, auth.token);
+    dispatch({ type: PROFILE_TYPES.GET_IDS, payload: id });
 
-        dispatch({
-          type: PROFILE_TYPES.GET_USER,
-          payload: res && res.data,
-        });
+    try {
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: { loading: true },
+      });
+      const res = await getDataApi(`user/${id}`, auth.token);
+      const res1 = await getDataApi(`userposts/${id}`, auth.token);
+      //  console.log({ id, res1 });
+      dispatch({
+        type: PROFILE_TYPES.GET_USER,
+        payload: res.data, //user data
+      });
 
-        dispatch({
-          type: PROFILE_TYPES.LOADING,
-          payload: { loading: false },
-        });
-      } catch (err) {
-        dispatch({
-          type: "ALERT",
-          payload: { error: err.response.data.message },
-        });
-      }
+      dispatch({
+        type: PROFILE_TYPES.USER_POSTS,
+        payload: { ...res1.data, _id: id, result: res1.data.result }, //user posts
+      });
+
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: { loading: false },
+      });
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
     }
   };
 

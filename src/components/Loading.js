@@ -4,7 +4,21 @@ import "../styles/loading.css";
 const Loading = () => {
   return (
     <div className="loading">
-      <svg width="400" height="180">
+      <div class="loading-2">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  );
+};
+
+export default Loading;
+
+{
+  /* <svg width="400" height="180">
         <circle
           cx="125" // Center X position
           cy="100" // Center Y position
@@ -22,9 +36,5 @@ const Loading = () => {
         >
           Loading
         </text>
-      </svg>
-    </div>
-  );
-};
-
-export default Loading;
+      </svg> */
+}

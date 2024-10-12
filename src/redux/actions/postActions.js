@@ -7,9 +7,10 @@ import {
 
 export const POST_TYPES = {
   CREATE_POST: "CREATE_POST",
-  GET_POST: "GET_POSTS",
+  GET_POSTS: "GET_POSTS",
   UPDATE_POST: "UPDATE_POST",
   LOADING_POST: "LOADING_POST",
+  GET_POST: "GET_POST",
 };
 
 export const createPost =
@@ -49,9 +50,11 @@ export const getPost = (token) => async (dispatch) => {
     const res = await getDataApi("posts", token);
     // Safely handle res.data
     if (res && res.data) {
-      dispatch({ type: POST_TYPES.GET_POST, payload: res.data });
+      dispatch({
+        type: POST_TYPES.GET_POSTS,
+        payload: res && res.data && res.data,
+      });
     }
-    // dispatch({ type: POST_TYPES.GET_POST, payload: res.data && res.data });
     dispatch({ type: POST_TYPES.LOADING_POST, payload: false });
   } catch (err) {
     dispatch({
@@ -110,7 +113,6 @@ export const likePost =
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     try {
       const res = await patchDataApi(`post/${pos._id}/like`, null, auth.token);
-      console.log("res", res);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -139,5 +141,28 @@ export const unlikePost =
         type: "ALERT",
         payload: { error: err.response.data.message },
       });
+    }
+  };
+
+export const getPostSingle =
+  ({ detailPost, auth, id }) =>
+  async (dispatch) => {
+    if (
+      Array.isArray(detailPost) &&
+      detailPost.every((item) => item._id !== id)
+    ) {
+      const res = await getDataApi(`post/${id}`, auth.token);
+      console.log(res);
+      if (res && res.data && res.data.post) {
+        dispatch({ type: POST_TYPES.GET_POST, payload: res.data.post });
+      }
+
+      try {
+      } catch (err) {
+        dispatch({
+          type: "ALERT",
+          payload: { error: err.response.data.message },
+        });
+      }
     }
   };

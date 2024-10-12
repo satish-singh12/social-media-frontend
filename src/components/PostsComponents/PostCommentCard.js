@@ -6,7 +6,11 @@ import "../../styles/postCommentCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import CommentMenuItem from "./CommentMenuItem";
 import LikePost from "./LikePost";
-import { updateComment } from "../../redux/actions/commentActions";
+import {
+  updateComment,
+  likeComment,
+  unlikeComment,
+} from "../../redux/actions/commentActions";
 
 //getting props from PostCommentDisplay.js
 const PostCommentCard = ({ comment, pos }) => {
@@ -16,12 +20,21 @@ const PostCommentCard = ({ comment, pos }) => {
   const [readMore, setReadMore] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
   const [isLike, setIslike] = useState(false);
+  const [load, setLoad] = useState(false);
 
   const handleLike = () => {
+    if (load) return;
     setIslike(true);
+    setLoad(true);
+    dispatch(likeComment({ comment, pos, auth })).finally(() => setLoad(false));
   };
   const handleUnlike = () => {
+    if (load) return;
     setIslike(false);
+    setLoad(true);
+    dispatch(unlikeComment({ comment, pos, auth })).finally(() =>
+      setLoad(false)
+    ); // Ensure loading state is updated after the request
   };
 
   const handleUpdateComment = () => {
@@ -35,7 +48,10 @@ const PostCommentCard = ({ comment, pos }) => {
 
   useEffect(() => {
     setContent(comment.content);
-  }, [comment.content]);
+    if (comment.likes.find((like) => like._id === auth.user._id)) {
+      setIslike(true);
+    }
+  }, [comment.content, comment.likes]);
 
   return (
     <div className="post-comment-card">
@@ -101,7 +117,7 @@ const PostCommentCard = ({ comment, pos }) => {
           <p className="post-comment-card-content-content-likes-count">
             {comment.likes.length}
           </p>
-          <MdOutlineFavoriteBorder style={{ color: "red" }} />
+          <MdOutlineFavoriteBorder />
           {onEdit ? (
             <>
               <p

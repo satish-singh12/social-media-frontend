@@ -26,7 +26,7 @@ const postReducer = (state = initialState, action) => {
         ...state,
         images: [...state.images, action.payload],
       };
-    case POST_TYPES.GET_POST:
+    case POST_TYPES.GET_POSTS:
       return {
         ...state,
         post: action.payload.posts,

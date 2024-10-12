@@ -4,13 +4,14 @@
     align-items: center;
     position: relative;
     padding: 5px;
-    background-color: #ebe6e6;
+    /* background-color: #ebe6e6; */
     border-radius: 4px;
     margin-bottom: 5px;
-    margin-top: -2rem;
+    margin-top: -.5rem;
     font-family: Arial, sans-serif;
     cursor: pointer;
     height: .5rem;
+    border: 1px solid whitesmoke;
 
   }
   
@@ -34,7 +35,7 @@
     z-index: 100;
     text-align: left;
     max-width: 80px;
-  }
+      }
   
   .comment-menu-item-edit,
   .comment-menu-item-delete {
