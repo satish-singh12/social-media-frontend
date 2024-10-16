@@ -22,19 +22,23 @@ const profileReducers = (state = initialState, action) => {
       );
       return {
         ...state,
+        users: userExists ? state.users : [...state.users, action.payload.user],
+      };
 
-        users: userExists ? state.users : [...state.users, action.payload],
-      };
-    case PROFILE_TYPES.GET_IDS:
-      return {
-        ...state,
-        ids: [...state.ids, action.payload],
-      };
-    case PROFILE_TYPES.USER_POSTS:
+    case PROFILE_TYPES.USERPOSTS:
       return {
         ...state,
         userposts: [...state.userposts, action.payload],
       };
+
+    case PROFILE_TYPES.GET_IDS:
+      return {
+        ...state,
+        ids: state.ids.includes(action.payload)
+          ? state.ids
+          : [...state.ids, action.payload],
+      };
+
     case PROFILE_TYPES.FRIEND:
       return {
         ...state,
@@ -44,10 +48,6 @@ const profileReducers = (state = initialState, action) => {
       return {
         ...state,
         users: EditData(state.users, action.payload._id, action.payload),
-
-        // state.users.map((user) =>
-        //   user._id === action.payload._id ? action.payload : user
-        // ),
       };
     default:
       return state;

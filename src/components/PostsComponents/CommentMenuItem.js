@@ -3,18 +3,17 @@ import "../../styles/commentMenuItem.css";
 
 const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
   const [menuItem, setMenuItem] = useState(false);
-  //   console.log(pos);
+
   const MenuItem = () => {
+    const handleEditComment = () => {
+      setOnEdit(true);
+      setMenuItem(false);
+    };
+
     return (
       <>
         <div className="comment-menu-item-list">
-          <h6
-            className="comment-menu-item-edit"
-            onClick={() => {
-              setOnEdit(true);
-              setMenuItem(false); // Close the menu when Edit is clicked
-            }}
-          >
+          <h6 className="comment-menu-item-edit" onClick={handleEditComment}>
             Edit
           </h6>
           <h6 className="comment-menu-item-delete">Remove</h6>

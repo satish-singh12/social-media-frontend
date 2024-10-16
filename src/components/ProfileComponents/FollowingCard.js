@@ -29,7 +29,8 @@ const FollowingCard = ({ user }) => {
           gridAutoFlow: "row", // Ensures that items are placed row by row
         }}
       >
-        {user.length > 0 && user.map((flw) => <GlobalCard user={flw} />)}
+        {user.length > 0 &&
+          user.map((flw) => <GlobalCard user={flw} key={flw._id} />)}
       </div>
     </>
   );

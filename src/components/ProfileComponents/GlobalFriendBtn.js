@@ -4,7 +4,9 @@ import { addFriends, unFriends } from "../../redux/actions/profileActions";
 
 //receiving props from Info.js
 const GlobalFriendBtn = ({ classBtn, user }) => {
-  const { auth, profile } = useSelector((state) => state);
+  // const { auth, profile } = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const [friend, setFriend] = useState(false);
 

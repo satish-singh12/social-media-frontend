@@ -5,7 +5,9 @@ const Following = ({ userData, profile, auth, id }) => {
   return (
     <div>
       {userData.length > 0 &&
-        userData.map((user) => <FollowingCard user={user.following} />)}
+        userData.map((user) => (
+          <FollowingCard user={user.following} key={user._id} />
+        ))}
     </div>
   );
 };

@@ -82,8 +82,6 @@ export const refreshToken = () => async (dispatch) => {
         },
       });
     } catch (error) {
-      // Dispatch error to ALERT reducer
-      //  console.error(error);
       dispatch({
         type: "ALERT",
         payload: {
@@ -127,7 +125,6 @@ export const register = (data) => async (dispatch) => {
       },
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: "ALERT",
       payload: {
@@ -154,7 +151,6 @@ export const logout = () => async (dispatch) => {
     // Redirect after clearing auth state
     window.location.href = "/";
   } catch (error) {
-    console.log(error);
     dispatch({
       type: "ALERT",
       payload: {

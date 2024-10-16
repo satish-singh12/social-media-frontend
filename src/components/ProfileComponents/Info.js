@@ -10,8 +10,8 @@ const Info = ({ userData, profile, auth, id }) => {
   return (
     <div className="profile-info">
       {userData && userData.length > 0 ? (
-        userData.map((user) => (
-          <div className="profile-info-container" key={user._id}>
+        userData.map((user, index) => (
+          <div className="profile-info-container" key={index}>
             <div className="profile-info-top">
               <img src={user.avatar} alt="user.username" />
             </div>
@@ -41,27 +41,27 @@ const Info = ({ userData, profile, auth, id }) => {
               <div className="profile-info-bottom-left">
                 <div className="profile-info-state">
                   <h6 className="profile-info-stat-number">
-                    {user && user.friends.length}
+                    {user && user.friends?.length}
                   </h6>
                   <h6 className="profile-info-stat-desc">FLLOWERS</h6>
                 </div>
                 <div className="profile-info-stat">
                   <h6 className="profile-info-stat-number">
-                    {user.following.length}
+                    {user.following?.length}
                   </h6>
                   <h6 className="profile-info-stat-desc">FOLLOWING</h6>
                 </div>
               </div>
 
               <div className="profile-info-bottom-center">
-                <h3 className="profile-info-fullname">{user.fullname}</h3>
+                <h4 className="profile-info-fullname">{user.fullname}</h4>
                 <h5 className="profile-info-username">{user.username}</h5>
               </div>
 
               <div className="profile-info-bottom-right">
                 <div className="profile-info-stat">
                   <h6 className="profile-info-stat-number">
-                    {user.friends.length}
+                    {user.friends?.length}
                   </h6>
                   <h6 className="profile-info-stat-desc">POSTS</h6>
                 </div>

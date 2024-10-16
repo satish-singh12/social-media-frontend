@@ -4,7 +4,6 @@ import Loading from "./Loading";
 import Toast from "./Toast";
 
 const Alerts = () => {
-  // const { auth, alert } = useSelector((state) => state);
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
 

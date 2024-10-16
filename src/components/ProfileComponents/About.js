@@ -10,8 +10,8 @@ const About = ({ userData, profile, auth, id }) => {
     <div className="profile-about">
       {userData &&
         userData.length > 0 &&
-        userData.map((user) => (
-          <div className="about-container" key={user._id}>
+        userData.map((user, index) => (
+          <div className="about-container" key={index}>
             <div className="profile-about-containt-top">
               <h4 className="profile-about-containt-top-head">About Me:</h4>
               {/* <p>{user.story}</p> */}

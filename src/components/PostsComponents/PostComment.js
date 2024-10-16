@@ -8,19 +8,21 @@ const PostComment = ({ pos }) => {
   const [next, setNext] = useState(2);
 
   useEffect(() => {
-    const newCmt = pos.comments.filter((cmt) => !cmt.reply);
-    setComments(newCmt);
-    setShowComments(newCmt.slice(newCmt.length - next));
-  }, [pos.comments, next]);
+    if (pos && pos.comments) {
+      const newCmt = pos.comments.filter((cmt) => !cmt.reply);
+      setComments(newCmt);
+      setShowComments(newCmt.slice(newCmt.length - next));
+    }
+  }, [pos, next]);
+
   return (
     <div>
       {showComments &&
         showComments.map((comment) => (
-          <div>
-            <PostCommentDisplay comment={comment} key={comment._id} pos={pos} />
+          <div key={comment._id}>
+            <PostCommentDisplay comment={comment} pos={pos} />
           </div>
         ))}
-      {/* <div className="show-more"> */}
       {comments.length - next > 0 ? (
         <div
           className="post-comments-show-more"
@@ -35,7 +37,6 @@ const PostComment = ({ pos }) => {
           </div>
         )
       )}
-      {/* </div> */}
     </div>
   );
 };

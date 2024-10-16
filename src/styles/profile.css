@@ -11,12 +11,17 @@
 }
 
 .profile-body-left{
-  max-width: 30%;
+  flex:0.2;
+  /* max-width: 30%; */
 }
 
-.profile-body-center{}
+.profile-body-center{
+  flex:0.6;
+}
 
-.profile-body-right{}
+.profile-body-right{
+  flex:0.2;
+}
 
 .profile-header {
   display: flex;

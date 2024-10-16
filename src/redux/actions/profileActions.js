@@ -10,14 +10,14 @@ export const PROFILE_TYPES = {
   FRIEND: "FRIEND",
   UNFRIEND: "UNFRIEND",
   GET_IDS: "GET_IDS",
-  USER_POSTS: "USER_POSTS",
+  USERPOSTS: "USERPOSTS",
 };
 
-export const getProfileUsers =
+export const getProfileUsersData =
   ({ users, id, auth }) =>
   async (dispatch) => {
     dispatch({ type: PROFILE_TYPES.GET_IDS, payload: id });
-
+    // console.log({ users, id, auth });
     try {
       dispatch({
         type: PROFILE_TYPES.LOADING,
@@ -25,15 +25,17 @@ export const getProfileUsers =
       });
       const res = await getDataApi(`user/${id}`, auth.token);
       const res1 = await getDataApi(`userposts/${id}`, auth.token);
-      //  console.log({ id, res1 });
+      const user = res;
+      const posts = res1;
+
       dispatch({
         type: PROFILE_TYPES.GET_USER,
-        payload: res.data, //user data
+        payload: user.data, //user data
       });
 
       dispatch({
-        type: PROFILE_TYPES.USER_POSTS,
-        payload: { ...res1.data, _id: id, result: res1.data.result }, //user posts
+        type: PROFILE_TYPES.USERPOSTS,
+        payload: { ...posts.data, _id: id, result: posts.result },
       });
 
       dispatch({
@@ -79,7 +81,6 @@ export const updatedProfile =
       if (avatar) media = await imageUpload([avatar]);
       console.log(avatar, media[0].secure_url);
 
-      // const res = await patchDataApi(`user/${auth?.user._id},
       const res = await axios.patch(
         `http://localhost:5000/api/user/${auth?.user._id}`,
         {

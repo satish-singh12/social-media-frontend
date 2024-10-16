@@ -60,7 +60,6 @@ export const likeComment =
         null,
         auth.token
       );
-      console.log(res);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -85,7 +84,6 @@ export const unlikeComment =
         null,
         auth.token
       );
-      console.log(res);
     } catch (err) {
       dispatch({
         type: "ALERT",

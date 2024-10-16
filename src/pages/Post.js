@@ -9,10 +9,10 @@ import PostComment from "../components/PostsComponents/PostComment";
 import InputPostComment from "../components/PostsComponents/InputPostComment";
 
 const Post = () => {
-  const { auth, detailPost } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const { id } = useParams();
   const [post, setPost] = useState([]);
+  const { auth, detailPost } = useSelector((state) => state);
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPostSingle({ detailPost, auth, id }));

@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import PostCardHeader from "./PostCardHeader";
 import PostCardBody from "./PostCardBody";
 import PostCardFooter from "./PostCardFooter";
@@ -7,18 +6,14 @@ import PostComment from "./PostComment";
 import InputPostComment from "./InputPostComment";
 
 const SingleUserPosts = ({ userPosts, profile, auth, id }) => {
-  // const { homePost } = useSelector((state) => state);
-  //   const posts = useSelector((state) => state.homePost.post);
-  // console.log(userPosts);
-
   return (
     <div>
       {userPosts &&
-        userPosts?.posts?.length > 0 &&
-        userPosts.posts.map((pos) => (
+        userPosts?.length > 0 &&
+        userPosts.map((pos, index) => (
           <div
             className="post-card"
-            key={pos._id}
+            key={index}
             style={{
               backgroundColor: "rgb(82, 113, 179)",
               padding: "1rem",

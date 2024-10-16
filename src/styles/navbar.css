@@ -11,11 +11,14 @@
   font-family: 'Arial', sans-serif;
   flex-wrap: wrap; /* Allow wrapping for smaller screens */
    position: fixed; 
+   width:97vw;
+   max-width:100%;
+   margin: auto;
   top: 0;
-  right:0;
-  left:0;
+  /* right:0;
+  left:0; */
   z-index: 4;
-  
+   
 }
 
 .navbar-section{
@@ -49,16 +52,16 @@
   align-items: center;
   flex-grow: 1;
   max-width: 600px;
-  
   margin: 0 2rem;
   position: relative;
+  
 }
 
 .search-input {
-  width: 100%;
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  
 }
 
 .search-icon {
@@ -91,6 +94,8 @@
 }
 .user-profile{
   display: flex;
+  
+  flex-direction: column;
   align-items: center;
 }
 .user-profile p{
@@ -98,6 +103,7 @@
   font-weight: bold;
   margin-left: .5rem;
 }
+
 .user-profile-icon {
   display: flex;
   flex-direction: column;
@@ -130,6 +136,7 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   background-color: rgb(129, 129, 240);
   border-radius: 8px;
+
 }
 
 .input-box i,

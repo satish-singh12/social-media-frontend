@@ -31,7 +31,7 @@ const FriendsCard = ({ user }) => {
         }}
       >
         {user.length > 0 &&
-          user.map((frd) => <GlobalCard user={frd} key={user._id} />)}
+          user.map((frd) => <GlobalCard user={frd} key={frd._id} />)}
       </div>
     </>
   );

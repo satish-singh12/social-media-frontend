@@ -54,14 +54,18 @@
     padding: 10px;
     display: flex;
     justify-content: flex-end;
+    
   }
   
   .post-card-header-down p {
     cursor: pointer;
     font-size: 18px;
     margin: 0;
-    color:white
+    color:white;
   }
+  /* .post-card-header-down p:hover {  
+    background-color: green;
+  } */
   
   .post-card-header-dropdown {
     display: none;
@@ -91,7 +95,7 @@
   }
   
   .post-card-header-dropdown div:hover {
-    background: #f1f1f1;
+    background: #978383;
   }
   
   /* No Text Decoration for Links */

@@ -6,7 +6,7 @@ import "../../styles/homeMid.css";
 import Posts from "../PostsComponents/Posts";
 
 const HomeMid = () => {
-  const { homePost } = useSelector((state) => state);
+  const homePost = useSelector((state) => state.homePost);
   return (
     <div className="home-mid">
       <Status />

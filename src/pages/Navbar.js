@@ -43,25 +43,6 @@ const Navbar = () => {
     setUsers([]);
   };
 
-  // const handleSearch = async (e) => {
-  //   e.preventDefault();
-  //   if (!search) return;
-
-  //   try {
-  //     setLoad(true);
-  //     const res = await getDataApi(`search?username=${search}`, auth.token);
-  //     setUsers(res.data.users);
-  //     setLoad(false);
-  //   } catch (err) {
-  //     dispatch({
-  //       type: "ALERT",
-  //       payload: {
-  //         error: err.response.data.message,
-  //       },
-  //     });
-  //   }
-  // };
-
   return (
     <nav className="navbar">
       {/* Section 1: Logo and Website Name */}
@@ -73,7 +54,6 @@ const Navbar = () => {
       {/* Section 2: Search Bar */}
       {/* <form className="input-box" onSubmit={handleSearch}> HANDELINGNG SEARCH */}
       <form className="input-box">
-        {/* <i class="uil uil-search"></i> */}
         <input
           type="text"
           placeholder="Search Profiles"
@@ -102,13 +82,6 @@ const Navbar = () => {
           </span>
         </span>
 
-        {/* <button
-          type="submint"
-          style={{ backgroundColor: "red", opacity: "1", marginTop: "30px" }}
-        >
-          Search
-        </button> */}
-
         <div className="search-lists">
           {load && (
             <img
@@ -136,9 +109,14 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <h4 style={{ color: "white", marginLeft: "5px" }}>
+          <h6
+            style={{
+              color: "white",
+              marginLeft: "5px",
+            }}
+          >
             {auth && auth.user?.fullname}
-          </h4>
+          </h6>
         </div>
         <div>
           <Link to="/">

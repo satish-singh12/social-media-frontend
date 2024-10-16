@@ -6,28 +6,36 @@ import "../../styles/postCardFooter.css";
 import { Link } from "react-router-dom";
 import LikePost from "./LikePost";
 import { useDispatch, useSelector } from "react-redux";
-import { likePost, unlikePost } from "../../redux/actions/postActions";
+import {
+  likePost,
+  savedPost,
+  unlikePost,
+  unSavedPost,
+} from "../../redux/actions/postActions";
 
 const PostCardFooter = ({ pos }) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
-  // const updatedPos = useSelector((state) => {
-  //   if (Array.isArray(state.homePost.post) && pos?._id) {
-  //     return state.homePost.post.find((p) => p._id === pos._id);
-  //   }
-  //   return null;
-  // });
-
   const [isLike, setIsLike] = useState(false);
   const [load, setLoad] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   // Ensure pos.likes is an array before checking
   useEffect(() => {
     if (Array.isArray(pos.likes)) {
       setIsLike(pos.likes.some((like) => like._id === auth.user._id));
+    } else {
+      setIsLike(false);
     }
   }, [pos.likes, auth.user._id]);
+
+  useEffect(() => {
+    if (Array.isArray(auth.user.saved)) {
+      setIsSaved(auth.user.saved.some((id) => id === pos._id));
+    } else {
+      setIsSaved(false);
+    }
+  }, [auth.user.saved, pos._id]);
 
   const handleLike = () => {
     if (load) return;
@@ -95,7 +103,17 @@ const PostCardFooter = ({ pos }) => {
           </div>
         </Link>
         <div className="post-card-footer-bottom-items">
-          <MdOutlineSaveAlt />
+          {isSaved ? (
+            <MdOutlineSaveAlt
+              style={{ color: "yellow", backgroundColor: "green" }}
+              onClick={() => dispatch(unSavedPost({ pos, auth }))}
+            />
+          ) : (
+            <MdOutlineSaveAlt
+              onClick={() => dispatch(savedPost({ pos, auth }))}
+              style={{ color: "white", backgroundColor: "red" }}
+            />
+          )}
           <span>Save</span>
         </div>
       </div>

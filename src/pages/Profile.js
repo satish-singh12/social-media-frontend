@@ -3,7 +3,10 @@ import Info from "../components/ProfileComponents/Info";
 import Posts from "../components/PostsComponents/Posts";
 import About from "../components/ProfileComponents/About";
 import "../styles/profile.css";
-import { getProfileUsers } from "../redux/actions/profileActions";
+import {
+  getProfileUserPosts,
+  getProfileUsersData,
+} from "../redux/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RiAccountPinCircleFill } from "react-icons/ri";
@@ -13,82 +16,70 @@ import { IoBookmarks } from "react-icons/io5";
 import Following from "../components/ProfileComponents/Following";
 import Friends from "../components/ProfileComponents/Friends";
 import SingleUserPosts from "../components/PostsComponents/SingleUserPosts";
+import SavedPost from "../components/ProfileComponents/SavedPost";
 
 const Profile = () => {
+  const { id } = useParams();
+  const auth = useSelector((state) => state.auth);
+  const profile = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+
   const [userData, setUserData] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
   const [showAccount, setShowAccount] = useState(true);
   const [showFriend, setShowFriend] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showSaved, setShowSaved] = useState(false);
-  // console.log(userPosts);
-  const handleToggle = (ht) => {
-    if (ht === "showAccount") {
-      setShowFriend(false);
-      setShowFollowing(false);
-      setShowSaved(false);
-      setShowAccount(true);
-    } else if (ht === "showFriend") {
-      setShowFriend(true);
-      setShowFollowing(false);
-      setShowSaved(false);
-      setShowAccount(false);
-    } else if (ht === "showFollowing") {
-      setShowFriend(false);
-      setShowFollowing(true);
-      setShowSaved(false);
-      setShowAccount(false);
-    } else if (ht === "showSaved") {
-      setShowFriend(false);
-      setShowFollowing(false);
-      setShowSaved(true);
-      setShowAccount(false);
-    }
-  };
 
-  const { id } = useParams();
-  const { auth, profile } = useSelector((state) => state);
-  const dispatch = useDispatch();
-  // console.log(profile.users);
-  //At the start redux store is undefined, it will take time.
+  const handleToggle = (ht) => {
+    setShowAccount(ht === "showAccount");
+    setShowFriend(ht === "showFriend");
+    setShowFollowing(ht === "showFollowing");
+    setShowSaved(ht === "showSaved");
+  };
 
   useEffect(() => {
     if (auth && auth.user && id === auth.user._id) {
+      // Set logged-in user's data if viewing their own profile
       setUserData([auth.user]);
-      dispatch(getProfileUsers({ users: profile.users, id, auth }));
-      const newPosts = profile.userposts.find((item) => item._id === id);
-      if (newPosts) {
-        setUserPosts(newPosts);
-      }
-      // dispatch(
-      //   getProfileUsers({ users: profile.users && profile.users, id, auth })
-      // );
-      // const newPosts = profile.userposts.find((item) => item._id === id);
-      // if (newPosts) {
-      //   setUserPosts(newPosts);
-      // }
     } else {
-      if (profile.ids.every((item) => item !== id))
-        dispatch(getProfileUsers({ users: profile.users, id, auth }));
+      // Check if the user's data is already in the profile
+      const newData = profile?.users?.filter((user) => user._id === id);
 
-      const newData = profile.users.filter((user) => user._id === id);
-      setUserData(newData);
-
-      const newPosts = profile.userposts.find((item) => item._id === id);
-      if (newPosts) {
-        setUserPosts(newPosts);
+      if (newData && newData.length > 0) {
+        setUserData(newData);
+      } else {
+        // Dispatch action to fetch the profile user data if not found
+        dispatch(
+          getProfileUsersData({
+            users: profile.users || [], // Fallback to empty array
+            id,
+            auth,
+          })
+        );
       }
     }
-  }, [id, auth, profile.users, profile.userposts, dispatch]);
+  }, [id, auth, profile.users, dispatch]);
 
-  // useEffect(() => {
-  //   if (profile.users) {
-  //     const newData = profile.users.filter((user) => user._id === id);
-  //     if (newData.length > 0) {
-  //       setUserData(newData);
-  //     }
-  //   }
-  // }, [profile.users, id]);
+  useEffect(() => {
+    if (auth && auth.user && id === auth.user._id) {
+      // Fetch the logged-in user's posts only once
+      if (profile.userposts && profile.userposts.length > 0) {
+        const newPosts = profile?.userposts.find((post) => post._id === id);
+        setUserPosts(newPosts); // Directly set posts if they exist
+      } else {
+        dispatch(getProfileUsersData({ id, auth })); // Fetch user posts from API
+      }
+    } else {
+      // Fetch other user's posts only if they haven't been fetched yet
+      if (profile.ids.every((item) => item !== id)) {
+        dispatch(getProfileUsersData({ id, auth }));
+      } else {
+        const newPosts = profile?.userposts.find((post) => post._id === id);
+        setUserPosts(newPosts ? newPosts : []);
+      }
+    }
+  }, [profile.userposts, id, auth, dispatch]);
 
   return (
     <div className="profile">
@@ -133,14 +124,16 @@ const Profile = () => {
 
           <div className="profile-body-center">
             <SingleUserPosts
-              userPosts={userPosts}
+              userPosts={userPosts?.posts}
               profile={profile}
               auth={auth}
               id={id}
             />
           </div>
 
-          <div className="profile-body-right">{/* <Posts /> */}</div>
+          <div className="profile-body-right">
+            {/* <Posts /> */} <h1>posts</h1>
+          </div>
         </div>
       )}
       {showFriend && userData.length > 0 && (
@@ -149,7 +142,7 @@ const Profile = () => {
       {showFollowing && userData.length > 0 && (
         <Following userData={userData} profile={profile} auth={auth} id={id} />
       )}
-      {showSaved && <h3>Saved</h3>}
+      {showSaved && <SavedPost auth={auth} />}
     </div>
   );
 };

@@ -26,6 +26,22 @@ const Status = () => {
     }
   }, [status]);
 
+  // ===========
+  // Function to convert base64 data URL to Blob
+  const dataURLtoBlob = (dataURL) => {
+    const arr = dataURL.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1]; // Extract MIME type (e.g., 'image/png')
+    const bstr = atob(arr[1]); // Base64 decode
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n); // Create Uint8Array to store binary data
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n); // Convert characters to binary
+    }
+    return new Blob([u8arr], { type: mime }); // Return Blob with correct MIME type
+  };
+
+  // =============
+
   const uploadImages = (e) => {
     const files = [...e.target.files];
     let err;
@@ -80,9 +96,10 @@ const Status = () => {
     refCanvas.current.setAttribute("height", height);
     const ctx = refCanvas.current.getContext("2d");
     ctx.drawImage(refVideo.current, 0, 0, width, height);
-    const URL = refCanvas.current.toDataURL();
-    setImages([...images, { camera: URL }]);
-    console.log(images);
+    const dataURL = refCanvas.current.toDataURL(); // Base64 encoded string (data URL)
+    const blob = dataURLtoBlob(dataURL); // Convert base64 to Blob
+
+    setImages([...images, blob]); // Append Blob object to images array
   };
 
   const handleStreamStop = () => {
@@ -141,6 +158,7 @@ const Status = () => {
             onChange={(e) => setContent(e.target.value)}
           />
           <small>{content?.length}</small>
+
           <div className="status-show-images-middle">
             {images &&
               images.map((image, index) => (
@@ -148,36 +166,34 @@ const Status = () => {
                   className="status-show-middle-images-container"
                   key={index}
                 >
-                  image?.camera ? imagesShow(image.camera) : image.secure_url ?
-                  (
-                  <>
-                    {image?.secure_url?.match(/video/i) ? (
+                  {image?.camera ? (
+                    imagesShow(image.camera)
+                  ) : image?.secure_url ? (
+                    image.secure_url.match(/video/i) ? (
                       <video
                         controls
-                        src={image.secure_url} // Use correct URL here
+                        src={image.secure_url} // Use the existing URL for uploaded videos
                         className="status-show-images-middle"
-                        alt="video"
                         style={{ width: "100%" }}
                       />
                     ) : (
-                      imagesShow(image.secure_url)
-                    )}
-                  </>
+                      imagesShow(image.secure_url) // Use the existing URL for uploaded images
+                    )
                   ) : (
-                  <>
-                    {image?.type && image?.type?.match(/video/i) ? (
-                      <video
-                        controls
-                        src={URL.createObjectURL(image)} // For local video files
-                        className="status-show-images-middle"
-                        alt="video"
-                        style={{ width: "100%" }}
-                      />
-                    ) : (
-                      imagesShow(URL.createObjectURL(image))
-                    )}
-                  </>
-                  )
+                    <>
+                      {console.log("image", image)}
+                      {/* Only URL.createObjectURL() for new file objects */}
+                      {image?.type?.match(/video/i) ? (
+                        <video
+                          controls
+                          src={URL.createObjectURL(image)} // For local video files
+                          className="status-show-images-middle"
+                        />
+                      ) : (
+                        imagesShow(URL.createObjectURL(image)) // For new local image files
+                      )}
+                    </>
+                  )}
                   <span
                     className="status-show-middle-images-delete"
                     onClick={() => handleDeleteImage(index)}

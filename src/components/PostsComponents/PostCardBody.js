@@ -24,7 +24,7 @@ const PostCardBody = ({ pos }) => {
   return (
     <div className="post-card-body">
       <div className="post-card-body-container">
-        {pos.content.length > 60 ? (
+        {pos.content?.length > 60 ? (
           <>
             {readMore ? pos.content : pos.content.slice(0, 60) + "... "}
             <button onClick={() => setReadMore(!readMore)}>
@@ -38,7 +38,7 @@ const PostCardBody = ({ pos }) => {
 
       <div className="post-card-body-image">
         {/* Only show buttons if there is more than one image */}
-        {pos.images.length > 1 && (
+        {pos.images?.length > 1 && (
           <>
             <span
               className="post-card-body-image-next"
@@ -55,13 +55,14 @@ const PostCardBody = ({ pos }) => {
           </>
         )}
 
-        {pos.images.length > 0 &&
-          pos.images.map(
+        {pos.images?.length > 0 &&
+          pos.images?.map(
             (image, index) =>
               index === currentImage && (
-                <div className="post-card-body-image" key={image.secure_url}>
+                <div className="post-card-body-image" key={index}>
                   {image.secure_url.match(/video/i) ? (
                     <video
+                      className="post-card-body-image-video"
                       controls
                       src={image.secure_url}
                       alt={pos.user.fullname}

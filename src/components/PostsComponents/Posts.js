@@ -7,18 +7,13 @@ import PostComment from "./PostComment";
 import InputPostComment from "./InputPostComment";
 
 const Posts = () => {
-  // const { homePost } = useSelector((state) => state);
   const posts = useSelector((state) => state.homePost.post);
-  // console.log(homePost);
 
   return (
     <div>
       {posts &&
         posts.length > 0 &&
         posts.map((pos) => (
-          // {homePost &&
-          //   homePost.posts.length > 0 &&
-          //   homePost.posts.map((pos) => (
           <div
             className="post-card"
             key={pos._id}

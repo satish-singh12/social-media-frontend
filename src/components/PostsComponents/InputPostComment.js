@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "../../styles/inputPostComment.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../redux/actions/commentActions";
+import { useEffect } from "react";
 
 const InputPostComment = ({ pos }) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [content, setContent] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,9 +20,8 @@ const InputPostComment = ({ pos }) => {
       createdAt: new Date().toISOString(),
     };
     dispatch(createComment({ pos, newComment, auth }));
+    setContent("");
   };
-
-  const [content, setContent] = useState("");
 
   return (
     <div className="input-post-comments">

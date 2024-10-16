@@ -3,6 +3,7 @@ import {
   getDataApi,
   postDataApi,
   patchDataApi,
+  deleteDataApi,
 } from "../../utils/fetchDataApi";
 
 export const POST_TYPES = {
@@ -11,6 +12,7 @@ export const POST_TYPES = {
   UPDATE_POST: "UPDATE_POST",
   LOADING_POST: "LOADING_POST",
   GET_POST: "GET_POST",
+  DELETE_POST: "DELETE_POST",
 };
 
 export const createPost =
@@ -147,22 +149,66 @@ export const unlikePost =
 export const getPostSingle =
   ({ detailPost, auth, id }) =>
   async (dispatch) => {
-    if (
-      Array.isArray(detailPost) &&
-      detailPost.every((item) => item._id !== id)
-    ) {
-      const res = await getDataApi(`post/${id}`, auth.token);
-      console.log(res);
-      if (res && res.data && res.data.post) {
-        dispatch({ type: POST_TYPES.GET_POST, payload: res.data.post });
-      }
-
+    if (detailPost.every((item) => item._id !== id)) {
       try {
+        const res = await getDataApi(`post/${id}`, auth.token);
+        if (res && res.data && res.data.post) {
+          dispatch({ type: POST_TYPES.GET_POST, payload: res.data.post });
+        }
       } catch (err) {
         dispatch({
           type: "ALERT",
           payload: { error: err.response.data.message },
         });
       }
+    }
+  };
+
+export const savedPost =
+  ({ pos, auth }) =>
+  async (dispatch) => {
+    const newUser = { ...auth.user, saved: [...auth.user.saved, pos._id] };
+
+    dispatch({ type: "AUTH", payload: { ...auth, user: newUser } });
+    try {
+      const res = await patchDataApi(`save/${pos._id}`, null, auth.token);
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const unSavedPost =
+  ({ pos, auth }) =>
+  async (dispatch) => {
+    const newUser = {
+      ...auth.user,
+      saved: auth.user.saved.filter((id) => id !== pos._id),
+    };
+
+    dispatch({ type: "AUTH", payload: { ...auth, user: newUser } });
+    try {
+      const res = await patchDataApi(`unsave/${pos._id}`, null, auth.token);
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const deletePost =
+  ({ pos, auth }) =>
+  async (dispatch) => {
+    dispatch({ type: POST_TYPES.DELETE_POST, payload: pos });
+    try {
+      await deleteDataApi(`post/${pos._id}`, auth.token);
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
     }
   };
