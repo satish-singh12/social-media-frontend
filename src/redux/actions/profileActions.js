@@ -81,16 +81,25 @@ export const updatedProfile =
       if (avatar) media = await imageUpload([avatar]);
       console.log(avatar, media[0].secure_url);
 
-      const res = await axios.patch(
-        `http://localhost:5000/api/user/${auth?.user._id}`,
+      // const res = await axios.patch(
+      //   `http://localhost:5000/api/user/${auth?.user._id}`,
+      //   {
+      //     ...editData,
+      //     avatar: media ? media[0].secure_url : auth.user.avatar,
+      //   },
+      //   {
+      //     headers: { Authorization: auth.token },
+      //   }
+      // );
+      const res = await patchDataApi(
+        `user/${auth?.user._id}`,
         {
           ...editData,
           avatar: media ? media[0].secure_url : auth.user.avatar,
         },
-        {
-          headers: { Authorization: auth.token },
-        }
+        auth.token
       );
+
       dispatch({
         type: "AUTH",
         payload: {

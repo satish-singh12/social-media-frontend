@@ -1,0 +1,116 @@
+/* GlobalShortCard container styling */
+.global-short-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  transition: transform 0.3s ease;
+}
+
+/* Avatar styling */
+.global-short-card-content-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 30%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+/* Info section styling */
+.global-short-card-content-info {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+  
+}
+
+.global-short-card-content-info-fullname {
+
+  font-size: 1rem;
+  color: #f12f2f;
+  margin: 0;
+}
+
+.global-short-card-content-info-username {
+  font-size: .7rem;
+  color: #777;
+  margin: 5px 0 0 0;
+}
+
+/* Hover effect for desktop */
+.global-short-card:hover {
+  transform: scale(1.02);
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1024px) {
+  .global-short-card {
+    padding: 20px;
+  }
+
+  .global-short-card-content-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .global-short-card-content-info-fullname {
+    font-size: 1.5rem;
+  }
+
+  .global-short-card-content-info-username {
+    font-size: 1.25rem;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .global-short-card {
+    padding: 18px;
+  }
+
+  .global-short-card-content-avatar {
+    width: 55px;
+    height: 55px;
+  }
+  .global-short-card-content-info {
+    align-items:center;
+    }
+
+  .global-short-card-content-info-fullname {
+    font-size: .9rem;
+  }
+
+  .global-short-card-content-info-username {
+    font-size: .7rem;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 767px) {
+  .global-short-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .global-short-card-content-avatar {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 10px;
+  }
+
+  .global-short-card-content-info {
+    align-items:center;
+    }
+
+  .global-short-card-content-info-fullname {
+    font-size: .8rem;
+  }
+
+  .global-short-card-content-info-username {
+    font-size: 0.6rem;
+  }
+}

@@ -50,7 +50,7 @@ export const getPost = (token) => async (dispatch) => {
   try {
     dispatch({ type: POST_TYPES.LOADING_POST, payload: true });
     const res = await getDataApi("posts", token);
-    // Safely handle res.data
+
     if (res && res.data) {
       dispatch({
         type: POST_TYPES.GET_POSTS,

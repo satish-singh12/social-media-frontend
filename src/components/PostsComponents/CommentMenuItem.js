@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "../../styles/commentMenuItem.css";
+import { useDispatch } from "react-redux";
+import { deleteComment } from "../../redux/actions/commentActions";
 
 const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
   const [menuItem, setMenuItem] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleRemove = () => {
+    dispatch(deleteComment({ comment, pos, auth }));
+  };
 
   const MenuItem = () => {
     const handleEditComment = () => {
@@ -16,7 +23,9 @@ const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
           <h6 className="comment-menu-item-edit" onClick={handleEditComment}>
             Edit
           </h6>
-          <h6 className="comment-menu-item-delete">Remove</h6>
+          <h6 className="comment-menu-item-delete" onClick={handleRemove}>
+            Remove
+          </h6>
         </div>
       </>
     );
@@ -37,7 +46,9 @@ const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
           comment.user._id === auth.user._id ? (
             MenuItem()
           ) : (
-            <h6 className="comment-menu-item-delete">Remove</h6>
+            <h6 className="comment-menu-item-delete" onClick={handleRemove}>
+              Remove
+            </h6>
           )
         ) : (
           comment.user._id === auth.user._id && MenuItem()

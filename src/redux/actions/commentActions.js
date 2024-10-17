@@ -9,6 +9,7 @@ import { POST_TYPES } from "./postActions";
 export const createComment =
   ({ pos, newComment, auth }) =>
   async (dispatch) => {
+    console.log(newComment);
     const newPost = { ...pos, comments: [...pos.comments, newComment] };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     //console.log(newPost);
@@ -90,4 +91,38 @@ export const unlikeComment =
         payload: { error: err.response.data.message },
       });
     }
+  };
+
+export const deleteComment =
+  ({ comment, pos, auth }) =>
+  async (dispatch) => {
+    const deleteArr = [
+      ...pos.comments.filter((cmt) => cmt.reply === comment._id),
+      comment,
+    ];
+
+    const newPost = {
+      comments: pos.comments.filter(
+        (cmt) => cmt !== deleteArr.find((delarr) => cmt._id === delarr._id)
+      ),
+    };
+    console.log({ deleteArr, newPost, pos });
+    // const newComment = EditData(pos.comments, comment._id, {
+    //   ...comment,
+    //   content,
+    // });
+
+    // dispatch({ type: POST_TYPES.UPDATE_POST, payload: newComment });
+    // try {
+    //   const res = await patchDataApi(
+    //     `comment/${comment._id}`,
+    //     { content },
+    //     auth.token
+    //   );
+    // } catch (err) {
+    //   dispatch({
+    //     type: "ALERT",
+    //     payload: { error: err.response.data.message },
+    //   });
+    // }
   };

@@ -1,8 +1,9 @@
 
 .post-comments-show-more, .post-comments-show-less {
     background-color: transparent;
-    color: red;
-    border: 1px solid #ddd; 
+    color: rgb(68, 63, 63);
+    border: 1px solid #806f6f; 
+    background-color: #d4c2c2;
     border-radius: 8px; 
     max-width: 100px; 
     margin: 0 auto; 

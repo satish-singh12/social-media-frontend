@@ -1,0 +1,85 @@
+.profile-photo-show {
+    
+    padding: 20px;
+    border: 2px solid rgb(202, 188, 183);
+    border-radius: 10px;
+    margin: 20px;
+    margin-right: 3rem;
+    background-color: rgb(250, 214, 161);
+  }
+  
+  .profile-photo-show h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 3px solid gray;
+    padding-bottom: 10px;
+  }
+  
+  .profile-photo-show-map {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+  
+  .profile-photo-show-images {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+   .profile-photo-show-images:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Medium devices (tablets, 768px and above) */
+  @media (min-width: 768px) {
+    .profile-photo-show h4 {
+      font-size: 28px;
+    }
+  
+    .profile-photo-show-map {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+  
+    .profile-photo-show-images {
+      border-radius: 12px;
+    }
+  }
+  
+  /* Large devices (desktops, 1024px and above) */
+  @media (min-width: 1024px) {
+    .profile-photo-show h4 {
+      font-size: 32px;
+    }
+  
+    .profile-photo-show-map {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+  
+    .profile-photo-show-images {
+      border-radius: 15px;
+    }
+  }
+  
+  /* Small devices (mobile phones) */
+  @media (max-width: 767px) {
+    .profile-photo-show h4 {
+      font-size: 20px;
+    }
+  
+    .profile-photo-show-map {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+  
+    .profile-photo-show-images {
+      border-radius: 8px;
+    }
+  }
+  

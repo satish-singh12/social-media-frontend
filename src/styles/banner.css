@@ -1,66 +1,64 @@
 /* General Styles for the Banner */
 .banner {
-    background-size:cover;
-    background-repeat:no-repeat;
-    height: 250px;
-    margin-top: 24px;
-    width: 1000px;
-    border-radius: 20px;
-    position: relative;
-    margin: auto;
+  background-size: cover;  /* Fit the whole image inside the banner */
+  background-repeat: no-repeat;  /* Prevent image repetition */
+  background-position: center center;  /* Center the image in the container */
+  height: 250px;  /* Set fixed height for the banner */
+  margin-top: 24px;
+  width: 100%;  /* Ensure the width is 100% of the container */
+  max-width: 1000px;  /* Maximum width of the banner */
+  border-radius: 20px;
+  position: relative;
+  margin: auto;
+}
+
+.banner-content {
+  color: white;
+  font-family: cursive;
+  background: #fad0c4;
+  background-image: linear-gradient(315deg, #a17c72, rgb(158, 64, 64));  /* Gradient overlay */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;  /* Semi-transparent overlay */
+  border-radius: 20px;
+}
+
+.banner-content h3 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Mobile (up to 600px) */
+@media only screen and (max-width: 600px) {
+  .banner {
+      height: 180px;  /* Smaller height for mobile */
   }
-  
-  .banner-content {
-    color: white;
-    font-family: cursive;
-    background: #fad0c4;
-    background-image: linear-gradient(315deg, #a17c72, rgb(158, 64, 64));
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: .4;
-    border-radius: 20px;
-  }
-  
+
   .banner-content h3 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-  
-  /* Mobile (up to 600px) */
-  @media only screen and (max-width: 600px) {
-    .banner {
-      width: 100%;
-      height: 180px;
-    }
-  
-    .banner-content h3 {
       font-size: 1.2rem;
-    }
   }
-  
-  /* Tablet (601px to 768px) */
-  @media only screen and (min-width: 601px) and (max-width: 768px) {
-    .banner {
-      width: 90%;
-      height: 220px;
-    }
-  
-    .banner-content h3 {
+}
+
+/* Tablet (601px to 768px) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+  .banner {
+      height: 220px;  /* Slightly larger height for tablet */
+  }
+
+  .banner-content h3 {
       font-size: 1.4rem;
-    }
   }
-  
-  /* Desktop (769px and up) */
-  @media only screen and (min-width: 769px) {
-    .banner {
-      width: 1000px;
-      height: 250px;
-    }
-  
-    .banner-content h3 {
+}
+
+/* Desktop (769px and up) */
+@media only screen and (min-width: 769px) {
+  .banner {
+      height: 250px;  /* Standard height for desktop */
+  }
+
+  .banner-content h3 {
       font-size: 1.8rem;
-    }
   }
-  
+}

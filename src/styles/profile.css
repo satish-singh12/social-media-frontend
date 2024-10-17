@@ -1,13 +1,14 @@
 .profile{
+  
   background-color: #e44da0; 
   max-width: 100%;
-  position:sticky;
+  /* position:sticky; */
   margin-top: 5.7rem;
 }
 
 .profile-body{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .profile-body-left{
@@ -81,8 +82,8 @@
 @media (max-width: 480px) {
   .profile{
    margin-top: 17rem;
-   min-width:fit-content;
-   margin-left: 1.8rem;
+   min-width: 141vw;
+  
   }
   .profile-header {
     flex-direction: column;

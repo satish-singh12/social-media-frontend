@@ -1,12 +1,13 @@
 .post-comment-card {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
+    border: 2px solid #7c7474;
     padding: 10px;
-    margin: 2px 0;
-    border-radius: 8px;
-    background-color: #fff;
+    margin: 2px 20;
+    border-radius: 18px;
+    background-color: #f5ecec;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    
   }
   
   .post-comment-card-user {
@@ -45,6 +46,12 @@
   .post-comment-card-content-content {
     font-size: 0.9rem;
     text-align: left;
+  }
+
+  .post-comment-card-content-content-tag-user{
+    font-size: 13px;
+    margin-right: 5px;
+    font-weight: 600;
   }
 
   .post-comment-card-content-content textarea{

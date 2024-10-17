@@ -11,9 +11,10 @@ import {
   likeComment,
   unlikeComment,
 } from "../../redux/actions/commentActions";
+import InputPostComment from "./InputPostComment";
 
 //getting props from PostCommentDisplay.js
-const PostCommentCard = ({ comment, pos }) => {
+const PostCommentCard = ({ children, comment, pos, commentId }) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
@@ -21,6 +22,7 @@ const PostCommentCard = ({ comment, pos }) => {
   const [onEdit, setOnEdit] = useState(false);
   const [isLike, setIslike] = useState(false);
   const [load, setLoad] = useState(false);
+  const [onReply, setOnReply] = useState(false);
 
   const handleLike = () => {
     if (load) return;
@@ -45,6 +47,12 @@ const PostCommentCard = ({ comment, pos }) => {
       setOnEdit(false);
     }
   };
+
+  const handleReply = () => {
+    if (onReply) return setOnReply(false);
+    setOnReply({ comment, commentId });
+  };
+  //console.log(onReply.comment);
 
   useEffect(() => {
     setContent(comment.content);
@@ -94,6 +102,13 @@ const PostCommentCard = ({ comment, pos }) => {
             />
           ) : (
             <>
+              {comment?.tag && comment?.tag?._id !== comment.user._id && (
+                <Link to={`/profile/${comment?.tag?._id}`}>
+                  <span className="post-comment-card-content-content-tag-user">
+                    @{comment.tag.username}
+                  </span>
+                </Link>
+              )}
               <span>
                 {content.length > 100 ? (
                   <>
@@ -134,7 +149,12 @@ const PostCommentCard = ({ comment, pos }) => {
               </p>
             </>
           ) : (
-            <p className="post-comment-card-content-content-reply">Reply</p>
+            <p
+              className="post-comment-card-content-content-reply"
+              onClick={handleReply}
+            >
+              {onReply ? "Reply on opinion" : "Reply"}
+            </p>
           )}
         </div>
         <div className="post-comment-card-like-button">
@@ -145,6 +165,20 @@ const PostCommentCard = ({ comment, pos }) => {
           />
         </div>
       </div>
+      {onReply && (
+        <>
+          <InputPostComment
+            comment={comment}
+            pos={pos}
+            onReply={onReply}
+            setOnReply={setOnReply}
+          />
+          <Link to={`/profile/${onReply.comment?.user?._id}`}>
+            @{onReply.comment?.user?.username}
+          </Link>
+        </>
+      )}
+      {children}
     </div>
   );
 };

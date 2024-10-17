@@ -17,11 +17,16 @@ import Following from "../components/ProfileComponents/Following";
 import Friends from "../components/ProfileComponents/Friends";
 import SingleUserPosts from "../components/PostsComponents/SingleUserPosts";
 import SavedPost from "../components/ProfileComponents/SavedPost";
+import ProfilePhotoShow from "../components/ProfileComponents/ProfilePhotoShow";
+import ProfileVideoShow from "../components/ProfileComponents/ProfileVideoShow";
+import ShowFriendsProfile from "../components/ProfileComponents/ShowFriendsProfile";
+import ShowFollowingProfile from "../components/ProfileComponents/ShowFollowingProfile";
 
 const Profile = () => {
   const { id } = useParams();
   const auth = useSelector((state) => state.auth);
   const profile = useSelector((state) => state.profile);
+  const post = useSelector((state) => state.homePost.post);
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState([]);
@@ -30,6 +35,7 @@ const Profile = () => {
   const [showFriend, setShowFriend] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showSaved, setShowSaved] = useState(false);
+  const [photos, setPhotos] = useState([]);
 
   const handleToggle = (ht) => {
     setShowAccount(ht === "showAccount");
@@ -81,6 +87,13 @@ const Profile = () => {
     }
   }, [profile.userposts, id, auth, dispatch]);
 
+  useEffect(() => {
+    const newProfileImages = profile?.userposts?.filter(
+      (item) => item.posts.images || []
+    );
+    setPhotos(newProfileImages);
+  }, [profile.userposts]);
+
   return (
     <div className="profile">
       <Info userData={userData} profile={profile} auth={auth} id={id} />
@@ -120,6 +133,8 @@ const Profile = () => {
         <div className="profile-body">
           <div className="profile-body-left">
             <About userData={userData} profile={profile} auth={auth} id={id} />
+            <ShowFriendsProfile user={auth.user} />
+            <ShowFollowingProfile user={auth.user} />
           </div>
 
           <div className="profile-body-center">
@@ -132,7 +147,8 @@ const Profile = () => {
           </div>
 
           <div className="profile-body-right">
-            {/* <Posts /> */} <h1>posts</h1>
+            <ProfilePhotoShow photos={photos} />
+            <ProfileVideoShow photos={photos} />
           </div>
         </div>
       )}
