@@ -9,6 +9,7 @@ const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
 
   const handleRemove = () => {
     dispatch(deleteComment({ comment, pos, auth }));
+    setMenuItem(false);
   };
 
   const MenuItem = () => {

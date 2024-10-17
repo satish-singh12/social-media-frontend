@@ -2,6 +2,7 @@ import {
   getDataApi,
   postDataApi,
   patchDataApi,
+  deleteDataApi,
 } from "../../utils/fetchDataApi";
 import { EditData, DeleteData } from "./alertActions";
 import { POST_TYPES } from "./postActions";
@@ -14,7 +15,7 @@ export const createComment =
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     //console.log(newPost);
     try {
-      const data = { ...newComment, postId: pos._id };
+      const data = { ...newComment, postId: pos._id, postUserId: pos.user._id };
       const res = await postDataApi("comment", data, auth.token);
     } catch (err) {
       dispatch({
@@ -102,27 +103,22 @@ export const deleteComment =
     ];
 
     const newPost = {
+      ...pos,
       comments: pos.comments.filter(
         (cmt) => cmt !== deleteArr.find((delarr) => cmt._id === delarr._id)
       ),
     };
-    console.log({ deleteArr, newPost, pos });
-    // const newComment = EditData(pos.comments, comment._id, {
-    //   ...comment,
-    //   content,
-    // });
 
-    // dispatch({ type: POST_TYPES.UPDATE_POST, payload: newComment });
-    // try {
-    //   const res = await patchDataApi(
-    //     `comment/${comment._id}`,
-    //     { content },
-    //     auth.token
-    //   );
-    // } catch (err) {
-    //   dispatch({
-    //     type: "ALERT",
-    //     payload: { error: err.response.data.message },
-    //   });
-    // }
+    dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+
+    try {
+      for (const item of deleteArr) {
+        await deleteDataApi(`comment/${item._id}`, auth.token);
+      }
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
   };
