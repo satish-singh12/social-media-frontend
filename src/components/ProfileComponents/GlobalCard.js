@@ -46,7 +46,7 @@ const GlobalCard = ({ user }) => {
                 <p>Followers</p>
               </div>
               <div className="global-card-content-bottom-stat">
-                <h6>{user && user.friends && user.following.length}</h6>
+                <h6>{user && user.friends && user.following?.length}</h6>
                 <p>Following</p>
               </div>
               <div className="global-card-content-bottom-stat">

@@ -34,7 +34,7 @@ const Login = () => {
           </h1>
           {/* <h1>Social Media</h1> */}
           <h3>
-            “Don’t use "TheGram" to impress people; use it to impact people.”
+            {/* “Don’t use "TheGram" to impress people; use it to impact people.” */}
           </h3>
           <span>
             <p>login with social media</p>

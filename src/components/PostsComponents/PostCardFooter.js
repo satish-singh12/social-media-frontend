@@ -15,6 +15,7 @@ import {
 
 const PostCardFooter = ({ pos }) => {
   const auth = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
   const [isLike, setIsLike] = useState(false);
   const [load, setLoad] = useState(false);
@@ -40,7 +41,7 @@ const PostCardFooter = ({ pos }) => {
   const handleLike = () => {
     if (load) return;
     setLoad(true);
-    dispatch(likePost({ pos, auth }))
+    dispatch(likePost({ pos, auth, socket }))
       .then(() => {
         setIsLike(true);
         // Optimistically update likes count
@@ -58,7 +59,7 @@ const PostCardFooter = ({ pos }) => {
   const handleUnlike = () => {
     if (load) return;
     setLoad(true);
-    dispatch(unlikePost({ pos, auth }))
+    dispatch(unlikePost({ pos, auth, socket }))
       .then(() => {
         setIsLike(false);
         // Optimistically update likes count

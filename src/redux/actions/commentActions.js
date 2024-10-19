@@ -8,15 +8,16 @@ import { EditData, DeleteData } from "./alertActions";
 import { POST_TYPES } from "./postActions";
 
 export const createComment =
-  ({ pos, newComment, auth }) =>
+  ({ pos, newComment, auth, socket }) =>
   async (dispatch) => {
-    console.log(newComment);
+    //console.log(newComment);
     const newPost = { ...pos, comments: [...pos.comments, newComment] };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     //console.log(newPost);
     try {
       const data = { ...newComment, postId: pos._id, postUserId: pos.user._id };
       const res = await postDataApi("comment", data, auth.token);
+      socket.emit("createComment", newPost);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -95,7 +96,7 @@ export const unlikeComment =
   };
 
 export const deleteComment =
-  ({ comment, pos, auth }) =>
+  ({ comment, pos, auth, socket }) =>
   async (dispatch) => {
     const deleteArr = [
       ...pos.comments.filter((cmt) => cmt.reply === comment._id),
@@ -115,6 +116,7 @@ export const deleteComment =
       for (const item of deleteArr) {
         await deleteDataApi(`comment/${item._id}`, auth.token);
       }
+      socket.emit("deleteComment", newPost);
     } catch (err) {
       dispatch({
         type: "ALERT",

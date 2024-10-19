@@ -8,8 +8,7 @@ import InputPostComment from "./InputPostComment";
 const SingleUserPosts = ({ userPosts, profile, auth, id }) => {
   return (
     <div>
-      {userPosts &&
-        userPosts?.length > 0 &&
+      {userPosts && userPosts?.length > 0 ? (
         userPosts.map((pos, index) => (
           <div
             className="post-card"
@@ -28,7 +27,19 @@ const SingleUserPosts = ({ userPosts, profile, auth, id }) => {
             <PostComment pos={pos} />
             <InputPostComment pos={pos} />
           </div>
-        ))}
+        ))
+      ) : (
+        <div
+          style={{
+            textAlign: "center",
+            margin: "2rem",
+            fontSize: "1.5rem",
+            color: "gray",
+          }}
+        >
+          NO POST FOUND
+        </div>
+      )}
     </div>
   );
 };

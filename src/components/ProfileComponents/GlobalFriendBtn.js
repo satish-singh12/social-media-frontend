@@ -6,6 +6,7 @@ import { addFriends, unFriends } from "../../redux/actions/profileActions";
 const GlobalFriendBtn = ({ classBtn, user }) => {
   // const { auth, profile } = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
   const profile = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const [friend, setFriend] = useState(false);
@@ -18,12 +19,12 @@ const GlobalFriendBtn = ({ classBtn, user }) => {
   }, [auth.user.following, user._id]);
 
   const addFriend = async () => {
-    await dispatch(addFriends({ users: profile.users, user, auth }));
+    await dispatch(addFriends({ users: profile.users, user, auth, socket }));
     setFriend(true);
   };
 
   const removeFriend = async () => {
-    await dispatch(unFriends({ users: profile.users, user, auth }));
+    await dispatch(unFriends({ users: profile.users, user, auth, socket }));
     setFriend(false);
   };
 

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const InputPostComment = ({ children, pos, comment, onReply, setOnReply }) => {
   const auth = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
 
@@ -25,10 +26,11 @@ const InputPostComment = ({ children, pos, comment, onReply, setOnReply }) => {
       reply: onReply && onReply.commentId,
       tag: onReply && onReply.comment?.user,
     };
-    console.log(newComment);
-    dispatch(createComment({ pos, newComment, auth }));
+    //console.log(newComment);
+    dispatch(createComment({ pos, newComment, auth, socket }));
     setContent("");
     if (onReply) return setOnReply(false);
+    setContent("");
   };
   return (
     <div className="input-post-comments">

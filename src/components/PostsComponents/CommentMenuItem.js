@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "../../styles/commentMenuItem.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteComment } from "../../redux/actions/commentActions";
 
 const CommentMenuItem = ({ comment, pos, auth, setOnEdit }) => {
   const [menuItem, setMenuItem] = useState(false);
+  const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
 
   const handleRemove = () => {
-    dispatch(deleteComment({ comment, pos, auth }));
+    dispatch(deleteComment({ comment, pos, auth, socket }));
     setMenuItem(false);
   };
 

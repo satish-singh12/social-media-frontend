@@ -9,6 +9,7 @@ import { BASE_URL } from "../../utils/config";
 
 const PostCardHeader = ({ pos }) => {
   const auth = useSelector((state) => state.auth);
+  const socket = useSelector((state) => state.socket);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const PostCardHeader = ({ pos }) => {
   };
 
   const handleDeletePost = async () => {
-    await dispatch(deletePost({ pos, auth }));
+    await dispatch(deletePost({ pos, auth, socket }));
     navigate("/");
   };
 

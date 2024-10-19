@@ -1,6 +1,7 @@
 export const ALERT_TYPES = {
   ALERT: "ALERT",
   STATUS: "STATUS",
+  SOCKET: "SOCKET",
 };
 
 export const EditData = (data, id, post) => {

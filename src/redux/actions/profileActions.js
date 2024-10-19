@@ -14,41 +14,92 @@ export const PROFILE_TYPES = {
 };
 
 export const getProfileUsersData =
-  ({ users, id, auth }) =>
+  ({ id, auth }) =>
   async (dispatch) => {
     dispatch({ type: PROFILE_TYPES.GET_IDS, payload: id });
-    // console.log({ users, id, auth });
+
+    // Set loading to true before API call
+    dispatch({
+      type: PROFILE_TYPES.LOADING,
+      payload: { loading: true },
+    });
+
     try {
-      dispatch({
-        type: PROFILE_TYPES.LOADING,
-        payload: { loading: true },
-      });
-      const res = await getDataApi(`user/${id}`, auth.token);
-      const res1 = await getDataApi(`userposts/${id}`, auth.token);
+      // Fetch user and userposts data concurrently
+      const [res, res1] = await Promise.all([
+        getDataApi(`user/${id}`, auth.token),
+        getDataApi(`userposts/${id}`, auth.token),
+      ]);
+
       const user = res;
       const posts = res1;
 
+      // Dispatch user data to state
       dispatch({
         type: PROFILE_TYPES.GET_USER,
-        payload: user.data, //user data
+        payload: user.data, // User data
       });
 
+      // Dispatch user posts data to state
       dispatch({
         type: PROFILE_TYPES.USERPOSTS,
-        payload: { ...posts.data, _id: id, result: posts.result },
+        payload: { ...posts.data, _id: id, result: posts.result || 0 },
       });
+    } catch (err) {
+      // Check if err.response exists before accessing it
+      const errorMessage = err.response
+        ? err.response.data.message
+        : "An error occurred. Please try again.";
 
+      dispatch({
+        type: "ALERT",
+        payload: { error: errorMessage },
+      });
+    } finally {
+      // Always turn off loading state, even if an error occurs
       dispatch({
         type: PROFILE_TYPES.LOADING,
         payload: { loading: false },
       });
-    } catch (err) {
-      dispatch({
-        type: "ALERT",
-        payload: { error: err.response.data.message },
-      });
     }
   };
+
+// export const getProfileUsersData =
+//   ({ users, id, auth }) =>
+//   async (dispatch) => {
+//     dispatch({ type: PROFILE_TYPES.GET_IDS, payload: id });
+//     // console.log({ users, id, auth });
+//     try {
+//       dispatch({
+//         type: PROFILE_TYPES.LOADING,
+//         payload: { loading: true },
+//       });
+//       const res = await getDataApi(`user/${id}`, auth.token);
+//       const res1 = await getDataApi(`userposts/${id}`, auth.token);
+//       const user = res;
+//       const posts = res1;
+
+//       dispatch({
+//         type: PROFILE_TYPES.GET_USER,
+//         payload: user.data, //user data
+//       });
+
+//       dispatch({
+//         type: PROFILE_TYPES.USERPOSTS,
+//         payload: { ...posts.data, _id: id, result: posts.result },
+//       });
+
+//       dispatch({
+//         type: PROFILE_TYPES.LOADING,
+//         payload: { loading: false },
+//       });
+//     } catch (err) {
+//       dispatch({
+//         type: "ALERT",
+//         payload: { error: err.response.data.message },
+//       });
+//     }
+//   };
 
 export const updatedProfile =
   ({ editData, avatar, auth }) =>
@@ -81,16 +132,6 @@ export const updatedProfile =
       if (avatar) media = await imageUpload([avatar]);
       console.log(avatar, media[0].secure_url);
 
-      // const res = await axios.patch(
-      //   `http://localhost:5000/api/user/${auth?.user._id}`,
-      //   {
-      //     ...editData,
-      //     avatar: media ? media[0].secure_url : auth.user.avatar,
-      //   },
-      //   {
-      //     headers: { Authorization: auth.token },
-      //   }
-      // );
       const res = await patchDataApi(
         `user/${auth?.user._id}`,
         {
@@ -125,7 +166,7 @@ export const updatedProfile =
   };
 
 export const addFriends =
-  ({ users, user, auth }) =>
+  ({ users, user, auth, socket }) =>
   async (dispatch) => {
     const newUser = { ...users, friends: [...user.friends, auth.user] };
 
@@ -141,8 +182,14 @@ export const addFriends =
         user: { ...auth.user, following: [...auth.user.following, newUser] },
       },
     });
+
     try {
-      await patchDataApi(`user/${user._id}/friend`, null, auth.token);
+      const res = await patchDataApi(
+        `user/${user._id}/friend`,
+        null,
+        auth.token
+      );
+      socket.emit("addFriend", res.data.newUser);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -152,7 +199,7 @@ export const addFriends =
   };
 
 export const unFriends =
-  ({ users, user, auth }) =>
+  ({ users, user, auth, socket }) =>
   async (dispatch) => {
     const newUser = {
       ...users,
@@ -173,8 +220,15 @@ export const unFriends =
         },
       },
     });
+
     try {
-      await patchDataApi(`user/${user._id}/unfriend`, null, auth.token);
+      const res = await patchDataApi(
+        `user/${user._id}/unfriend`,
+        null,
+        auth.token
+      );
+      console.log(res);
+      socket.emit("unFriend", res.data.newUser);
     } catch (err) {
       dispatch({
         type: "ALERT",

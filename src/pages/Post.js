@@ -9,7 +9,7 @@ import PostComment from "../components/PostsComponents/PostComment";
 import InputPostComment from "../components/PostsComponents/InputPostComment";
 
 const Post = () => {
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState([""]);
   const { auth, detailPost } = useSelector((state) => state);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Post = () => {
       const newPost = detailPost.filter((item) => item._id === id);
       setPost(newPost);
     }
-  }, [detailPost, auth, id]);
+  }, [detailPost, auth, id, dispatch]);
 
   return (
     <div

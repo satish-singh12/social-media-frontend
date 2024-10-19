@@ -7,6 +7,7 @@ const initialState = {
   results: 0,
   page: 0,
   images: [],
+  detailPost: [],
 };
 
 const postReducer = (state = initialState, action) => {
@@ -15,6 +16,7 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         post: [action.payload, ...state.post],
+        detailPost: [action.payload, ...state.detailPost], // Update the detailed post list
       };
     case POST_TYPES.LOADING_POST:
       return {
@@ -35,12 +37,12 @@ const postReducer = (state = initialState, action) => {
     case POST_TYPES.UPDATE_POST:
       return {
         ...state,
-        post: EditData(state.post, action.payload_id, action.payload),
+        post: EditData(state.post, action.payload._id, action.payload),
       };
     case POST_TYPES.DELETE_POST:
       return {
         ...state,
-        post: DeleteData(state.post, action.payload_id),
+        post: DeleteData(state.post, action.payload._id),
       };
     default:
       return state;

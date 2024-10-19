@@ -13,21 +13,47 @@ import Explore from "./pages/Explore";
 import Message from "./pages/Message";
 import PrivateRouter from "./utils/PrivateRouter";
 import Profile from "./pages/Profile";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { refreshToken } from "./redux/actions/authActions";
 import { getPost } from "./redux/actions/postActions";
+import io from "socket.io-client";
+import { ALERT_TYPES } from "./redux/actions/alertActions";
+import { getNotification } from "./redux/actions/notificationActions";
+import SocketioClient from "./SocketioClient";
 
 function App() {
-  // const { auth } = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     dispatch(refreshToken());
+
+    const newSocket = io("http://localhost:5000", {
+      withCredentials: true,
+    });
+    dispatch({ type: ALERT_TYPES.SOCKET, payload: newSocket });
+
+    setSocket(newSocket);
+
+    newSocket.on("connect", () => {
+      console.log("Connected with socket ID:", newSocket.id);
+    });
+
+    newSocket.on("connect_error", (err) => {
+      console.error("Socket connection error:", err.message);
+    });
+
+    return () => {
+      newSocket.close();
+    };
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getPost(auth.token));
+    if (auth.token) {
+      dispatch(getPost(auth.token));
+      dispatch(getNotification(auth));
+    }
   }, [auth.token, dispatch]);
 
   return (
@@ -35,6 +61,7 @@ function App() {
       <Router>
         <Alerts />
         <div className="main-content">{auth.token && <Navbar />}</div>
+        {auth.token && <SocketioClient />}
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/" element={auth.token ? <Home /> : <Login />} />

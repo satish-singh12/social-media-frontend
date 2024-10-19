@@ -5,6 +5,7 @@ import {
   patchDataApi,
   deleteDataApi,
 } from "../../utils/fetchDataApi";
+import { createNotification, removeNotification } from "./notificationActions";
 
 export const POST_TYPES = {
   CREATE_POST: "CREATE_POST",
@@ -16,7 +17,7 @@ export const POST_TYPES = {
 };
 
 export const createPost =
-  ({ content, images, auth }) =>
+  ({ content, images, auth, socket }) =>
   async (dispatch) => {
     let media = [];
     try {
@@ -29,19 +30,34 @@ export const createPost =
           { content, images: media },
           auth.token
         );
-
-        if (res && res.data && res.data.newPost) {
-          dispatch({
-            type: POST_TYPES.CREATE_POST,
-            payload: { ...res.data.newPosts, user: auth.user },
-          });
+        console.log(res.data.newPosts);
+        if (!res || !res.data) {
+          throw new Error("No data returned from API");
         }
+
+        // if (res.data.newPosts) {
+        dispatch({
+          type: POST_TYPES.CREATE_POST,
+          payload: { ...res.data.newPosts, user: auth.user },
+        });
         dispatch({ type: "ALERT", payload: { loading: false } });
+        //notification
+        const msg = {
+          id: res.data.newPosts._id,
+          text: "added a new post",
+          url: `/post/${res.data.newPosts._id}`,
+          recipients: res.data.newPosts.user.friends,
+          content,
+          image: media[0].secure_url,
+        };
+        //        console.log({ msg });
+        dispatch(createNotification({ msg, auth, socket }));
+        // }
       }
     } catch (err) {
       dispatch({
         type: "ALERT",
-        payload: { error: err.response.data.message },
+        payload: { error: err.response?.data?.message || err.message },
       });
     }
   };
@@ -109,12 +125,14 @@ export const updatePost =
   };
 
 export const likePost =
-  ({ pos, auth }) =>
+  ({ pos, auth, socket }) =>
   async (dispatch) => {
     const newPost = { ...pos, likes: [...pos.likes, auth.user] };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+
     try {
       const res = await patchDataApi(`post/${pos._id}/like`, null, auth.token);
+      socket.emit("likePost", newPost);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -124,7 +142,7 @@ export const likePost =
   };
 
 export const unlikePost =
-  ({ pos, auth }) =>
+  ({ pos, auth, socket }) =>
   async (dispatch) => {
     const newPost = {
       ...pos,
@@ -138,6 +156,7 @@ export const unlikePost =
         null,
         auth.token
       );
+      socket.emit("unlikePost", newPost);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -200,11 +219,22 @@ export const unSavedPost =
   };
 
 export const deletePost =
-  ({ pos, auth }) =>
+  ({ pos, auth, socket }) =>
   async (dispatch) => {
     dispatch({ type: POST_TYPES.DELETE_POST, payload: pos });
     try {
-      await deleteDataApi(`post/${pos._id}`, auth.token);
+      const res = await deleteDataApi(`post/${pos._id}`, auth.token);
+      //  console.log({ res });
+      //notification
+      const msg = {
+        id: pos._id,
+        text: "post deleted",
+        recipients: res.data.newPosts.user.friends,
+        url: `/post/${pos._id}`,
+      };
+      //console.log({ msg });
+      dispatch(removeNotification({ msg, auth, socket }));
+      // dispatch({ type: "ALERT", payload: { loading: false } });
     } catch (err) {
       dispatch({
         type: "ALERT",

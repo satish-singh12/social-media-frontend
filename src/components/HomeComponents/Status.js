@@ -9,6 +9,7 @@ import { ALERT_TYPES } from "../../redux/actions/alertActions";
 const Status = () => {
   const auth = useSelector((state) => state.auth);
   const status = useSelector((state) => state.status);
+  const socket = useSelector((state) => state.socket);
 
   const dispatch = useDispatch();
   const [content, setContent] = useState("");
@@ -112,10 +113,10 @@ const Status = () => {
       return dispatch({ type: "ALERT", payload: { error: "Add your image" } });
 
     if (status.edit) {
-      dispatch(updatePost({ content, images, auth, status }));
+      dispatch(updatePost({ content, images, auth, status, socket }));
       dispatch({ type: ALERT_TYPES.STATUS, payload: { edit: false } });
     } else {
-      dispatch(createPost({ content, images, auth }));
+      dispatch(createPost({ content, images, auth, socket }));
     }
     setContent("");
     setImages([]);
@@ -181,7 +182,6 @@ const Status = () => {
                     )
                   ) : (
                     <>
-                      {console.log("image", image)}
                       {/* Only URL.createObjectURL() for new file objects */}
                       {image?.type?.match(/video/i) ? (
                         <video

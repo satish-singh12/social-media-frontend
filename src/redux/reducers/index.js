@@ -5,6 +5,8 @@ import profile from "./profileReducers";
 import homePost from "./postReducers";
 import status from "./statusReducers";
 import detailPost from "./detailPostReducers";
+import socket from "./socketReducers";
+import notification from "./notificationReducers";
 
 export default combineReducers({
   auth,
@@ -13,4 +15,6 @@ export default combineReducers({
   homePost,
   status,
   detailPost,
+  socket,
+  notification,
 });

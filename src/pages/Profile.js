@@ -103,28 +103,28 @@ const Profile = () => {
             className="button-icons"
             onClick={() => handleToggle("showAccount")}
           >
-            <RiAccountPinCircleFill />
+            <RiAccountPinCircleFill title="Account" />
           </div>
           <hr />
           <div
             className="button-icons"
             onClick={() => handleToggle("showFriend")}
           >
-            <MdPeopleAlt />
+            <MdPeopleAlt title="Friends" />
           </div>
           <hr />
           <div
             className="button-icons"
             onClick={() => handleToggle("showFollowing")}
           >
-            <IoPersonAdd />
+            <IoPersonAdd title="Following" />
           </div>
           <hr />
           <div
             className="button-icons"
             onClick={() => handleToggle("showSaved")}
           >
-            <IoBookmarks />
+            <IoBookmarks title="Saved Posts" />
           </div>
         </div>
       </div>
@@ -133,8 +133,10 @@ const Profile = () => {
         <div className="profile-body">
           <div className="profile-body-left">
             <About userData={userData} profile={profile} auth={auth} id={id} />
-            <ShowFriendsProfile user={auth.user} />
-            <ShowFollowingProfile user={auth.user} />
+            {/* <ShowFriendsProfile user={auth.user} />
+            <ShowFollowingProfile user={auth.user} /> */}
+            <ShowFriendsProfile user={userData[0]} />
+            <ShowFollowingProfile user={userData[0]} />
           </div>
 
           <div className="profile-body-center">
@@ -147,8 +149,10 @@ const Profile = () => {
           </div>
 
           <div className="profile-body-right">
-            <ProfilePhotoShow photos={photos} />
-            <ProfileVideoShow photos={photos} />
+            {/* <ProfilePhotoShow photos={photos} />
+            <ProfileVideoShow photos={photos} /> */}
+            <ProfilePhotoShow photos={userPosts && [userPosts]} />
+            <ProfileVideoShow photos={userPosts && [userPosts]} />
           </div>
         </div>
       )}

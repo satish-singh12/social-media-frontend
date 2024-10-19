@@ -11,8 +11,8 @@ const ShowFollowingProfile = ({ user }) => {
         </h4>
       </div>
       {user?.following?.length > 0 &&
-        user.following.map((friend) => (
-          <GlobalShortCard friend={friend} key={friend._id} />
+        user.following.map((friend, index) => (
+          <GlobalShortCard friend={friend} key={index} />
         ))}
     </div>
   );

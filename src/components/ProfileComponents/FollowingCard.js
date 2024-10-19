@@ -15,7 +15,7 @@ const FollowingCard = ({ user }) => {
         }}
       >
         <h4 style={{ textAlign: "center" }}>
-          {user.length} <span>Following</span>
+          {user?.length} <span>Following</span>
         </h4>
       </div>
       <div
@@ -30,7 +30,7 @@ const FollowingCard = ({ user }) => {
         }}
       >
         {user.length > 0 &&
-          user.map((flw) => <GlobalCard user={flw} key={flw._id} />)}
+          user.map((flw, index) => <GlobalCard user={flw} key={index} />)}
       </div>
     </>
   );

@@ -50,7 +50,7 @@ const Register = () => {
           </h1>
           {/* <h1>Social Media</h1> */}
           <h3 style={{ marginTop: "1rem" }}>
-            “Don’t use "TheGram" to impress people; use it to impact people.”
+            {/* “Don’t use "TheGram" to impress people; use it to impact people.” */}
           </h3>
         </div>
       </div>

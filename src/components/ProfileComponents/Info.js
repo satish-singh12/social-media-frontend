@@ -6,6 +6,30 @@ import GlobalFriendBtn from "./GlobalFriendBtn";
 
 const Info = ({ userData, profile, auth, id }) => {
   const [onEdit, setOnEdit] = useState(false);
+  // ---------------
+  const [postCount, setPostCount] = useState(0);
+  const [loading, setLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    // Check if profile userposts are loaded
+    if (profile.userposts && profile.userposts.length > 0) {
+      const userId = auth?.user?._id === id ? auth.user._id : id;
+      const userPosts = profile.userposts.find((p) => p._id === userId);
+      if (userPosts && userPosts.posts) {
+        setPostCount(userPosts.posts.length);
+      } else {
+        setPostCount(0);
+      }
+      setLoading(false); // Set loading to false when posts are fetched
+    } else {
+      setLoading(true); // Set loading to true if posts aren't available yet
+    }
+  }, [profile.userposts, id, auth]);
+
+  if (loading) {
+    return <p>Loading...</p>; // Add a loading state for posts
+  }
+  // ---------------
 
   return (
     <div className="profile-info">
@@ -60,9 +84,7 @@ const Info = ({ userData, profile, auth, id }) => {
 
               <div className="profile-info-bottom-right">
                 <div className="profile-info-stat">
-                  <h6 className="profile-info-stat-number">
-                    {user.friends?.length}
-                  </h6>
+                  <h6 className="profile-info-stat-number">{postCount}</h6>
                   <h6 className="profile-info-stat-desc">POSTS</h6>
                 </div>
               </div>

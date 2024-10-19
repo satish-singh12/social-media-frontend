@@ -16,6 +16,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   // const { auth } = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
+  const notification = useSelector((state) => state.notification);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -47,8 +48,15 @@ const Navbar = () => {
     <nav className="navbar">
       {/* Section 1: Logo and Website Name */}
       <div className="navbar-section logo">
-        <img src={logoImage} alt="Logo" className="logo-img" />
-        <h2>Website Name</h2>
+        <Link to="/">
+          <img src={logoImage} alt="Logo" className="logo-img" />
+        </Link>
+
+        <h3 className="navbar-tag-line">
+          " Time to be Social,
+          <br />
+          Go social..."
+        </h3>
       </div>
 
       {/* Section 2: Search Bar */}
@@ -120,23 +128,36 @@ const Navbar = () => {
         </div>
         <div>
           <Link to="/">
-            <i className={`fa fa-home ${isActive("/")}`}></i>
+            <i className={`fa fa-home ${isActive("/")}`} title="Home"></i>
           </Link>
           <Link to="/notification">
-            <i className={`fa fa-bell ${isActive("/notification")}`}></i>
+            <i
+              className={`fa fa-bell ${isActive("/notification")}`}
+              title="Notification"
+            ></i>
+            <span className="notification-counter">
+              {notification && notification.data.length}
+            </span>
           </Link>
           <Link to="/message">
-            <i className={`fa fa-envelope ${isActive("/message")}`}></i>
+            <i
+              className={`fa fa-envelope ${isActive("/message")}`}
+              title="Message"
+            ></i>
           </Link>
 
           <Link to="/explore">
-            <i className={`fa fa-compass ${isActive("/explore")}`}></i>{" "}
+            <i
+              className={`fa fa-compass ${isActive("/explore")}`}
+              title="Explore"
+            ></i>{" "}
             {/* Explore icon */}
           </Link>
 
           <i
             onClick={() => dispatch(logout())}
             className="fa fa-power-off fa-rotate-90"
+            title="Logout"
           ></i>
         </div>
       </div>
