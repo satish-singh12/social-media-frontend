@@ -28,7 +28,7 @@ const PostCardFooter = ({ pos }) => {
     } else {
       setIsLike(false);
     }
-  }, [pos.likes, auth.user._id]);
+  }, [pos.likes, auth.user?._id]);
 
   useEffect(() => {
     if (Array.isArray(auth.user.saved)) {

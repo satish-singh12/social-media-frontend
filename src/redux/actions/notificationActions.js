@@ -9,6 +9,8 @@ export const NOTIFICATION_TYPES = {
   GET_NOTIFICATIONS: "GET_NOTIFICATIONS",
   CREATE_NOTIFICATIONS: "CREATE_NOTIFICATIONS",
   REMOVE_NOTIFICATIONS: "REMOVE_NOTIFICATIONS",
+  UPDATE_NOTIFICATIONS: "UPDATE_NOTIFICATIONS",
+  DELETE_NOTIFICATIONS: "DELETE_NOTIFICATIONS",
 };
 
 export const createNotification =
@@ -56,7 +58,6 @@ export const getNotification = (auth) => async (dispatch) => {
       type: NOTIFICATION_TYPES.GET_NOTIFICATIONS,
       payload: res.data.notifications,
     });
-    console.log(res);
   } catch (err) {
     dispatch({
       type: "ALERT",
@@ -64,3 +65,42 @@ export const getNotification = (auth) => async (dispatch) => {
     });
   }
 };
+
+export const readNotification =
+  ({ dt, auth }) =>
+  async (dispatch) => {
+    dispatch({
+      type: NOTIFICATION_TYPES.UPDATE_NOTIFICATIONS,
+      payload: { ...dt, isRead: true },
+    });
+    try {
+      const res = await patchDataApi(
+        `isreadnotification/${dt._id}`,
+        null,
+        auth.token
+      );
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: err.response.data.message },
+      });
+    }
+  };
+
+export const deleteNotificationsAll =
+  ({ auth }) =>
+  async (dispatch) => {
+    dispatch({
+      type: NOTIFICATION_TYPES.DELETE_NOTIFICATIONS,
+      payload: [],
+    });
+    try {
+      const res = await deleteDataApi("deleteallnotification", auth.token);
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || "An error occurred";
+      dispatch({
+        type: "ALERT",
+        payload: { error: errorMessage },
+      });
+    }
+  };

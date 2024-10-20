@@ -10,7 +10,8 @@ import InputPostComment from "../components/PostsComponents/InputPostComment";
 
 const Post = () => {
   const [post, setPost] = useState([""]);
-  const { auth, detailPost } = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const detailPost = useSelector((state) => state.detailPost);
   const { id } = useParams();
   const dispatch = useDispatch();
 

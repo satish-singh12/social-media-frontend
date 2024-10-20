@@ -3,6 +3,7 @@ import { ALERT_TYPES } from "./alertActions";
 import { getDataApi, patchDataApi } from "../../utils/fetchDataApi";
 import { imageUpload } from "../../utils/imageUpload";
 import axios from "axios";
+import { createNotification, removeNotification } from "./notificationActions";
 
 export const PROFILE_TYPES = {
   LOADING: "LOADING",
@@ -190,6 +191,14 @@ export const addFriends =
         auth.token
       );
       socket.emit("addFriend", res.data.newUser);
+
+      const msg = {
+        id: auth.user._id,
+        text: "add you as a friend",
+        url: `/profile/${auth.user._id}`,
+        recipients: [newUser._id],
+      };
+      dispatch(createNotification({ msg, auth, socket }));
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -229,6 +238,14 @@ export const unFriends =
       );
       console.log(res);
       socket.emit("unFriend", res.data.newUser);
+
+      const msg = {
+        id: auth.user._id,
+        text: "unfriend you",
+        url: `/profile/${auth.user._id}`,
+        recipients: [newUser._id],
+      };
+      dispatch(removeNotification({ msg, auth, socket }));
     } catch (err) {
       dispatch({
         type: "ALERT",

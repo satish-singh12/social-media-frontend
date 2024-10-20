@@ -129,10 +129,19 @@ export const likePost =
   async (dispatch) => {
     const newPost = { ...pos, likes: [...pos.likes, auth.user] };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
+    socket.emit("likePost", newPost);
 
     try {
       const res = await patchDataApi(`post/${pos._id}/like`, null, auth.token);
-      socket.emit("likePost", newPost);
+      const msg = {
+        id: auth.user._id,
+        text: "like the post",
+        url: `/post/${pos._id}`,
+        recipients: [pos.user._id],
+        content: pos.content,
+        image: pos.images[0].secure_url,
+      };
+      dispatch(createNotification({ msg, auth, socket }));
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -149,14 +158,20 @@ export const unlikePost =
       likes: pos.likes.filter((like) => like._id !== auth.user._id),
     };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
-
+    socket.emit("unlikePost", newPost);
     try {
       const res = await patchDataApi(
         `post/${pos._id}/unlike`,
         null,
         auth.token
       );
-      socket.emit("unlikePost", newPost);
+      const msg = {
+        id: auth.user._id,
+        text: "unlike the post",
+        url: `/post/${pos._id}`,
+        recipients: [pos.user._id],
+      };
+      dispatch(removeNotification({ msg, auth, socket }));
     } catch (err) {
       dispatch({
         type: "ALERT",
