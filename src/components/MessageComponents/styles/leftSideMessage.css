@@ -1,0 +1,109 @@
+/* Default styling for large screens */
+.left-side-message {
+    display: flex;
+    /* box-sizing: border-box; */
+    flex-direction: column;
+    /* justify-content:start; */
+    width: 350px;
+    max-width: 100%;
+    height: calc(100vh - 95px);
+    background-color: rgb(243, 105, 128);
+    padding: 10px;
+   
+  }
+  
+  .left-side-message-content-search {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .left-side-message-content-search-input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .left-side-message-content-search-button {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color:  rgb(61, 140, 231);;
+    color: rgb(60, 66, 73);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    right: .5rem;
+    
+  }
+  
+  .left-side-message-content-user-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px); /* Adjust the max-height to leave room for the search input */
+  }
+  
+  /* Medium screens (tablets, 768px and above) */
+  @media (max-width: 768px) {
+    .left-side-message {
+      padding: 15px;
+      margin: auto;
+      height: auto;
+    }
+  
+    .left-side-message-content-search {
+      margin-bottom: 15px;
+    }
+  
+    .left-side-message-content-search-input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .left-side-message-content-search-button {
+      position:unset;
+      margin-right: 1.5rem;
+      font-size: 14px;
+      padding: 8px 15px;
+    }
+  }
+  
+  /* Small screens (mobile devices, 480px and below) */
+  @media (max-width: 480px) {
+    .left-side-message {
+      margin: auto;
+      padding: 10px;
+      height: auto;
+    }
+  
+    .left-side-message-content-search {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .left-side-message-content-search-input {
+      width: 100%;
+      font-size: 12px;
+      padding: 6px;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .left-side-message-content-search-button {
+      font-size: 12px;
+      padding: 6px 12px;
+      width: 100%;
+    }
+  
+    .left-side-message-content-user-list {
+      max-height: calc(100vh - 130px); /* Adjust for smaller screens */
+    }
+  }
+  

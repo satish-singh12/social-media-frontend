@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Navbar from "./pages/Navbar";
 import Notifications from "./pages/Notifications";
 import Explore from "./pages/Explore";
-import Message from "./pages/Message";
+import Messages from "./pages/Messages";
 import PrivateRouter from "./utils/PrivateRouter";
 import Profile from "./pages/Profile";
 import { useEffect, useState } from "react";
@@ -20,6 +20,7 @@ import io from "socket.io-client";
 import { ALERT_TYPES } from "./redux/actions/alertActions";
 import { getNotification } from "./redux/actions/notificationActions";
 import SocketioClient from "./SocketioClient";
+import Conversation from "./components/MessageComponents/Conversation";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -67,8 +68,8 @@ function App() {
           <Route path="/" element={auth.token ? <Home /> : <Login />} />
           <Route path="/login" element={<Login />} />
           <Route
-            path="/message"
-            element={<PrivateRouter element={<Message />} />}
+            path="/messages"
+            element={<PrivateRouter element={<Messages />} />}
           />
           <Route
             path="/explore"
@@ -81,6 +82,10 @@ function App() {
           <Route
             path="/post/:id"
             element={<PrivateRouter element={<Post />} />}
+          />
+          <Route
+            path="/message/:id"
+            element={<PrivateRouter element={<Conversation />} />}
           />
           <Route
             path="/profile/:id"

@@ -1,0 +1,88 @@
+.message{
+    
+    width: 1000px;
+    max-width: 100%;
+    background-color: rgb(235, 248, 54);
+    margin: 7rem auto 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    border: 2px solid rgb(182, 181, 181);
+    border-radius: 20px;
+}
+
+/* Default styling for large screens */
+/* .message {
+    display: flex;
+    background-color: rgb(117, 133, 80);
+    justify-content: space-between;
+    padding: 20px;
+    height: 100vh;
+    margin: 6.5rem auto 1rem auto;
+  } */
+  
+  .message-left-side {
+    width: 30%;
+    border-right: 3px solid #b9b5b5;
+    padding: 15px;
+    overflow-y: auto;
+    min-width:fit-content;
+    background-color: rgb(243, 105, 128);
+    margin-left: 1rem;
+    
+  }
+  
+  .message-right-side {
+    width: 70%;
+    padding: 15px;
+    overflow-y: auto;
+  }
+  
+  /* Medium screens (tablets, 768px and above) */
+  @media (max-width: 768px) {
+    .message {
+      flex-direction: column;
+      height: auto;
+      margin: 12rem auto 1rem auto;
+    }
+  
+    .message-left-side,
+    .message-right-side {
+      width: 100%;
+      padding: 10px;
+      
+    }
+  
+    .message-left-side {
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+      min-width:auto;
+    }
+  }
+  
+  /* Small screens (mobile devices, 480px and below) */
+  @media (max-width: 480px) {
+    .message {
+      flex-direction: column;
+      padding: 10px;
+      margin: 12rem auto 1rem auto;
+    }
+  
+    .message-left-side,
+    .message-right-side {
+      width: 100%;
+      padding: 8px;
+    }
+  
+    .message-left-side {
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+      min-width:auto;
+    }
+  
+    .message-right-side {
+      margin-top: 10px;
+    }
+  }
+  

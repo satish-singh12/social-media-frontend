@@ -139,9 +139,9 @@ const Navbar = () => {
               {notification && notification.data.length}
             </span>
           </Link>
-          <Link to="/message">
+          <Link to="/messages">
             <i
-              className={`fa fa-envelope ${isActive("/message")}`}
+              className={`fa fa-envelope ${isActive("/messages")}`}
               title="Message"
             ></i>
           </Link>

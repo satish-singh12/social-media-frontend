@@ -6,7 +6,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(70,29,253,1) 50%, rgba(252,176,69,1) 100%);
+  /* background:#10898d; */
+  background: #3e5172;
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(70,29,253,1) 50%, rgba(252,176,69,1) 100%); */
   color: #333;
   font-family: 'Arial', sans-serif;
   flex-wrap: wrap; /* Allow wrapping for smaller screens */

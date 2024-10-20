@@ -4,13 +4,12 @@
   background-repeat: no-repeat;  /* Prevent image repetition */
   background-position: center center;  /* Center the image in the container */
   height: 250px;  /* Set fixed height for the banner */
-  margin-top: 24px;
-  width: 100%;  /* Ensure the width is 100% of the container */
-  max-width: 1000px;  /* Maximum width of the banner */
+    width: 100vw;  /* Ensure the width is 100% of the container */
+  max-width: 100%;  /* Maximum width of the banner */
   border-radius: 20px;
   position: relative;
   margin: auto;
-  margin-top: 48px;
+  margin-top: .3rem;
 }
 
 .banner-content {

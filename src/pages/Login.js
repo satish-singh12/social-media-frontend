@@ -68,6 +68,7 @@ const Login = () => {
               <input
                 type={showPass ? "type" : "password"}
                 value={password}
+                autocomplete="current-password"
                 name="password"
                 onChange={handleChange}
                 placeholder="Enter you password"

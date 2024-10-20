@@ -1,0 +1,121 @@
+
+.right-side-message {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    background-color: rgb(240, 109, 190);
+    /* background-color: #f9f9f9; */
+    height: calc(100vh - 95px);
+    
+  }
+  
+  .right-side-message-content-header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* .right-side-message-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  */
+  /* .delete-icon {
+    font-size: 24px;
+     cursor: pointer;
+     color: #ff4d4f;
+   }  */
+  
+  /* .delete-icon:hover {
+    color: #ff7875; /* Lighter shade on hover */
+  /* }  */
+  /* ========== */
+  .right-side-content-messages {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-top: 15px;
+  }
+  
+  .right-side-content-messages-other {
+    padding: 15px;
+    background-color: rgb(233, 218, 218);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* =========== */
+  .right-side-content-messages-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #fad1d1;
+    border-radius: 8px;
+  }
+  
+  .right-side-content-messages-input-text {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .right-side-content-messages-input-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .right-side-content-messages-input-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* +++++++++++ */
+  
+  /* Medium screens (tablets, 768px and above) */
+  @media (max-width: 768px) {
+    .right-side-message-content {
+      padding: 15px;
+    }
+  
+    .right-side-content-messages-other {
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+  
+    .right-side-message-content-header {
+      padding-bottom: 10px;
+    }
+  }
+  
+  /* Small screens (mobile devices, 480px and below) */
+  @media (max-width: 480px) {
+    .right-side-message-content {
+      padding: 10px;
+    }
+  
+    .right-side-message-content-header {
+      padding-bottom: 8px;
+    }
+  
+    .right-side-content-messages-other {
+      padding: 10px;
+      margin-bottom: 6px;
+    }
+  
+    .right-side-content-messages {
+      margin-top: 10px;
+    }
+  }
+  

@@ -109,6 +109,7 @@ const Register = () => {
               <div className="password-input">
                 <input
                   type={showPass ? "type" : "password"}
+                  autocomplete="current-password"
                   value={password}
                   name="password"
                   onChange={handleChange}

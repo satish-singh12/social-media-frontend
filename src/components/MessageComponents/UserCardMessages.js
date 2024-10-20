@@ -1,21 +1,20 @@
 import React from "react";
-import "../styles/userCard.css";
+import "./styles/userCardMessages.css";
 import { Link } from "react-router-dom";
 
 //child of Navbar.js
-const UserCard = ({ user, handleClose }) => {
+const UserCardMessages = ({ children, user, handleClose }) => {
   const handleCloseAll = () => {
     if (handleClose) handleClose();
   };
   return (
     <div
-      className="card-header"
+      className="user-card-message-header"
       style={{ borderBottom: "1px solid rgb(177, 207, 235)" }}
     >
       <div>
-        <Link
-          to={`/profile/${user?._id}`}
-          className="card-header"
+        <div
+          className="user-card-message-header"
           onClick={handleCloseAll}
           style={{ textDecoration: "none", color: "inherit" }}
         >
@@ -24,10 +23,11 @@ const UserCard = ({ user, handleClose }) => {
             <span>{user?.fullname}</span>
             <small>{user?.username}</small>
           </div>
-        </Link>
+        </div>
+        {children}
       </div>
     </div>
   );
 };
 
-export default UserCard;
+export default UserCardMessages;

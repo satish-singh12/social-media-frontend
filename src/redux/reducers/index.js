@@ -7,6 +7,7 @@ import status from "./statusReducers";
 import detailPost from "./detailPostReducers";
 import socket from "./socketReducers";
 import notification from "./notificationReducers";
+import message from "./messageReducders";
 
 export default combineReducers({
   auth,
@@ -17,4 +18,5 @@ export default combineReducers({
   detailPost,
   socket,
   notification,
+  message,
 });
