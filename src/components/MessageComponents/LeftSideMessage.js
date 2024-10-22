@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserCardMessages from "./UserCardMessages";
 import "./styles/leftSideMessage.css";
 import { getDataApi } from "../../utils/fetchDataApi";
-import { addUser } from "../../redux/actions/messageActions";
+import { AddUser, getConversations } from "../../redux/actions/messageActions";
 import { useNavigate } from "react-router-dom";
 import { MdFiberManualRecord } from "react-icons/md";
 
@@ -11,10 +11,15 @@ const LeftSideMessage = () => {
   const [search, setSearch] = useState("");
   const [searchUser, setSearchUser] = useState([]);
   const [load, setLoad] = useState(false);
-  const auth = useSelector((state) => state.auth);
-  const message = useSelector((state) => state.message);
+  const { auth, message } = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (message.firstLoad) return;
+    dispatch(getConversations(auth));
+  }, [dispatch, auth, message.firstLoad]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -29,7 +34,7 @@ const LeftSideMessage = () => {
       dispatch({
         type: "ALERT",
         payload: {
-          error: err.response.data.message,
+          error: err.response.data.msg,
         },
       });
     }
@@ -38,33 +43,31 @@ const LeftSideMessage = () => {
   const handleAddChat = (user) => {
     setSearch("");
     setSearchUser([]);
-    dispatch(addUser({ user, message }));
+    dispatch(AddUser({ user, message }));
     navigate(`/message/${user._id}`);
   };
 
   return (
-    <div className="left-side-message">
-      <div className="left-side-message-content-search">
+    <div className="leftsidecontent">
+      <div className="leftsidecontentsearch">
         <input
+          className="leftsidecontentsearchinput"
           type="text"
-          className="left-side-message-content-search-input"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search the user for chat"
+          placeholder="find the user for chat"
         />
-        <button
-          className="left-side-message-content-search-button"
-          onClick={handleSearch}
-        >
-          Search
+        <button className="leftsidecontentsearchbutton" onClick={handleSearch}>
+          {" "}
+          Search{" "}
         </button>
       </div>
 
-      <div className="left-side-message-content-user-list">
+      <div className="leftsidecontentuserlist">
         {searchUser.length !== 0 ? (
           <>
-            {searchUser.map((user) => (
-              <div key={user._id} onClick={() => handleAddChat(user)}>
+            {searchUser.map((user, index) => (
+              <div onClick={() => handleAddChat(user)} key={index}>
                 <UserCardMessages user={user} />
               </div>
             ))}
@@ -72,9 +75,9 @@ const LeftSideMessage = () => {
         ) : (
           <>
             {message.users?.length > 0 &&
-              message.users.map((user) => (
-                <div key={user._id} onClick={() => handleAddChat(user)}>
-                  <UserCardMessages user={user}>
+              message.users?.map((user, index) => (
+                <div onClick={() => handleAddChat(user)} key={index}>
+                  <UserCardMessages user={user} msg={true}>
                     <MdFiberManualRecord />
                   </UserCardMessages>
                 </div>

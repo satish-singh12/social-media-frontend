@@ -5,11 +5,11 @@ import "./styles/messages.css";
 
 const Messages = () => {
   return (
-    <div className="message">
-      <div className="message-left-side">
+    <div className="messages">
+      <div className="messagesleftside">
         <LeftSideMessage />
       </div>
-      <div className="message-right-side">
+      <div className="messagesrightside">
         <RightSideMessage />
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "../../styles/banner.css"; // Import external CSS
+import bannerUrl from "../../images/banner.jpg";
 
 const Banner = () => {
   const auth = useSelector((state) => state.auth);
@@ -8,7 +9,7 @@ const Banner = () => {
     <div
       className="banner"
       style={{
-        backgroundImage: `url(${auth.user.avatar})`,
+        backgroundImage: `url(${auth.user.avatar || bannerUrl})`,
       }}
     >
       <div className="banner-content">

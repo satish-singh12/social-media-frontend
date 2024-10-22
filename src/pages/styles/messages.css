@@ -1,88 +1,49 @@
-.message{
-    
-    width: 1000px;
-    max-width: 100%;
-    background-color: rgb(235, 248, 54);
-    margin: 7rem auto 1rem auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    border: 2px solid rgb(182, 181, 181);
-    border-radius: 20px;
+/* Base styles for messages container */
+.messages {
+  margin-top: 16rem; /* Space below the navbar */
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-rows: 1fr 2fr; /* Two columns with different widths */
+  width: 100%; /* Full width */
+  /* height: calc(100vh - 16rem); Full height minus navbar height */
+  /* background-color: greenyellow; */
+  
+  
 }
 
-/* Default styling for large screens */
-/* .message {
-    display: flex;
-    background-color: rgb(117, 133, 80);
-    justify-content: space-between;
-    padding: 20px;
-    height: 100vh;
-    margin: 6.5rem auto 1rem auto;
-  } */
-  
-  .message-left-side {
-    width: 30%;
-    border-right: 3px solid #b9b5b5;
-    padding: 15px;
-    overflow-y: auto;
-    min-width:fit-content;
-    background-color: rgb(243, 105, 128);
-    margin-left: 1rem;
-    
+/* Left side message styles */
+.messagesleftside {
+  background-color: #f5f5f5; /* Light background */
+  overflow-y: auto; /* Scrollable if content overflows */
+  padding: 10px; /* Padding inside */
+}
+
+/* Right side message styles */
+.messagesrightside {
+  background-color: #ffffff; /* White background */
+  overflow-y: auto; /* Scrollable if content overflows */
+  padding: 10px; /* Padding inside */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .messages {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    height: auto; /* Allow height to adjust based on content */
   }
-  
-  .message-right-side {
-    width: 70%;
-    padding: 15px;
-    overflow-y: auto;
+
+  .messagesleftside,
+  .messagesrightside {
+    padding: 5px; /* Less padding on smaller screens */
   }
-  
-  /* Medium screens (tablets, 768px and above) */
-  @media (max-width: 768px) {
-    .message {
-      flex-direction: column;
-      height: auto;
-      margin: 12rem auto 1rem auto;
-    }
-  
-    .message-left-side,
-    .message-right-side {
-      width: 100%;
-      padding: 10px;
-      
-    }
-  
-    .message-left-side {
-      border-right: none;
-      border-bottom: 1px solid #ccc;
-      min-width:auto;
-    }
+}
+
+@media (max-width: 480px) {
+  .messages {
+    height: auto; /* Adjust height for very small screens */
   }
-  
-  /* Small screens (mobile devices, 480px and below) */
-  @media (max-width: 480px) {
-    .message {
-      flex-direction: column;
-      padding: 10px;
-      margin: 12rem auto 1rem auto;
-    }
-  
-    .message-left-side,
-    .message-right-side {
-      width: 100%;
-      padding: 8px;
-    }
-  
-    .message-left-side {
-      border-right: none;
-      border-bottom: 1px solid #ccc;
-      min-width:auto;
-    }
-  
-    .message-right-side {
-      margin-top: 10px;
-    }
+
+  .messagesleftside,
+  .messagesrightside {
+    padding: 3px; /* Even less padding for mobile */
   }
-  
+}

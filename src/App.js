@@ -21,6 +21,7 @@ import { ALERT_TYPES } from "./redux/actions/alertActions";
 import { getNotification } from "./redux/actions/notificationActions";
 import SocketioClient from "./SocketioClient";
 import Conversation from "./components/MessageComponents/Conversation";
+import Navbar1 from "./pages/Navbar1";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -61,6 +62,7 @@ function App() {
     <div className="App">
       <Router>
         <Alerts />
+        {/* <Navbar1 /> */}
         <div className="main-content">{auth.token && <Navbar />}</div>
         {auth.token && <SocketioClient />}
         <Routes>

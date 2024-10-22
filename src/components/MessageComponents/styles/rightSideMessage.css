@@ -1,121 +1,127 @@
 
-.right-side-message {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 20px;
-    background-color: rgb(240, 109, 190);
-    /* background-color: #f9f9f9; */
-    height: calc(100vh - 95px);
-    
-  }
+
+/* Base styles for right side message container */
+.Rightsidecontent {
   
-  .right-side-message-content-header {
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    display: flex;
+  
+  flex-direction: column; /* Stack elements vertically */
+  width: 500px;
+  max-width: 100%;
+  /* height: 100vh; Full viewport height */
+  background-color: #963232; /* White background */
+  border-left: 1px solid #e0e0e0; /* Light border for separation */
+}
+
+/* Header styles */
+.rightsidecontentheader {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Padding around header */
+  border-bottom: 1px solid #e0e0e0; /* Bottom border */
+}
+
+/* Input form styles */
+.rightsidecontentinput {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Padding for input area */
+}
+
+.rightsidecontentinputtext {
+  flex: 1; /* Take available space */
+  padding: 10px; /* Padding inside input */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  margin-right: 5px; /* Space between input and buttons */
+}
+
+/* File upload button styles */
+.rightsidecontentinputfileupload {
+  display: flex; /* Align button and input */
+  align-items: center;
+}
+
+.rightsidecontentinputbtn {
+  padding: 10px; /* Padding for buttons */
+  background-color: #007bff; /* Primary color */
+  color: white; /* Text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+}
+
+/* Media preview styles */
+.rightsidecontentinputmsg-mediadiv {
+  display: grid; /* Grid layout for media previews */
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid */
+  gap: 5px; /* Space between items */
+  padding: 10px; /* Padding for media area */
+}
+
+/* Media item styles */
+.rightsidecontentinputmsg-mediadivitem {
+  position: relative; /* Position for delete button */
+}
+
+.rightsidecontentinputmsg-mediadivitemdelete {
+  position: absolute; /* Absolute positioning */
+  top: 5px; /* Adjust position */
+  right: 5px; /* Adjust position */
+  cursor: pointer; /* Pointer on hover */
+  color: red; /* Delete button color */
+}
+
+/* Messages container */
+.rightsidecontentmessages {
+  flex: 1; /* Take remaining space */
+  overflow-y: auto; /* Allow scrolling */
+  padding: 10px; /* Padding for messages */
+}
+
+/* Chatbox styles */
+.rightsidecontentmessages-chatbox {
+  display: flex;
+  flex-direction: column; /* Stack messages vertically */
+}
+
+/* Individual message styles */
+.rightsidecontentmessagesother,
+.rightsidecontentmessagesours {
+  margin-bottom: 10px; /* Space between messages */
+}
+
+.deletemessagechat {
+  margin-left: 10px; /* Space between message and delete icon */
+  cursor: pointer; /* Pointer on hover */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .rightsidecontentinputtext {
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Less padding */
   }
 
-  /* .right-side-message-content-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  */
-  /* .delete-icon {
-    font-size: 24px;
-     cursor: pointer;
-     color: #ff4d4f;
-   }  */
-  
-  /* .delete-icon:hover {
-    color: #ff7875; /* Lighter shade on hover */
-  /* }  */
-  /* ========== */
-  .right-side-content-messages {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    overflow-y: auto;
-    margin-top: 15px;
-  }
-  
-  .right-side-content-messages-other {
-    padding: 15px;
-    background-color: rgb(233, 218, 218);
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .rightsidecontentinputbtn {
+    padding: 8px; /* Smaller button padding */
   }
 
-  /* =========== */
-  .right-side-content-messages-input {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    background-color: #fad1d1;
-    border-radius: 8px;
+  .rightsidecontentinputmsg-mediadiv {
+    padding: 5px; /* Less padding for media area */
   }
-  
-  .right-side-content-messages-input-text {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
+}
+
+@media (max-width: 480px) {
+  .rightsidecontentinputtext {
+    font-size: 12px; /* Smallest font size */
   }
-  
-  .right-side-content-messages-input-btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+  .rightsidecontentinputbtn {
+    padding: 6px; /* Even smaller button padding */
   }
-  
-  .right-side-content-messages-input-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+
+  .rightsidecontentmessages {
+    padding: 5px; /* Less padding for messages */
   }
-  
-  /* +++++++++++ */
-  
-  /* Medium screens (tablets, 768px and above) */
-  @media (max-width: 768px) {
-    .right-side-message-content {
-      padding: 15px;
-    }
-  
-    .right-side-content-messages-other {
-      padding: 12px;
-      margin-bottom: 8px;
-    }
-  
-    .right-side-message-content-header {
-      padding-bottom: 10px;
-    }
-  }
-  
-  /* Small screens (mobile devices, 480px and below) */
-  @media (max-width: 480px) {
-    .right-side-message-content {
-      padding: 10px;
-    }
-  
-    .right-side-message-content-header {
-      padding-bottom: 8px;
-    }
-  
-    .right-side-content-messages-other {
-      padding: 10px;
-      margin-bottom: 6px;
-    }
-  
-    .right-side-content-messages {
-      margin-top: 10px;
-    }
-  }
-  
+}

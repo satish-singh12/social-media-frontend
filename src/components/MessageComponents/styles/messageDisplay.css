@@ -229,82 +229,95 @@ border-radius:4px;
   opacity: 1;;
 } */
 
-/* Base styles for left side message container */
-.leftsidecontent {
+/* Base styles for message display */
+.msgdisplay {
   display: flex;
-  
   flex-direction: column; /* Stack elements vertically */
-   width: 500px;
+  margin: 10px 0; /* Margin between messages */
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e78b8b; /* Light background for messages */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 380px;
   max-width: 100%;
-  /* height: 100vh; Full viewport height */
-  background-color: #107cad; /* White background */
-  border-right: 1px solid #e0e0e0; /* Light border for separation */
-  height: calc(100vh - 15%);
-  margin-top: 12%;
 }
 
-/* Search input section */
-.leftsidecontentsearch {
-  display: flex; /* Flex for alignment */
-  margin: auto;
-  padding: 10px; /* Padding around search */
-  
-  
+/* User info section */
+.msgdisplayinfouser {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* Spacing below user info */
 }
 
-.leftsidecontentsearchinput {
-  flex: 1; /* Take available space */
-  padding: 10px; /* Padding inside input */
-  border: 1px solid #ccc; /* Light border */
+.msgdisplayinfouseravatar,
+.msgdisplayinfouseravatartwo {
+  width: 40px; /* Default avatar size */
+  height: 40px; /* Default avatar size */
+  border-radius: 50%; /* Circular avatars */
+  margin-right: 8px; /* Space between avatar and username */
+}
+
+.msgdisplayinfouserusername {
+  font-weight: bold; /* Bold username */
+}
+
+/* Message text */
+.msgdisplaytext {
+  margin-bottom: 5px; /* Spacing below text */
+}
+
+.msgdisplayinfocontent {
+  font-size: 14px; /* Default font size */
+  color: #333; /* Dark text color */
+}
+
+/* Media content */
+.statusmsg-middleimages {
+  max-width: 100%; /* Responsive image/video */
   border-radius: 5px; /* Rounded corners */
-  margin-right: 5px; /* Space between input and button */
-  /* width: 100%; */
+  margin-top: 5px; /* Spacing above media */
 }
 
-.leftsidecontentsearchbutton {
-  padding: 10px 15px; /* Padding for button */
-  background-color: #007bff; /* Primary color */
-  color: white; /* Text color */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer on hover */
-}
-
-/* User list section */
-.leftsidecontentuserlist {
-  flex: 1; /* Take remaining space */
-  overflow-y: auto; /* Allow scrolling */
-  padding: 10px; /* Padding around user list */
-}
-
-/* User card styles */
-.leftsidecontentuserlist div {
-  cursor: pointer; /* Pointer on hover */
-  margin: 5px 0; /* Margin between user cards */
+/* Time display */
+.msgdisplaytime {
+  text-align: right; /* Right-align time */
+  font-size: 12px; /* Smaller font size for time */
+  color: #777; /* Lighter color for time */
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .leftsidecontentsearch {
-    flex-direction: column; /* Stack search input and button */
+  .msgdisplayinfouseravatar,
+  .msgdisplayinfouseravatartwo {
+    width: 35px; /* Slightly smaller on tablets */
+    height: 35px;
   }
 
-  .leftsidecontentsearchinput {
-    margin-bottom: 5px; /* Space below input */
+  .msgdisplayinfocontent {
+    font-size: 12px; /* Slightly smaller text */
+  }
+
+  .msgdisplaytime {
+    font-size: 11px; /* Smaller time font */
   }
 }
 
 @media (max-width: 480px) {
-  .leftsidecontentsearchinput {
-    font-size: 14px; /* Smaller font size */
-    padding: 8px; /* Less padding */
+  .msgdisplay {
+    padding: 8px; /* Less padding on mobile */
   }
 
-  .leftsidecontentsearchbutton {
-    padding: 8px 10px; /* Smaller button padding */
+  .msgdisplayinfouseravatar,
+  .msgdisplayinfouseravatartwo {
+    width: 30px; /* Even smaller on mobile */
+    height: 30px;
   }
 
-  .leftsidecontentuserlist {
-    padding: 5px; /* Less padding for user list */
+  .msgdisplayinfocontent {
+    font-size: 10px; /* Smallest text size */
+  }
+
+  .msgdisplaytime {
+    font-size: 10px; /* Smallest time font */
   }
 }

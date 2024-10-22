@@ -51,8 +51,6 @@ const Status = () => {
     files.forEach((file) => {
       if (!file) return (err = "no file found");
       if (file.size > 1024 * 1024 * 5) return (err = "File is too long");
-      // if (file.type !== "image/jpeg" && file.type !== "image/png")
-      // return (err = "Invalid format");
       return imagesArr.push(file);
     });
 
