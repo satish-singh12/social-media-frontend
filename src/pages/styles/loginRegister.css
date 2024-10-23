@@ -22,6 +22,15 @@ body {
   box-shadow: 0 0 20px 6px #090b6f85;
   margin-top: 4rem;
 }
+
+.login-register-logo-img{
+width: 200px;
+max-width: 100%;
+display: flex;
+margin: auto;
+border-radius: 50px;
+opacity: .7;
+}
 @media (max-width: 980px) {
   .box-form {
     flex-flow: wrap;
@@ -38,7 +47,7 @@ body {
   background-size:cover;
   background-repeat: no-repeat;
   /* background-image: url("https://media.istockphoto.com/id/1453501312/photo/3d-icon-of-abstract-technology-group-and-data-network-with-blurred-blue-background.jpg?s=1024x1024&w=is&k=20&c=fIdPLeDIooD2Jsz8UHT1njrASglyhnE7ZT1qFdx3WaI="); */
-  background: url('../images/loginbg.png') no-repeat center;
+  background: url('../../images/loginbg.png') no-repeat center;
   overflow: hidden;
   font-family: cursive;
   
@@ -188,8 +197,6 @@ body {
   display: none;
 }
 
-/* ============== */
-
 .password-input {
   position: relative;
   width: 100%;
@@ -197,7 +204,7 @@ body {
 
 .password-input input {
   width: 100%;
-  padding-right: 50px; /* Add padding to avoid overlap with the toggle */
+  padding-right: 50px;
 }
 .alert-input {
   display: flex;

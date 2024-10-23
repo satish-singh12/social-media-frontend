@@ -2,7 +2,7 @@ import moment from "moment";
 import React from "react";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdInsertComment } from "react-icons/md";
-import "../../styles/savedPostCard.css";
+import "./styles/savedPostCard.css";
 import { Link } from "react-router-dom";
 
 const SavedPostCard = ({ savedpost }) => {
@@ -32,21 +32,6 @@ const SavedPostCard = ({ savedpost }) => {
             ) : (
               <img src={savedpost.images[0].secure_url} alt="" />
             )}
-            {/* {savedpost.images.length > 0 &&
-            savedpost.images.map((image, index) => (
-              <div className="saved-post-card-content-middle-image" key={index}>
-                {image.secure_url.match(/video/i) ? (
-                  <video
-                    className="saved-post-card-content-middle-video"
-                    controls
-                    src={image.secure_url}
-                    alt=""
-                  />
-                ) : (
-                  <img src={image.secure_url} alt="" />
-                )}
-              </div>
-            ))} */}
           </div>
 
           <div className="saved-post-card-content-end">

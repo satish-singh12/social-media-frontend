@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/profileVideoShow.css";
+import "./styles/profileVideoShow.css";
 
 const ProfileVideoShow = ({ photos }) => {
   return (

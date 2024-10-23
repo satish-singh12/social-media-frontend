@@ -1,8 +1,8 @@
 import { EditData, DeleteData } from "./alertActions";
-import { ALERT_TYPES } from "./alertActions";
+// import { ALERT_TYPES } from "./alertActions";
 import { getDataApi, patchDataApi } from "../../utils/fetchDataApi";
 import { imageUpload } from "../../utils/imageUpload";
-import axios from "axios";
+// import axios from "axios";
 import { createNotification, removeNotification } from "./notificationActions";
 
 export const PROFILE_TYPES = {
@@ -65,43 +65,6 @@ export const getProfileUsersData =
     }
   };
 
-// export const getProfileUsersData =
-//   ({ users, id, auth }) =>
-//   async (dispatch) => {
-//     dispatch({ type: PROFILE_TYPES.GET_IDS, payload: id });
-//     // console.log({ users, id, auth });
-//     try {
-//       dispatch({
-//         type: PROFILE_TYPES.LOADING,
-//         payload: { loading: true },
-//       });
-//       const res = await getDataApi(`user/${id}`, auth.token);
-//       const res1 = await getDataApi(`userposts/${id}`, auth.token);
-//       const user = res;
-//       const posts = res1;
-
-//       dispatch({
-//         type: PROFILE_TYPES.GET_USER,
-//         payload: user.data, //user data
-//       });
-
-//       dispatch({
-//         type: PROFILE_TYPES.USERPOSTS,
-//         payload: { ...posts.data, _id: id, result: posts.result },
-//       });
-
-//       dispatch({
-//         type: PROFILE_TYPES.LOADING,
-//         payload: { loading: false },
-//       });
-//     } catch (err) {
-//       dispatch({
-//         type: "ALERT",
-//         payload: { error: err.response.data.message },
-//       });
-//     }
-//   };
-
 export const updatedProfile =
   ({ editData, avatar, auth }) =>
   async (dispatch) => {
@@ -162,6 +125,30 @@ export const updatedProfile =
       dispatch({
         type: "ALERT",
         payload: { error: errorMessage },
+      });
+    }
+  };
+
+export const resetPassword =
+  ({ currentPassword, newPassword, auth }) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: "ALERT", payload: { loading: true } });
+
+      const res = await patchDataApi(
+        `user/${auth?.user._id}/reset_password`,
+        { currentPassword, newPassword },
+        auth.token
+      );
+
+      dispatch({ type: "ALERT", payload: { success: res.data.message } });
+      dispatch({ type: "ALERT", payload: { loading: false } });
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: {
+          error: err.response?.data?.message || "Password reset failed",
+        },
       });
     }
   };

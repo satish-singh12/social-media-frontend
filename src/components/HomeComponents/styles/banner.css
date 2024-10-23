@@ -9,7 +9,7 @@
   border-radius: 20px;
   position: relative;
   margin: auto;
-  margin-top: .3rem;
+  margin-top: 1.4rem;
 }
 
 .banner-content {
@@ -34,7 +34,6 @@
 @media only screen and (max-width: 600px) {
   .banner {
       height: 180px;  /* Smaller height for mobile */
-      margin-top: 120px;
   }
 
   .banner-content h3 {
@@ -46,7 +45,7 @@
 @media only screen and (min-width: 601px) and (max-width: 768px) {
   .banner {
       height: 220px;  /* Slightly larger height for tablet */
-      margin-top: 116px;
+      /* margin-top: 116px; */
   }
 
   .banner-content h3 {

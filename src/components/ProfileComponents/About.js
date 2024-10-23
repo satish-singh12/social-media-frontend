@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getProfileUsers } from "../../redux/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import "../../styles/profileAbout.css";
+import "./styles/profileAbout.css";
 import moment from "moment";
 
 const About = ({ userData, profile, auth, id }) => {

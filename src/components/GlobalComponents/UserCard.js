@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/userCard.css";
+import "./styles/userCard.css";
 import { Link } from "react-router-dom";
 
 //child of Navbar.js

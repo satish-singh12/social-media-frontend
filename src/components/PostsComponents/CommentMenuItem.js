@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/commentMenuItem.css";
+import "./styles/commentMenuItem.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteComment } from "../../redux/actions/commentActions";
 

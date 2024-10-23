@@ -4,12 +4,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PageNotFound from "./pages/PageNotFound";
 import Post from "./pages/Post";
-import Alerts from "./components/Alerts";
+import Alerts from "./components/GlobalComponents/Alerts";
 import { useSelector, useDispatch } from "react-redux";
 import Home from "./pages/Home";
 import Navbar from "./pages/Navbar";
 import Notifications from "./pages/Notifications";
-import Explore from "./pages/Explore";
 import Messages from "./pages/Messages";
 import PrivateRouter from "./utils/PrivateRouter";
 import Profile from "./pages/Profile";
@@ -21,7 +20,6 @@ import { ALERT_TYPES } from "./redux/actions/alertActions";
 import { getNotification } from "./redux/actions/notificationActions";
 import SocketioClient from "./SocketioClient";
 import Conversation from "./components/MessageComponents/Conversation";
-import Navbar1 from "./pages/Navbar1";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -62,7 +60,7 @@ function App() {
     <div className="App">
       <Router>
         <Alerts />
-        {/* <Navbar1 /> */}
+        {/* <Navbar2 /> */}
         <div className="main-content">{auth.token && <Navbar />}</div>
         {auth.token && <SocketioClient />}
         <Routes>
@@ -72,10 +70,6 @@ function App() {
           <Route
             path="/messages"
             element={<PrivateRouter element={<Messages />} />}
-          />
-          <Route
-            path="/explore"
-            element={<PrivateRouter element={<Explore />} />}
           />
           <Route
             path="/notification"

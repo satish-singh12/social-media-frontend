@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdInsertComment } from "react-icons/md";
 import { MdOutlineSaveAlt } from "react-icons/md";
-import "../../styles/postCardFooter.css";
+import "./styles/postCardFooter.css";
 import { Link } from "react-router-dom";
 import LikePost from "./LikePost";
 import { useDispatch, useSelector } from "react-redux";

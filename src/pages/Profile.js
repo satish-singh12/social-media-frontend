@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Info from "../components/ProfileComponents/Info";
 import Posts from "../components/PostsComponents/Posts";
 import About from "../components/ProfileComponents/About";
-import "../styles/profile.css";
+import "./styles/profile.css";
 import {
   getProfileUserPosts,
   getProfileUsersData,

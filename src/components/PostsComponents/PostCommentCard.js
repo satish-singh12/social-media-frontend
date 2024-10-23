@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
-import "../../styles/postCommentCard.css";
+import "./styles/postCommentCard.css";
 import { useDispatch, useSelector } from "react-redux";
 import CommentMenuItem from "./CommentMenuItem";
 import LikePost from "./LikePost";

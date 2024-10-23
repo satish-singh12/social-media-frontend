@@ -77,6 +77,17 @@ border: 5px solid rgb(255, 254, 255);
 cursor: pointer;
 }
 
+.profile-info-reset-password-button{
+    font-size: 12px;
+    position: absolute;
+    border-radius: 8px;
+    padding: 2px;
+    border: none;
+    left: 1%;
+    background-color: antiquewhite;
+    font-weight: bold;
+}
+
 .profile-info-bottom{
     margin-top: 2rem;
     display: flex;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/loginRegister.css";
+import "./styles/loginRegister.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { register } from "../redux/actions/authActions";
@@ -46,11 +46,14 @@ const Register = () => {
       <div className="left">
         <div className="overlay">
           <h1>
-            <img src={logoImage} alt="Logo" className="logo-img" />
+            <img
+              src={logoImage}
+              alt="Logo"
+              className="login-register-logo-img"
+            />
           </h1>
-          {/* <h1>Social Media</h1> */}
           <h3 style={{ marginTop: "1rem" }}>
-            {/* “Don’t use "TheGram" to impress people; use it to impact people.” */}
+            “Don’t use "TheGram" to impress people; use it to impact people.”
           </h3>
         </div>
       </div>

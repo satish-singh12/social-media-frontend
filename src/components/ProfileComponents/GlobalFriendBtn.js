@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFriends, unFriends } from "../../redux/actions/profileActions";
 
-//receiving props from Info.js
 const GlobalFriendBtn = ({ classBtn, user }) => {
-  // const { auth, profile } = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
   const socket = useSelector((state) => state.socket);
   const profile = useSelector((state) => state.profile);
@@ -12,9 +10,6 @@ const GlobalFriendBtn = ({ classBtn, user }) => {
   const [friend, setFriend] = useState(false);
 
   useEffect(() => {
-    // if (auth.user.following.find((item) => item._id === user._id)) {
-    //   setFriend(true);
-    // }
     setFriend(auth.user.following.some((item) => item._id === user._id));
   }, [auth.user.following, user._id]);
 

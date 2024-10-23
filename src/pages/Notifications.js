@@ -1,7 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "../styles/notification.css";
+import "./styles/notification.css";
 import { FaBell } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { readNotification } from "../redux/actions/notificationActions";

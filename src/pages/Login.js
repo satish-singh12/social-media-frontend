@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/loginRegister.css";
+import "./styles/loginRegister.css";
 import { Link } from "react-router-dom";
 import { login } from "../redux/actions/authActions";
 import { useDispatch } from "react-redux";
@@ -30,22 +30,13 @@ const Login = () => {
       <div className="left">
         <div className="overlay">
           <h1>
-            <img src={logoImage} alt="Logo" className="logo-img" />
+            <img
+              src={logoImage}
+              alt="Logo"
+              className="login-register-logo-img"
+            />
           </h1>
-          {/* <h1>Social Media</h1> */}
-          <h3>
-            {/* “Don’t use "TheGram" to impress people; use it to impact people.” */}
-          </h3>
-          <span>
-            <p>login with social media</p>
-            <Link to="">
-              <i className="fa fa-facebook" aria-hidden="true"></i>
-            </Link>
-            <Link to="">
-              <i className="fa fa-twitter" aria-hidden="true"></i> Login with
-              Twitter
-            </Link>
-          </span>
+          <h3>"Time To Be Social, Go Social"</h3>
         </div>
       </div>
 
@@ -82,13 +73,13 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="remember-me--forget-password">
+          {/* <div className="remember-me--forget-password">
             <label>
               <input type="checkbox" name="item" checked onChange={() => {}} />
               <span className="text-checkbox">Remember me</span>
             </label>
             <p>forget password?</p>
-          </div>
+          </div> */}
 
           <br />
           <button type="submit">Login</button>

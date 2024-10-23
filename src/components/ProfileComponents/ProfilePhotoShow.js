@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/profilePhotoShow.css";
+import "./styles/profilePhotoShow.css";
 
 const ProfilePhotoShow = ({ photos }) => {
   return (

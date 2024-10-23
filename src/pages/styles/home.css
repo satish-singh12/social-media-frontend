@@ -1,6 +1,6 @@
 
 .home-page-header {
-    margin-top: 5rem;
+    margin-top: 4.3rem;
     text-align: center; /* Center-align header content */
     padding: 10px; /* Padding around header */
     background-color: #ffffff; /* White background for header */
@@ -21,8 +21,8 @@
 }
 
 .home-left,
-.home-mid,
-.home-right {
+.home-mid
+ {
     background-color: #832020; /* White background for components */
     border: 1px solid #3f6279; /* Light border */
     border-radius: 8px; /* Rounded corners */

@@ -2,7 +2,7 @@ import React from "react";
 import Status from "./Status";
 import Post from "../PostsComponents/Posts";
 import { useSelector } from "react-redux";
-import "../../styles/homeMid.css";
+import "./styles/homeMid.css";
 import Posts from "../PostsComponents/Posts";
 
 const HomeMid = () => {

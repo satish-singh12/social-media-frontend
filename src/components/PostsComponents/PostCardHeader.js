@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/postCardHeader.css";
+import "./styles/postCardHeader.css";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";

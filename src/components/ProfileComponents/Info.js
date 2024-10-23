@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import "../../styles/profileInfo.css";
+// import { useParams } from "react-router-dom";
+import "./styles/profileInfo.css";
 import EditProfile from "./EditProfile";
 import GlobalFriendBtn from "./GlobalFriendBtn";
+import ResetPassword from "./ResetPassword";
 
 const Info = ({ userData, profile, auth, id }) => {
   const [onEdit, setOnEdit] = useState(false);
+  const [onReset, setOnReset] = useState(false);
   // ---------------
   const [postCount, setPostCount] = useState(0);
   const [loading, setLoading] = useState(true); // Add loading state
@@ -29,8 +31,6 @@ const Info = ({ userData, profile, auth, id }) => {
   if (loading) {
     return <p>Loading...</p>; // Add a loading state for posts
   }
-  // ---------------
-
   return (
     <div className="profile-info">
       {userData && userData.length > 0 ? (
@@ -40,7 +40,6 @@ const Info = ({ userData, profile, auth, id }) => {
               <img src={user.avatar} alt="user.username" />
             </div>
             <div className="profile-info-center">
-              {/* WILL USE HERE AVATAR UI IN PLACE OF IMAGE*/}
               <img
                 className="profile-info-center-avatar"
                 src={user.avatar}
@@ -59,6 +58,14 @@ const Info = ({ userData, profile, auth, id }) => {
                   user={user && user}
                 />
               )}
+              <div>
+                <button
+                  className="profile-info-reset-password-button"
+                  onClick={() => setOnReset(true)}
+                >
+                  Reset password
+                </button>
+              </div>
             </div>
 
             <div className="profile-info-bottom">
@@ -90,6 +97,7 @@ const Info = ({ userData, profile, auth, id }) => {
               </div>
             </div>
             {onEdit && <EditProfile user={user} setOnEdit={setOnEdit} />}
+            {onReset && <ResetPassword user={user} setOnReset={setOnReset} />}
           </div>
         ))
       ) : (

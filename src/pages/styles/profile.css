@@ -3,7 +3,8 @@
   background-color: #e44da0; 
   max-width: 100%;
   /* position:sticky; */
-  margin-top: 5.7rem;
+   margin-top: 5.7rem; 
+  
 }
 
 .profile-body{
@@ -64,7 +65,7 @@
 @media (max-width: 768px) {
   .profile{
     max-width: 720px;
-    margin-top: 11.2rem;
+    /* margin-top: 11.2rem; */
     /* min-width:fit-content; */
     /* margin-left: 1.8rem; */
    }
@@ -81,7 +82,7 @@
 
 @media (max-width: 480px) {
   .profile{
-   margin-top: 17rem;
+   /* margin-top: 17rem; */
    min-width: 141vw;
   
   }

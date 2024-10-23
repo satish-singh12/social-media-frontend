@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostCommentDisplay from "./PostCommentDisplay";
-import "../../styles/postComment.css";
+import "./styles/postComment.css";
 
 const PostComment = ({ pos }) => {
   const [comments, setComments] = useState([]);

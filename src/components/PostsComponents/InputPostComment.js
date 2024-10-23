@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/inputPostComment.css";
+import "./styles/inputPostComment.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../redux/actions/commentActions";
 import { useEffect } from "react";
