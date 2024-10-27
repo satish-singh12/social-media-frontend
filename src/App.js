@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -37,7 +36,7 @@ function App() {
     setSocket(newSocket);
 
     newSocket.on("connect", () => {
-      console.log("Connected with socket ID:", newSocket.id);
+      console.log("Connected with socket");
     });
 
     newSocket.on("connect_error", (err) => {
@@ -60,7 +59,6 @@ function App() {
     <div className="App">
       <Router>
         <Alerts />
-        {/* <Navbar2 /> */}
         <div className="main-content">{auth.token && <Navbar />}</div>
         {auth.token && <SocketioClient />}
         <Routes>

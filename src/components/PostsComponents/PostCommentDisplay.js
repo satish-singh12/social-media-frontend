@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostCommentCard from "./PostCommentCard";
 
-// getting props from PostCommentCard
 const PostCommentDisplay = ({ comment, pos, newReply }) => {
   const [showReply, setShowReply] = useState([]);
   const [next, setNext] = useState(1);
@@ -26,7 +25,6 @@ const PostCommentDisplay = ({ comment, pos, newReply }) => {
                   />
                 )
             )}
-          {/* ============== */}
           {newReply && newReply.length - next > 0 ? (
             <div
               className="post-comments-reply-show-more"
@@ -45,7 +43,6 @@ const PostCommentDisplay = ({ comment, pos, newReply }) => {
               </div>
             )
           )}
-          {/* ========== */}
         </div>
       </PostCommentCard>
     </div>

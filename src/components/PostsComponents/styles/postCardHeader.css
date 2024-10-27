@@ -1,15 +1,13 @@
-/* Main Container for Post Card Header */
 .post-card-header {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* margin-top:4rem; */
     padding: 10px;
     background-color: white;
     border-bottom: 1px solid #ddd;
     border-radius: 8px 8px 0 0;
   }
-    /* Avatar */
+
   .post-card-header-avatar {
     width: 50px;
     height: 50px;
@@ -24,7 +22,6 @@
     object-fit: cover;
   }
   
-  /* User Info */
   .post-card-header-info {
     display: flex;
     flex-direction: column;
@@ -39,7 +36,6 @@
   .post-card-header-info h4 span {
     font-size: 14px;
     font-weight: bold;
-    
     color: #2e2d2d;
   }
   
@@ -54,7 +50,6 @@
     padding: 10px;
     display: flex;
     justify-content: flex-end;
-    
   }
   
   .post-card-header-down p {
@@ -63,9 +58,6 @@
     margin: 0;
     color:white;
   }
-  /* .post-card-header-down p:hover {  
-    background-color: green;
-  } */
   
   .post-card-header-dropdown {
     display: none;
@@ -98,13 +90,11 @@
     background: #978383;
   }
   
-  /* No Text Decoration for Links */
   .no-decoration {
     text-decoration: none;
     color: inherit;
   }
   
-  /* Responsive Styling */
   @media (max-width: 768px) {
     .post-card-header {
       flex-direction: column;

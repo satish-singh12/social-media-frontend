@@ -1,323 +1,87 @@
-/* .messages{
-  width: 1000px;
-  max-width: 100%;
-  margin: 1rem auto;
-  display: flex;
-  
-  height: 100vh;
-  border:2px solid gray;
-  background-color: rgb(15, 31, 9);
-  border-radius: 20px;
-}
-.messagesleftside{
-  padding:1rem .5rem;
-  border-radius: 20px 0 0 20px;
-  overflow-y: auto;
-  min-width: fit-content;
-  
-}
 
-
-.messagesrightside{
-  
-  width:100%;
-  border-radius: 0 20px 20px 0;
-  padding:1rem .5rem;
-}
-
-
-.leftsidecontentsearch{
-  display: flex;
-  background-color: rgb(90, 90, 90);
-  padding:5px;
-  height: 30px;
-  width: 240px;
-  border-radius: 10px;
-  
-  
-}
-
-.leftsidecontentuserlist{
-  
-  margin: .5rem 0;
-  border-radius: 10px;
- 
-  
-}
-.leftsidecontentsearchinput{
-outline:none;
-
-background-color: transparent;
-
-}
-
-.leftsidecontentsearchbutton{
-  background-color: transparent;
-  border-radius: 9px;
-  border:2px solid transparent;
-  cursor: pointer;
-
-}
-
-.Rightsidecontent{
+.msg-display {
   display: flex;
   flex-direction: column;
- 
-
-
-
-
-}
-
-.rightsidecontentinput{
-  
-  
-  background-color: rgb(90, 90, 90);
-  display: flex;
-  padding: 10px;
-  border-radius: 6px;
-  
-  margin-top:10px;
- 
- 
-}
-
-.rightsidecontentmessages{
- 
-  padding:10px;
   margin: 10px 0;
-  border-radius: 20px;
-  
-  
-}
-
-.rightsidecontentmessages-chatbox{
-  height: 60vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-.rightsidecontentmessagesours{
-  background-color: rgba(18, 133, 161, 0.548);
-  border: 2px solid rgb(66, 5, 5);
-  padding:10px;
-  margin: 10px 5px;
-  border-radius: 20px;
-  align-self: flex-end;
- 
-  width: 200px;
-  
- 
-  
-}
-
-.rightsidecontentmessagesother{
-  border: 2px solid rgb(3, 69, 122);
-  padding:10px;
-  margin: 10px 5px;
-  border-radius: 20px;
-  background-color: rgba(3, 69, 122, 0.527);
-  align-self: flex-start;
-  
-  width: 200px;
-
-  
-  
-}
-.rightsidecontentinputtext{
-  outline: none;
-  font-size: medium;
-  font-weight: 400;
- 
-}
-
-.rightsidecontentinputbtn{
-  background-color: transparent;
-  border:none;
-  cursor: pointer;
-
-}
-
-.msgdisplayinfouser{
-  display:flex;
-  align-items: center;
-}
-
-.msgdisplayinfouseravatar{
-  height: 25px;
-  width:20px;
-  object-fit: cover;
-  padding:1px;
-  border:2px solid indianred;
-  border-radius: 75px 0 0 25px;
-}
-
-.msgdisplayinfouseravatartwo{
-  height: 25px;
-  width:20px;
-  object-fit: cover;
-  padding:1px;
-  border:2px solid indianred;
-  border-radius: 0px 75px 25px 0px;
-}
-
-.msgdisplayinfouserusername{
-  margin-left:10px;
-  font-size: 12px;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
-  word-spacing: 1.3px;
-  color:white;
-}
-
-.msgdisplayinfocontent{
-  background-color: rgb(5, 83, 114);
-  padding:10px;
-  font-size: 13px;
-  margin-top: 2px;
-  border-radius: 20px 0 20px 0px;
-  color:rgb(90, 186, 224);
-  word-wrap: break-word;
-  
-}
-
-.msgdisplayinfousertime{
-  font-size: 10px;
-  font-weight: 600;
-  
-}
-.rightsidecontentinputmsg-mediadivitem{
-  position:relative;
-  margin:10px;
-  
-}
-
-img.statusmsg-middleimages,
-video.statusmsg-middleimages{
-width:60px;
-height:30px;
-object-fit:cover;
-padding:5px;
-margin:5px;
-border:2px solid gray;
-border-radius:4px;
-}
-.rightsidecontentinputmsg-mediadiv{
-  margin-top: 5px;
-  max-height: 90px;
-  overflow: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
-  margin:5px;
-  background-color: rgb(214, 214, 214);
-}
-.rightsidecontentinputmsg-mediadivitemdelete{
-  position:absolute;
-  top:-5%;
-  left:2%;
-  opacity: 0;;
-  color:rgb(161, 26, 53);
-  font-size: 20px;
- font-weight: bolder;
- vertical-align: middle;
- transform: translateY(-5px);
- cursor: pointer;
-}
-.rightsidecontentinputmsg-mediadivitem:hover span{
-  opacity: 1;;
-} */
-
-/* Base styles for message display */
-.msgdisplay {
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  margin: 10px 0; /* Margin between messages */
   padding: 10px;
-  border-radius: 5px;
-  background-color: #e78b8b; /* Light background for messages */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  width: 380px;
+  border-radius: 15px;
+  background-color: #f77575;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 300px;
   max-width: 100%;
 }
 
-/* User info section */
-.msgdisplayinfouser {
+.msg-display-info-user {
   display: flex;
   align-items: center;
-  margin-bottom: 5px; /* Spacing below user info */
+  margin-bottom: 5px; 
 }
 
-.msgdisplayinfouseravatar,
-.msgdisplayinfouseravatartwo {
-  width: 40px; /* Default avatar size */
-  height: 40px; /* Default avatar size */
-  border-radius: 50%; /* Circular avatars */
-  margin-right: 8px; /* Space between avatar and username */
+.msg-display-info-user-avatar,
+.msg-display-info-user-avatar-two {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.msgdisplayinfouserusername {
-  font-weight: bold; /* Bold username */
+.msg-display-info-user-username {
+  font-weight: bold;
 }
 
-/* Message text */
-.msgdisplaytext {
-  margin-bottom: 5px; /* Spacing below text */
+.msg-display-text {
+  margin-bottom: 5px;
 }
 
-.msgdisplayinfocontent {
-  font-size: 14px; /* Default font size */
-  color: #333; /* Dark text color */
+.msg-display-info-content {
+  font-size: 14px;
+  color: #333;
 }
 
-/* Media content */
-.statusmsg-middleimages {
-  max-width: 100%; /* Responsive image/video */
-  border-radius: 5px; /* Rounded corners */
-  margin-top: 5px; /* Spacing above media */
+.status-msg-middle-images {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
-/* Time display */
-.msgdisplaytime {
-  text-align: right; /* Right-align time */
-  font-size: 12px; /* Smaller font size for time */
-  color: #777; /* Lighter color for time */
+.msg-display-time {
+  text-align: right;
+  font-size: 12px; 
+  color: #777; 
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
-  .msgdisplayinfouseravatar,
-  .msgdisplayinfouseravatartwo {
-    width: 35px; /* Slightly smaller on tablets */
+  .msg-display-info-user-avatar,
+  .msg-display-info-user-avatar-two {
+    width: 35px;
     height: 35px;
   }
 
-  .msgdisplayinfocontent {
-    font-size: 12px; /* Slightly smaller text */
+  .msg-display-info-content {
+    font-size: 12px;
   }
 
-  .msgdisplaytime {
-    font-size: 11px; /* Smaller time font */
+  .msg-display-time {
+    font-size: 11px;
   }
 }
 
 @media (max-width: 480px) {
-  .msgdisplay {
-    padding: 8px; /* Less padding on mobile */
+  .msg-display {
+    padding: 8px;
   }
 
-  .msgdisplayinfouseravatar,
-  .msgdisplayinfouseravatartwo {
-    width: 30px; /* Even smaller on mobile */
+  .msg-display-info-user-avatar,
+  .msg-display-info-user-avatar-two {
+    width: 30px;
     height: 30px;
   }
 
-  .msgdisplayinfocontent {
-    font-size: 10px; /* Smallest text size */
+  .msg-display-info-content {
+    font-size: 10px;
   }
 
-  .msgdisplaytime {
-    font-size: 10px; /* Smallest time font */
+  .msg-display-time {
+    font-size: 10px;
   }
 }

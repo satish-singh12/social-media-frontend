@@ -1,10 +1,8 @@
-/* General styles for Comment Menu Item */
 .comment-menu-item {
     display: flex;
     align-items: center;
     position: relative;
     padding: 5px;
-    /* background-color: #ebe6e6; */
     border-radius: 4px;
     margin-bottom: 5px;
     margin-top: -.5rem;
@@ -15,10 +13,8 @@
 
   }
   
-  /* Menu item styles */
   .comment-menu-itme {
     font-size: 1.2rem;
-    /* padding: 5px; */
     color: #333;
   }
   

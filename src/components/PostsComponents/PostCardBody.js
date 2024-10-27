@@ -68,7 +68,11 @@ const PostCardBody = ({ pos }) => {
                       alt={pos.user.fullname}
                     />
                   ) : (
-                    <img src={image.secure_url} alt={pos.user.fullname} />
+                    <img
+                      src={image.secure_url}
+                      alt={pos.user.fullname}
+                      className="post-card-body-image-image"
+                    />
                   )}
                 </div>
               )

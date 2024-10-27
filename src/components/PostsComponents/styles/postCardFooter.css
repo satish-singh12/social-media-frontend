@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    /* background-color: #e922a4; */
   }
   
   .post-card-footer-top {
@@ -51,7 +50,6 @@
     font-size: 20px;
   }
   
-  /* Responsive styles */
   @media (max-width: 768px) {
     .post-card-footer {
       padding: 8px;
@@ -70,11 +68,6 @@
     .post-card-footer {
       padding: 5px;
     }
-  
-    /* .post-card-footer-top {
-      flex-direction: column;
-      align-items: flex-start;
-    } */
   
     .post-card-footer-bottom {
       flex-direction: column;

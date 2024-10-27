@@ -1,10 +1,5 @@
- 
-  /* Input Post Comment Styles */
   .input-post-comments {
     display: flex;
-    
-    /* max-width: 100%; */
-    /* padding-right: 10px; */
     align-items: center;
     background-color: #f2f2f2;
     padding: 10px;
@@ -44,13 +39,10 @@
     background-color: #2980b9;
   }
   
-  /* Desktop Styles (default) */
   @media only screen and (min-width: 1024px) {
     .input-post-comments {
       width: 98%;
-      /* max-width: 800px; */
       margin: 0 auto;
-      
     }
   
     .input-post-comments-input {

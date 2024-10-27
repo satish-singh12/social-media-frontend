@@ -1,77 +1,74 @@
 
 .home-page-header {
     margin-top: 4.3rem;
-    text-align: center; /* Center-align header content */
-    padding: 10px; /* Padding around header */
-    background-color: #ffffff; /* White background for header */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center;
+    padding: 10px;
+    background-color: #b78edd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .home-page-header h1 {
-    color: #333; /* Dark text color */
-    margin: 0; /* Remove default margin */
+    color: #333; 
+    margin: 0; 
 }
 
-/* Home body area styles */
 .home-body-area {
     display: flex;
-    justify-content:space-between; /* Space between left, middle, and right sections */
-    padding: 20px; /* Padding around the body area */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content:space-between;
+    padding: 20px;
+    flex-wrap: wrap;
 }
 
 .home-left,
 .home-mid
  {
-    background-color: #832020; /* White background for components */
-    border: 1px solid #3f6279; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 20px; /* Padding inside components */
-    margin: 10px; /* Margin between components */
-    flex: 1; /* Allow components to grow equally */
-    min-width: 300px; /* Minimum width for components */
-    max-width: 32%; /* Max width to keep layout organized */
+    background-color: #832020;
+    border: 1px solid #3f6279;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    flex: 1; 
+    min-width: 300px;
+    max-width: 32%; 
 }
 
-/* Adjust styles for left, middle, and right sections */
 .home-left {
-    flex-basis: 25%; /* Fixed width for left section */
+    flex-basis: 25%;
 }
 
 .home-mid {
-    flex-basis: 50%; /* Wider middle section */
+    flex-basis: 50%;
     width: 200px;
     max-width: 100%;
 }
 
 .home-right {
-    flex-basis: 25%; /* Fixed width for right section */
+    flex-basis: 25%; 
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     .home-body-area {
-        flex-direction: column; /* Stack components vertically on small screens */
+        flex-direction: column;
     }
 
     .home-left,
     .home-mid,
     .home-right {
-        max-width: 100%; /* Full width for components */
-        min-width: 100%; /* Min width for components */
+        max-width: 100%;
+        min-width: 100%;
         margin: auto;
     }
 }
 
 @media (max-width: 480px) {
     .home-page-header h1 {
-        font-size: 20px; /* Smaller heading size for mobile */
+        font-size: 20px;
     }
 
     .home-left,
     .home-mid,
     .home-right {
-        padding: 15px; /* Reduce padding for smaller screens */
+        padding: 15px;
     }
 }

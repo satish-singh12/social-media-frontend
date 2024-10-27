@@ -1,7 +1,5 @@
 
 body {
-  /* background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%); */
-  /* background-image: url("https://images.unsplash.com/photo-1532446997697-0b92fdc456fe?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -46,7 +44,6 @@ opacity: .7;
   color: #FFFFFF;
   background-size:cover;
   background-repeat: no-repeat;
-  /* background-image: url("https://media.istockphoto.com/id/1453501312/photo/3d-icon-of-abstract-technology-group-and-data-network-with-blurred-blue-background.jpg?s=1024x1024&w=is&k=20&c=fIdPLeDIooD2Jsz8UHT1njrASglyhnE7ZT1qFdx3WaI="); */
   background: url('../../images/loginbg.png') no-repeat center;
   overflow: hidden;
   font-family: cursive;

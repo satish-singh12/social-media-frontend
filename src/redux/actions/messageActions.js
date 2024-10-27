@@ -14,6 +14,14 @@ export const MESS_TYPE = {
   GET_CONVERSATION: "GET_CONVERSATION",
   GET_MESSAGE: "GET_MESSAGE",
   DELETE_MESSAGE: "DELETE_MESSAGE",
+  UPDATE_ONLINE_USERS: "UPDATE_ONLINE_USERS",
+};
+
+export const updateOnlineUsers = (onlineUsers) => {
+  return {
+    type: MESS_TYPE.UPDATE_ONLINE_USERS,
+    payload: onlineUsers,
+  };
 };
 
 export const AddUser =
@@ -82,23 +90,61 @@ export const getMessages =
     }
   };
 
-export const deleteMessage =
-  ({ message, data, auth }) =>
-  async (dispatch) => {
-    const newData = DeleteData(message.data, data._id);
+// export const deleteMessage =
+//   ({ message, data, auth }) =>
+//   async (dispatch) => {
+//     const newData = DeleteData(message.data, data._id);
+//     dispatch({
+//       type: MESS_TYPE.DELETE_MESSAGE,
+//       payload: { newData, _id: data.recipient },
+//     });
+//     try {
+//       await deleteDataApi(`message/${data._id}`, auth.token);
+//     } catch (err) {
+//       dispatch({
+//         type: "ALERT",
+//         payload: {
+//           error: "there is a error",
+//         },
+//       });
+//     }
+//   };
 
+export const deleteMessage =
+  ({ message, data, auth, socket }) =>
+  async (dispatch) => {
+    // Filter out the message directly from the Redux state
     dispatch({
       type: MESS_TYPE.DELETE_MESSAGE,
-      payload: { newData, _id: data.recipient },
+      payload: { messageId: data._id, _id: data.recipient }, // Send only necessary IDs
     });
+    socket.emit("getMessage", data);
     try {
+      // Call API to delete message on backend
       await deleteDataApi(`message/${data._id}`, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",
-        payload: {
-          error: "there is a error",
-        },
+        payload: { error: "There was an error deleting the message." },
+      });
+    }
+  };
+
+export const deleteAllMessages =
+  ({ id, auth, socket }) =>
+  async (dispatch) => {
+    dispatch({
+      type: MESS_TYPE.DELETE_MESSAGE,
+      payload: { id }, // Send the userId to delete all messages
+    });
+    socket.emit("deleteAllMessages", { id });
+
+    try {
+      await deleteDataApi(`messages/${id}`, auth.token); // Ensure your backend API supports bulk deletion
+    } catch (err) {
+      dispatch({
+        type: "ALERT",
+        payload: { error: "There was an error deleting the messages." },
       });
     }
   };

@@ -1,127 +1,137 @@
 
-
-/* Base styles for right side message container */
-.Rightsidecontent {
+.right-side-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
-    display: flex;
-  
-  flex-direction: column; /* Stack elements vertically */
-  width: 500px;
-  max-width: 100%;
-  /* height: 100vh; Full viewport height */
-  background-color: #963232; /* White background */
-  border-left: 1px solid #e0e0e0; /* Light border for separation */
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgb(75, 130, 248);
+  overflow-y: scroll;
+  max-height: 80%;
+
 }
 
-/* Header styles */
-.rightsidecontentheader {
+.right-side-content-header {
+  margin-bottom: 10px;
+}
+
+.right-side-content-messages {
+  flex-grow: 1;
+ 
+  margin-bottom: 10px;
+}
+
+.right-side-content-messages-chatbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-side-content-messages-other {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.right-side-content-messages-ours {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.right-side-content-input {
   display: flex;
   align-items: center;
-  padding: 10px; /* Padding around header */
-  border-bottom: 1px solid #e0e0e0; /* Bottom border */
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Input form styles */
-.rightsidecontentinput {
+.right-side-content-input-text {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 30px;
+}
+
+.right-side-content-input-text:focus {
+  box-shadow: none;
+}
+
+.right-side-content-input-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
-  padding: 10px; /* Padding for input area */
 }
 
-.rightsidecontentinputtext {
-  flex: 1; /* Take available space */
-  padding: 10px; /* Padding inside input */
-  border: 1px solid #ccc; /* Light border */
-  border-radius: 5px; /* Rounded corners */
-  margin-right: 5px; /* Space between input and buttons */
+.right-side-content-input-btn:hover {
+  color: #007bff; 
 }
 
-/* File upload button styles */
-.rightsidecontentinputfileupload {
-  display: flex; /* Align button and input */
-  align-items: center;
+.right-side-content-input-msg-mediadiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.rightsidecontentinputbtn {
-  padding: 10px; /* Padding for buttons */
-  background-color: #007bff; /* Primary color */
-  color: white; /* Text color */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer on hover */
+.right-side-content-input-msg-media-divitem {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-/* Media preview styles */
-.rightsidecontentinputmsg-mediadiv {
-  display: grid; /* Grid layout for media previews */
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid */
-  gap: 5px; /* Space between items */
-  padding: 10px; /* Padding for media area */
+.right-side-content-input-msg-media-divitem img,
+.right-side-content-input-msg-media-divitem video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Media item styles */
-.rightsidecontentinputmsg-mediadivitem {
-  position: relative; /* Position for delete button */
+.right-side-content-input-msg-media-divitem-delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
 }
 
-.rightsidecontentinputmsg-mediadivitemdelete {
-  position: absolute; /* Absolute positioning */
-  top: 5px; /* Adjust position */
-  right: 5px; /* Adjust position */
-  cursor: pointer; /* Pointer on hover */
-  color: red; /* Delete button color */
+.delete-message-chat {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
-/* Messages container */
-.rightsidecontentmessages {
-  flex: 1; /* Take remaining space */
-  overflow-y: auto; /* Allow scrolling */
-  padding: 10px; /* Padding for messages */
+.delete-message-chat:hover {
+  color: #dc3545;
 }
 
-/* Chatbox styles */
-.rightsidecontentmessages-chatbox {
-  display: flex;
-  flex-direction: column; /* Stack messages vertically */
+.right-side-content-messages .loading {
+  text-align: center;
+  margin-top: 10px;
 }
 
-/* Individual message styles */
-.rightsidecontentmessagesother,
-.rightsidecontentmessagesours {
-  margin-bottom: 10px; /* Space between messages */
+.statusmsg-middleimages {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.deletemessagechat {
-  margin-left: 10px; /* Space between message and delete icon */
-  cursor: pointer; /* Pointer on hover */
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  .rightsidecontentinputtext {
-    font-size: 14px; /* Smaller font size */
-    padding: 8px; /* Less padding */
-  }
-
-  .rightsidecontentinputbtn {
-    padding: 8px; /* Smaller button padding */
-  }
-
-  .rightsidecontentinputmsg-mediadiv {
-    padding: 5px; /* Less padding for media area */
-  }
-}
-
-@media (max-width: 480px) {
-  .rightsidecontentinputtext {
-    font-size: 12px; /* Smallest font size */
-  }
-
-  .rightsidecontentinputbtn {
-    padding: 6px; /* Even smaller button padding */
-  }
-
-  .rightsidecontentmessages {
-    padding: 5px; /* Less padding for messages */
-  }
+.right-side-content-loading-icon img{
+  height: 70px;
+  width: 70px;
 }

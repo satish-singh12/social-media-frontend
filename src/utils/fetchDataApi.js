@@ -20,7 +20,7 @@ export const postDataApi = async (url, post, token) => {
     return response;
   } catch (error) {
     console.log(error);
-    throw error; // Rethrow or handle as needed
+    throw error;
   }
 };
 

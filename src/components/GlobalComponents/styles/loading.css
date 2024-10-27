@@ -1,48 +1,5 @@
-    /* .loading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    text-align:center;
-    background-color: #0008;
-    color: white;
-    top: 0;
-    left: 0;
-    z-index: 110;
-
-    }
     
-    .loading svg {
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    animation: text 0.6 ease-in-out infinite;
-    }
-    
-    @keyframes text{
-    50%{opacity:0.2}
-    }
-    
-    .loading rect {
-    stroke-dasharray: 40;
-    stroke-dasharray: 40;
-    animation: dash 0.2 ease-in-out infinite alternate-reverse;
-    }
-    
-    @keyframes dash{
-    to {stroke-dasharray: 100;}
-    }
-     */
-    /* .loading{
-        position: absolute;
-        top:45%;
-        left:45%;
-        z-index: 110 */
-    /* } */
-    
-     .loading{
+   .loading{
     display: flex;
     justify-content: center;
     align-items: center;

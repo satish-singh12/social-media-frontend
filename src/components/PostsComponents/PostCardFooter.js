@@ -21,7 +21,6 @@ const PostCardFooter = ({ pos }) => {
   const [load, setLoad] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
-  // Ensure pos.likes is an array before checking
   useEffect(() => {
     if (Array.isArray(pos.likes)) {
       setIsLike(pos.likes.some((like) => like._id === auth.user._id));
@@ -31,12 +30,12 @@ const PostCardFooter = ({ pos }) => {
   }, [pos.likes, auth.user?._id]);
 
   useEffect(() => {
-    if (Array.isArray(auth.user.saved)) {
-      setIsSaved(auth.user.saved.some((id) => id === pos._id));
+    if (Array.isArray(auth.user?.saved)) {
+      setIsSaved(auth.user?.saved.some((id) => id === pos._id));
     } else {
       setIsSaved(false);
     }
-  }, [auth.user.saved, pos._id]);
+  }, [auth.user?.saved, pos?._id]);
 
   const handleLike = () => {
     if (load) return;

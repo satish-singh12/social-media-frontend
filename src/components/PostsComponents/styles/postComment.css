@@ -12,7 +12,6 @@
     text-align: center;
   }
   
-  /* Style for individual comments */
   .post-comment {
     margin-bottom: 12px; 
     padding: 8px;
@@ -21,7 +20,6 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
   }
   
-  /* Show more/less button styles */
   .show-more, .show-less {
     color: #007bff; 
     cursor: pointer; 
@@ -29,23 +27,18 @@
     margin-top: 12px;
   }
   
-  
-   
-  /* Mobile Devices */
   @media (max-width: 480px) {
     .post-comments-show-more, .post-commentsshow-less {
       font-size: 12px;
     }
   }
   
-  /* Tablets */
   @media (min-width: 481px) and (max-width: 768px) {
     .post-comments-show-more, .post-commentsshow-less {
       font-size: 13px;
     }
   }
   
-  /* Laptops and Desktops */
   @media (min-width: 769px) {
     .post-comments-show-more, .post-commentsshow-less {
       font-size: 14px; 

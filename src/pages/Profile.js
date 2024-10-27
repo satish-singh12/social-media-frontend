@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Info from "../components/ProfileComponents/Info";
-import Posts from "../components/PostsComponents/Posts";
 import About from "../components/ProfileComponents/About";
 import "./styles/profile.css";
-import {
-  getProfileUserPosts,
-  getProfileUsersData,
-} from "../redux/actions/profileActions";
+import { getProfileUsersData } from "../redux/actions/profileActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RiAccountPinCircleFill } from "react-icons/ri";
@@ -26,7 +22,6 @@ const Profile = () => {
   const { id } = useParams();
   const auth = useSelector((state) => state.auth);
   const profile = useSelector((state) => state.profile);
-  const post = useSelector((state) => state.homePost.post);
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState([]);
@@ -133,8 +128,6 @@ const Profile = () => {
         <div className="profile-body">
           <div className="profile-body-left">
             <About userData={userData} profile={profile} auth={auth} id={id} />
-            {/* <ShowFriendsProfile user={auth.user} />
-            <ShowFollowingProfile user={auth.user} /> */}
             <ShowFriendsProfile user={userData[0]} />
             <ShowFollowingProfile user={userData[0]} />
           </div>
@@ -149,8 +142,6 @@ const Profile = () => {
           </div>
 
           <div className="profile-body-right">
-            {/* <ProfilePhotoShow photos={photos} />
-            <ProfileVideoShow photos={photos} /> */}
             <ProfilePhotoShow photos={userPosts && [userPosts]} />
             <ProfileVideoShow photos={userPosts && [userPosts]} />
           </div>

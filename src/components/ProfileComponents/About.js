@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { getProfileUsers } from "../../redux/actions/profileActions";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
 import "./styles/profileAbout.css";
 import moment from "moment";
 
-const About = ({ userData, profile, auth, id }) => {
+const About = ({ userData }) => {
   return (
     <div className="profile-about">
       {userData &&
@@ -14,11 +11,9 @@ const About = ({ userData, profile, auth, id }) => {
           <div className="about-container" key={index}>
             <div className="profile-about-containt-top">
               <h4 className="profile-about-containt-top-head">About Me:</h4>
-              {/* <p>{user.story}</p> */}
             </div>
 
             <div className="profile-about-content-center">
-              {/* <h4 className="profile-about-content-center-story">Story</h4> */}
               <p>{user.story}</p>
             </div>
 

@@ -27,7 +27,6 @@ const Status = () => {
     }
   }, [status]);
 
-  // ===========
   // Function to convert base64 data URL to Blob
   const dataURLtoBlob = (dataURL) => {
     const arr = dataURL.split(",");
@@ -40,8 +39,6 @@ const Status = () => {
     }
     return new Blob([u8arr], { type: mime }); // Return Blob with correct MIME type
   };
-
-  // =============
 
   const uploadImages = (e) => {
     const files = [...e.target.files];
@@ -95,14 +92,14 @@ const Status = () => {
     refCanvas.current.setAttribute("height", height);
     const ctx = refCanvas.current.getContext("2d");
     ctx.drawImage(refVideo.current, 0, 0, width, height);
-    const dataURL = refCanvas.current.toDataURL(); // Base64 encoded string (data URL)
-    const blob = dataURLtoBlob(dataURL); // Convert base64 to Blob
+    const dataURL = refCanvas.current.toDataURL();
+    const blob = dataURLtoBlob(dataURL);
 
-    setImages([...images, blob]); // Append Blob object to images array
+    setImages([...images, blob]); //
   };
 
   const handleStreamStop = () => {
-    tracks && tracks.stop(); // Only stop if tracks exists
+    tracks && tracks.stop();
     setStream(false);
   };
   const handleSubmit = (e) => {
@@ -171,24 +168,23 @@ const Status = () => {
                     image.secure_url.match(/video/i) ? (
                       <video
                         controls
-                        src={image.secure_url} // Use the existing URL for uploaded videos
+                        src={image.secure_url}
                         className="status-show-images-middle"
                         style={{ width: "100%" }}
                       />
                     ) : (
-                      imagesShow(image.secure_url) // Use the existing URL for uploaded images
+                      imagesShow(image.secure_url)
                     )
                   ) : (
                     <>
-                      {/* Only URL.createObjectURL() for new file objects */}
                       {image?.type?.match(/video/i) ? (
                         <video
                           controls
-                          src={URL.createObjectURL(image)} // For local video files
+                          src={URL.createObjectURL(image)}
                           className="status-show-images-middle"
                         />
                       ) : (
-                        imagesShow(URL.createObjectURL(image)) // For new local image files
+                        imagesShow(URL.createObjectURL(image))
                       )}
                     </>
                   )}

@@ -13,12 +13,26 @@ export const NOTIFICATION_TYPES = {
   DELETE_NOTIFICATIONS: "DELETE_NOTIFICATIONS",
 };
 
+// export const createNotification =
+//   ({ msg, auth, socket }) =>
+//   async (dispatch) => {
+//     try {
+//       const res = await postDataApi("notification", msg, auth.token);
+//       socket.emit("createNotification", {
+//         ...res.data.notification,
+//         user: {
+//           username: auth.user.username,
+//           avatar: auth.user.avatar,
+//         },
+//       });
 export const createNotification =
   ({ msg, auth, socket }) =>
   async (dispatch) => {
-    //console.log({msg})
     try {
+      // Create the notification via API
       const res = await postDataApi("notification", msg, auth.token);
+
+      // Emit the notification event to the server via socket
       socket.emit("createNotification", {
         ...res.data.notification,
         user: {
@@ -66,29 +80,54 @@ export const getNotification = (auth) => async (dispatch) => {
   }
 };
 
+// export const readNotification =
+//   ({ dt, auth }) =>
+//   async (dispatch) => {
+//     dispatch({
+//       type: NOTIFICATION_TYPES.UPDATE_NOTIFICATIONS,
+//       payload: { ...dt, isRead: true },
+//     });
+//     try {
+//       await patchDataApi(`isreadnotification/${dt._id}`, null, auth.token);
+//     } catch (err) {
+//       dispatch({
+//         type: "ALERT",
+//         payload: { error: err.response.data.message },
+//       });
+//     }
+//   };
 export const readNotification =
   ({ dt, auth }) =>
   async (dispatch) => {
+    // Optimistic UI update
     dispatch({
       type: NOTIFICATION_TYPES.UPDATE_NOTIFICATIONS,
       payload: { ...dt, isRead: true },
     });
+
     try {
       const res = await patchDataApi(
         `isreadnotification/${dt._id}`,
         null,
         auth.token
       );
+      console.log(res);
     } catch (err) {
+      // Rollback the optimistic update if the request fails
+      dispatch({
+        type: NOTIFICATION_TYPES.UPDATE_NOTIFICATIONS,
+        payload: { ...dt, isRead: false }, // Revert the change
+      });
+
       dispatch({
         type: "ALERT",
-        payload: { error: err.response.data.message },
+        payload: { error: err.response?.data?.message || "An error occurred" },
       });
     }
   };
 
 export const deleteNotificationsAll =
-  ({ auth }) =>
+  ({ auth, socket }) =>
   async (dispatch) => {
     dispatch({
       type: NOTIFICATION_TYPES.DELETE_NOTIFICATIONS,
@@ -96,6 +135,7 @@ export const deleteNotificationsAll =
     });
     try {
       const res = await deleteDataApi("deleteallnotification", auth.token);
+      socket.emit("deleteAllNotifications"); //added
     } catch (err) {
       const errorMessage = err.response?.data?.message || "An error occurred";
       dispatch({

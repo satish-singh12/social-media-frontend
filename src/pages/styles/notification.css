@@ -110,7 +110,6 @@
     }
   }
   
-  /* For devices with width up to 480px (mobile) */
   @media (max-width: 480px) {
     .notifications {
       padding: 10px;

@@ -223,7 +223,6 @@ export const unFriends =
         null,
         auth.token
       );
-      console.log(res);
       socket.emit("unFriend", res.data.newUser);
 
       const msg = {

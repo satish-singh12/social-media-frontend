@@ -20,10 +20,7 @@ const notificationReducers = (state = initialState, action) => {
     case NOTIFICATION_TYPES.REMOVE_NOTIFICATIONS:
       return {
         ...state,
-        data: state.data.filter(
-          (item) =>
-            item.id !== action.payload.id || item.url !== action.payload.url
-        ),
+        data: state.data.filter((item) => item.id !== action.payload._id),
       };
     case NOTIFICATION_TYPES.UPDATE_NOTIFICATIONS:
       return {

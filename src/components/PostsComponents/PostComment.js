@@ -36,7 +36,7 @@ const PostComment = ({ pos }) => {
               comment={comment}
               pos={pos}
               newReply={
-                // Filter replies for this specific comment
+                // Filter replies for the specific comment
                 replyComment &&
                 replyComment.filter((item) => item?.reply === comment._id)
               }

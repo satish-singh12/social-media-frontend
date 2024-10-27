@@ -1,10 +1,7 @@
 .profile{
-  
   background-color: #e44da0; 
-  max-width: 100%;
-  /* position:sticky; */
+  width: 100vw;
    margin-top: 5.7rem; 
-  
 }
 
 .profile-body{
@@ -14,15 +11,17 @@
 
 .profile-body-left{
   flex:0.2;
-  /* max-width: 30%; */
 }
 
 .profile-body-center{
   flex:0.6;
 }
-
+ 
 .profile-body-right{
-  flex:0.2;
+  flex:0.3;
+  background-color: #6c39be;
+  margin: 6px;
+  border-radius: 10px;
 }
 
 .profile-header {
@@ -57,17 +56,13 @@
 
 .profile-header-items .button-icons:hover {
   background-color: rgb(177, 175, 175);
-  color: #007bff; /* Hover color */
-  transform: scale(1.1); /* Slight zoom on hover */
+  color: #007bff;
+  transform: scale(1.1);
 }
 
-/* Responsive behavior */
 @media (max-width: 768px) {
   .profile{
     max-width: 720px;
-    /* margin-top: 11.2rem; */
-    /* min-width:fit-content; */
-    /* margin-left: 1.8rem; */
    }
   .profile-header-items {
     justify-content: space-between;
@@ -75,14 +70,13 @@
   }
 
   .profile-header-items .button-icons {
-    font-size: 20px; /* Smaller icons for medium screens */
+    font-size: 20px;
     margin: 0 8px;
   }
 }
 
 @media (max-width: 480px) {
   .profile{
-   /* margin-top: 17rem; */
    min-width: 141vw;
   
   }
@@ -98,7 +92,7 @@
   }
 
   .profile-header-items .button-icons {
-    font-size: 18px; /* Even smaller icons for small screens */
+    font-size: 18px;
     margin: 0 6px;
   }
 }

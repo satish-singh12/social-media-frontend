@@ -25,15 +25,8 @@ const ResetPassword = ({ user, setOnReset }) => {
     setEditData({ ...editData, [name]: value });
   };
 
-  //   const selectUpload = () => {
-  //     const fileUploadInput = document.getElementById("file-upload");
-  //     fileUploadInput.click();
-  //   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Password Reset Logic
-    // =========
     if (currentPassword && newPassword && confirmPassword) {
       if (newPassword !== confirmPassword) {
         return dispatch({
@@ -64,8 +57,6 @@ const ResetPassword = ({ user, setOnReset }) => {
         </button>
       </div>
       <div className="reset-password-user-data">
-        {/* --------------- */}
-        {/* Password Reset Section */}
         <label htmlFor="currentPassword">Current Password</label>
         <input
           type="password"
@@ -92,7 +83,6 @@ const ResetPassword = ({ user, setOnReset }) => {
           onChange={handleChangeInput}
           placeholder="Confirm new password"
         />
-        {/* --------------- */}
       </div>
 
       <div className="reset-password-stage">

@@ -30,12 +30,10 @@ export const createPost =
           { content, images: media },
           auth.token
         );
-        console.log(res.data.newPosts);
         if (!res || !res.data) {
           throw new Error("No data returned from API");
         }
 
-        // if (res.data.newPosts) {
         dispatch({
           type: POST_TYPES.CREATE_POST,
           payload: { ...res.data.newPosts, user: auth.user },
@@ -50,7 +48,6 @@ export const createPost =
           content,
           image: media[0].secure_url,
         };
-        //        console.log({ msg });
         dispatch(createNotification({ msg, auth, socket }));
         // }
       }

@@ -73,14 +73,6 @@ const Login = () => {
             </div>
           </div>
 
-          {/* <div className="remember-me--forget-password">
-            <label>
-              <input type="checkbox" name="item" checked onChange={() => {}} />
-              <span className="text-checkbox">Remember me</span>
-            </label>
-            <p>forget password?</p>
-          </div> */}
-
           <br />
           <button type="submit">Login</button>
         </form>

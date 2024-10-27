@@ -18,10 +18,12 @@ max-width: 100%;
     max-width: 100%;
     cursor: pointer;
     height: 5rem;
-    
-    
     border-radius: 10px;
   }
+  
+  .user-card-message-header:hover{
+    background-color: #32ec6a;;
+}
   
   .user-card-message-header img {
     width: 50px;
@@ -49,8 +51,7 @@ max-width: 100%;
     color: gray;
   }
   
-  /* Medium screens (tablets, 768px and above) */
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
     .user-card-message-header {
       padding: 8px;
     }
@@ -69,8 +70,7 @@ max-width: 100%;
     }
   }
   
-  /* Small screens (mobile devices, 480px and below) */
-  @media (max-width: 480px) {
+    @media (max-width: 480px) {
     .user-card-message-header {
       padding: 5px;
     }

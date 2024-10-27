@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import "./styles/profileInfo.css";
 import EditProfile from "./EditProfile";
 import GlobalFriendBtn from "./GlobalFriendBtn";
@@ -8,12 +7,10 @@ import ResetPassword from "./ResetPassword";
 const Info = ({ userData, profile, auth, id }) => {
   const [onEdit, setOnEdit] = useState(false);
   const [onReset, setOnReset] = useState(false);
-  // ---------------
   const [postCount, setPostCount] = useState(0);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if profile userposts are loaded
     if (profile.userposts && profile.userposts.length > 0) {
       const userId = auth?.user?._id === id ? auth.user._id : id;
       const userPosts = profile.userposts.find((p) => p._id === userId);
@@ -22,14 +19,14 @@ const Info = ({ userData, profile, auth, id }) => {
       } else {
         setPostCount(0);
       }
-      setLoading(false); // Set loading to false when posts are fetched
+      setLoading(false);
     } else {
-      setLoading(true); // Set loading to true if posts aren't available yet
+      setLoading(true);
     }
   }, [profile.userposts, id, auth]);
 
   if (loading) {
-    return <p>Loading...</p>; // Add a loading state for posts
+    return <p>Loading...</p>;
   }
   return (
     <div className="profile-info">
@@ -101,7 +98,7 @@ const Info = ({ userData, profile, auth, id }) => {
           </div>
         ))
       ) : (
-        <p>Loading user data...</p> // Add this fallback or some loading indicator
+        <p>Loading user data...</p>
       )}
     </div>
   );

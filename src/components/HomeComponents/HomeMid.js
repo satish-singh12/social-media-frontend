@@ -15,7 +15,6 @@ const HomeMid = () => {
       ) : homePost.results === 0 ? (
         <h4>No Post Available</h4>
       ) : (
-        // <Post />
         <Posts />
       )}
     </div>

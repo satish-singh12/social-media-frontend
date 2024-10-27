@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./styles/inputPostComment.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../redux/actions/commentActions";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const InputPostComment = ({ children, pos, comment, onReply, setOnReply }) => {
   const auth = useSelector((state) => state.auth);
@@ -26,7 +24,6 @@ const InputPostComment = ({ children, pos, comment, onReply, setOnReply }) => {
       reply: onReply && onReply.commentId,
       tag: onReply && onReply.comment?.user,
     };
-    //console.log(newComment);
     dispatch(createComment({ pos, newComment, auth, socket }));
     setContent("");
     if (onReply) return setOnReply(false);
@@ -35,7 +32,7 @@ const InputPostComment = ({ children, pos, comment, onReply, setOnReply }) => {
   return (
     <div className="input-post-comments">
       <div className="input-post-comments-left">
-        <img src={auth.user.avatar} alt="avatar" />
+        <img src={auth.user?.avatar} alt="avatar" />
         {children}
       </div>
       <input

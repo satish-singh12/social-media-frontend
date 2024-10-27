@@ -13,7 +13,6 @@ import {
 } from "../../redux/actions/commentActions";
 import InputPostComment from "./InputPostComment";
 
-//getting props from PostCommentDisplay.js
 const PostCommentCard = ({ children, comment, pos, commentId }) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ const PostCommentCard = ({ children, comment, pos, commentId }) => {
     setLoad(true);
     dispatch(unlikeComment({ comment, pos, auth })).finally(() =>
       setLoad(false)
-    ); // Ensure loading state is updated after the request
+    );
   };
 
   const handleUpdateComment = () => {
@@ -52,7 +51,6 @@ const PostCommentCard = ({ children, comment, pos, commentId }) => {
     if (onReply) return setOnReply(false);
     setOnReply({ comment, commentId });
   };
-  //console.log(onReply.comment);
 
   useEffect(() => {
     setContent(comment.content);
@@ -82,7 +80,6 @@ const PostCommentCard = ({ children, comment, pos, commentId }) => {
           </div>
         </Link>
         <div className="post-comment-card-user-dropdown">
-          {/* <p>ooo</p> */}
           <CommentMenuItem
             auth={auth}
             comment={comment}

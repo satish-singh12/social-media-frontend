@@ -6,16 +6,15 @@ import MessageDisplay from "./MessageDisplay";
 import "./styles/rightSideMessage.css";
 import { IoSend } from "react-icons/io5";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { FaImages } from "react-icons/fa";
+import { MdOutlineAttachFile } from "react-icons/md";
 import { imageUpload } from "../../utils/imageUpload";
 import {
   addMessage,
   getMessages,
   deleteMessage,
-  MESSAGE_TYPE,
+  deleteAllMessages,
 } from "../../redux/actions/messageActions";
 import loadIcon from "../../images/loading.gif";
-
 const RightSideMessage = () => {
   const [user, setUser] = useState([]);
   const dispatch = useDispatch();
@@ -23,7 +22,11 @@ const RightSideMessage = () => {
   const [text, setText] = useState("");
   const [media, setMedia] = useState([]);
   const [loadMedia, setLoadMedia] = useState(false);
-  const { auth, message, socket } = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const message = useSelector((state) => state.message);
+  const socket = useSelector((state) => state.socket);
+
+  const refDisplay = useRef();
 
   useEffect(() => {
     const newData = message.users.find((item) => item._id === id);
@@ -32,14 +35,22 @@ const RightSideMessage = () => {
     }
   }, [message.users, id]);
 
+  useEffect(() => {
+    if (refDisplay.current) {
+      refDisplay.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    }
+  }, [message.data]); // Trigger scroll every time message.data changes
+
   const uploadmedia = (e) => {
     const files = [...e.target.files];
     let err = "";
     let mediaArr = [];
-    console.log(files);
     files.forEach((file) => {
       if (!file) return (err = "no file found");
-      if (file.size > 1024 * 1024 * 5) return (err = "file is too long");
+      if (file.size > 1024 * 1024 * 5) return (err = "file is too large");
 
       return mediaArr.push(file);
     });
@@ -47,7 +58,6 @@ const RightSideMessage = () => {
       dispatch({ type: "ALERT", payload: { error: err } });
     }
     setMedia([...media, ...mediaArr]);
-    console.log(media);
   };
 
   const handleuploadinput = (e) => {
@@ -57,28 +67,28 @@ const RightSideMessage = () => {
   };
 
   const imageshow = (src) => {
-    return (
-      <>
-        <img src={src} alt="" className="statusmsg-middleimages" />
-      </>
-    );
+    return <img src={src} alt="" className="statusmsg-middleimages" />;
   };
-  const handleDeleteMsg = (data) => {
-    dispatch(deleteMessage({ message, data, auth }));
+
+  const handleDeleteAllMsgs = () => {
+    dispatch(deleteAllMessages({ id, auth, socket }));
   };
+
+  const handleDeleteMsg = (msg) => {
+    dispatch(deleteMessage({ message, data: msg, auth, socket }));
+  };
+
   const videoshow = (src) => {
     return (
-      <>
-        <video controls src={src} alt="" className="statusmsg-middleimages" />
-      </>
+      <video controls src={src} alt="" className="statusmsg-middleimages" />
     );
   };
-  const deleteimage = (inde) => {
+
+  const deleteimage = (index) => {
     const newArrimage = [...media];
-    newArrimage.splice(inde, 1);
+    newArrimage.splice(index, 1);
     setMedia(newArrimage);
   };
-  const refDisplay = useRef();
 
   useEffect(() => {
     if (id) {
@@ -99,7 +109,7 @@ const RightSideMessage = () => {
     e.preventDefault();
     if (!text.trim() && media.length === 0) return;
     setMedia([]);
-    setText(" ");
+    setText("");
     setLoadMedia(true);
     let medArr = [];
 
@@ -120,30 +130,87 @@ const RightSideMessage = () => {
   };
 
   return (
-    <div className="Rightsidecontent">
-      <div className="rightsidecontentheader">
+    <div className="right-side-content">
+      <div className="right-side-content-header">
         {user.length !== 0 && (
           <UserCardMessages user={user}>
-            <RiDeleteBin6Fill style={{ color: "salmon" }} />
+            <RiDeleteBin6Fill
+              style={{ color: "salmon" }}
+              onClick={handleDeleteAllMsgs}
+            />
           </UserCardMessages>
         )}
       </div>
 
-      <form className="rightsidecontentinput" onSubmit={handleSubmit}>
-        <input
-          className="rightsidecontentinputtext"
-          type="text"
-          placeholder="type the message"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <div className="rightsidecontentinputfileupload">
+      <div
+        className="right-side-content-input-msg-mediadiv"
+        style={{ display: media.length > 0 ? "grid" : "none" }}
+      >
+        {media.length > 0 &&
+          media.map((item, index) => (
+            <div
+              className="right-side-content-input-msg-media-divitem"
+              key={index}
+            >
+              {console.log(item)}
+              {item.type.match(/video/i)
+                ? videoshow(URL.createObjectURL(item))
+                : imageshow(URL.createObjectURL(item))}
+              <span
+                className="right-side-content-input-msg-media-divitem-delete"
+                onClick={() => deleteimage(index)}
+              >
+                {" "}
+                x{" "}
+              </span>
+            </div>
+          ))}
+      </div>
+
+      <div className="right-side-content-messages">
+        <div className="right-side-content-messages-chatbox">
+          {message.data
+            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+            .map((msg) => (
+              <div
+                key={msg._id}
+                ref={refDisplay}
+                className={
+                  msg.sender === auth.user._id
+                    ? "right-side-content-messages-ours"
+                    : "right-side-content-messages-other"
+                }
+              >
+                <MessageDisplay
+                  user={msg.sender === auth.user._id ? auth.user : user}
+                  msg={msg}
+                />
+                {msg.sender === auth.user._id && (
+                  <RiDeleteBin6Fill
+                    className="delete-message-chat"
+                    onClick={() => handleDeleteMsg(msg)}
+                    style={{ color: "salmon" }}
+                  />
+                )}
+              </div>
+            ))}
+
+          {loadMedia && (
+            <div className="right-side-content-loading-icon">
+              <img src={loadIcon} alt="loading" />
+            </div>
+          )}
+        </div>
+      </div>
+
+      <form className="right-side-content-input" onSubmit={handleSubmit}>
+        <div className="right-side-content-input-file-upload">
           <button
-            className="rightsidecontentinputbtn"
+            className="right-side-content-input-btn"
             onClick={handleuploadinput}
           >
             {" "}
-            <FaImages />{" "}
+            <MdOutlineAttachFile />{" "}
           </button>
           <input
             style={{ display: "none" }}
@@ -154,64 +221,23 @@ const RightSideMessage = () => {
             onChange={uploadmedia}
           />
         </div>
+        <input
+          className="right-side-content-input-text"
+          type="text"
+          placeholder="type the message"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+
         <button
           type="submit"
-          className="rightsidecontentinputbtn"
+          className="right-side-content-input-btn"
           disabled={text || media.length !== 0 ? false : true}
         >
           {" "}
           <IoSend />{" "}
         </button>
       </form>
-      <div
-        className="rightsidecontentinputmsg-mediadiv"
-        style={{ display: media.length > 0 ? "grid" : "none" }}
-      >
-        {media.length > 0 &&
-          media.map((item, index) => (
-            <div className="rightsidecontentinputmsg-mediadivitem" key={index}>
-              {item.type.match(/video/i)
-                ? videoshow(URL.createObjectURL(item))
-                : imageshow(URL.createObjectURL(item))}
-              <span
-                className="rightsidecontentinputmsg-mediadivitemdelete"
-                onClick={() => deleteimage(index)}
-              >
-                {" "}
-                x{" "}
-              </span>
-            </div>
-          ))}
-      </div>
-      <div className="rightsidecontentmessages">
-        <div className="rightsidecontentmessages-chatbox" ref={refDisplay}>
-          {message.data.map((msg, index) => (
-            <div key={index} ref={refDisplay}>
-              {msg.sender !== auth.user._id && (
-                <div className=" rightsidecontentmessagesother">
-                  <MessageDisplay user={user} msg={msg} />
-                </div>
-              )}
-              {msg.sender === auth.user._id && (
-                <div className="rightsidecontentmessagesours">
-                  <MessageDisplay user={auth.user} msg={msg} />
-                  <RiDeleteBin6Fill
-                    className="deletemessagechat"
-                    onClick={() => handleDeleteMsg(msg)}
-                    style={{ color: "salmon" }}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-
-          {loadMedia && (
-            <div>
-              <img src={loadIcon} alt="loading" />
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 };

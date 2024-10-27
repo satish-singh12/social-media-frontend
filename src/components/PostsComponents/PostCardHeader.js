@@ -15,7 +15,6 @@ const PostCardHeader = ({ pos }) => {
   const navigate = useNavigate();
 
   const handleEditPost = (edt) => {
-    //console.log(edt);
     dispatch({ type: ALERT_TYPES.STATUS, payload: { ...pos, edit: true } });
   };
 
@@ -38,7 +37,6 @@ const PostCardHeader = ({ pos }) => {
           <div className="post-card-header-info">
             <h4>
               {pos.user?.fullname} <span> posted </span>
-              {/* {pos.images?.length || 0} */}
               {pos.images?.length > 1 ? " items" : " item"}
             </h4>
             <h6>{moment(pos.user?.createdAt).fromNow()}</h6>

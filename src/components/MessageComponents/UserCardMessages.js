@@ -1,10 +1,8 @@
 import React from "react";
 import "./styles/userCardMessages.css";
-import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import { FaImages } from "react-icons/fa";
 
-//child of Navbar.js
 const UserCardMessages = ({ children, user, handleClose, msg }) => {
   const handleCloseAll = () => {
     if (handleClose) handleClose();
@@ -29,20 +27,6 @@ const UserCardMessages = ({ children, user, handleClose, msg }) => {
           )}
           <div className="card-items">
             <span style={{ display: "block" }}>{user?.username}</span>
-            {/* <small>
-              {
-
-                // user?.text || user?.media
-                ? <>
-                <div>{user.text}</div>
-                {
-                  user.media?.length > 0 &&
-                  <div style={{display: "flex", justifyContent: "space-between", alignItems:"center"}}>
-                    {user.media?.length} <FaImages />
-                  </div>
-                }
-                </>
-                user?.text : user?.fullname}</small> */}
             <small>
               {user?.text || user?.media ? (
                 <>

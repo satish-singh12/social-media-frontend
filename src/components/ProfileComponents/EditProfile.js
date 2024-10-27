@@ -3,10 +3,7 @@ import "./styles/editProfile.css";
 import { useSelector, useDispatch } from "react-redux";
 import { FaCamera } from "react-icons/fa";
 import { checkImage } from "../../utils/imageUpload";
-import {
-  updatedProfile,
-  resetPassword,
-} from "../../redux/actions/profileActions";
+import { updatedProfile } from "../../redux/actions/profileActions";
 
 const EditProfile = ({ user, setOnEdit }) => {
   const { auth } = useSelector((state) => state);

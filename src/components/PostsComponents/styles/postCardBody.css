@@ -1,12 +1,9 @@
-/* postCardBody.css */
-
-/* Base styles */
 .post-card-body {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin: 16px;
   padding: 16px;
-  background-color: black;
+  background-color: rgb(99, 98, 98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -24,16 +21,15 @@
   margin-left: 4px;
 }
 
-/* Image container */
 .post-card-body-image {
   position: relative;
   overflow: hidden;
 }
 
-.post-card-body-image img {
+.post-card-body-image-image{
   max-width: 100%;
-  max-height:100%;
-  object-fit:cover;
+    max-height:100%;
+    object-fit:cover;
   border-radius: 20px;
   padding:.5rem 0;
   box-shadow: 3px 3px 13px rgb(65, 64, 64);
@@ -46,7 +42,6 @@
   min-height: 100%;
 }
 
-/* Navigation arrows */
 .post-card-body-image-next,
 .post-card-body-image-prev {
   position: absolute;
@@ -67,7 +62,6 @@
   right: 10px;
 }
 
-/* Responsive styles */
 @media (max-width: 600px) {
   .post-card-body {
     margin: 8px;

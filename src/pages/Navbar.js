@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./styles/navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/actions/authActions";
@@ -12,11 +12,14 @@ const Navbar = () => {
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState([]);
   const [load, setLoad] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // State to track hamburger menu open/close
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const notification = useSelector((state) => state.notification);
   const { pathname } = useLocation();
+
+  const navRef = useRef();
 
   useEffect(() => {
     if (search && auth.token) {
@@ -42,30 +45,53 @@ const Navbar = () => {
     setUsers([]);
   };
 
+  // Function to close the menu when clicked outside
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-secondary"
+        ref={navRef}
+      >
         <div className="container-fluid">
-          <Link to="/" navbar-link className="navbar-link-logo-img">
+          <Link to="/" className="navbar-link-logo-img">
             <img src={logoImage} alt="Logo" className="logo-img" />
           </Link>
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
                   to={`/profile/${auth.user && auth?.user._id}`}
                   className="navbar-link"
+                  onClick={() => setMenuOpen(false)}
                 >
                   <div className="user-profile-icon">
                     <img
@@ -86,12 +112,20 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-notification">
-                <Link to="/" className="navbar-link">
+                <Link
+                  to="/"
+                  className="navbar-link"
+                  onClick={() => setMenuOpen(false)}
+                >
                   <i className={`fa fa-home ${isActive("/")}`} title="Home"></i>
                 </Link>
               </li>
               <li className="nav-notification">
-                <Link to="/notification" className="navbar-link">
+                <Link
+                  to="/notification"
+                  className="navbar-link"
+                  onClick={() => setMenuOpen(false)}
+                >
                   <i
                     className={`fa fa-bell ${isActive("/notification")}`}
                     title="Notification"
@@ -102,7 +136,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-message">
-                <Link to="/messages" className="navbar-link">
+                <Link
+                  to="/messages"
+                  className="navbar-link"
+                  onClick={() => setMenuOpen(false)}
+                >
                   <i
                     className={`fa fa-envelope ${isActive("/messages")}`}
                     title="Message"
@@ -111,14 +149,16 @@ const Navbar = () => {
               </li>
               <li className="nav-message navbar-link">
                 <i
-                  onClick={() => dispatch(logout())}
+                  onClick={() => {
+                    dispatch(logout());
+                    setMenuOpen(false);
+                  }}
                   className="fa fa-power-off fa-rotate-90"
                   title="Logout"
                 ></i>
               </li>
             </ul>
             {/* Section 2: Search Bar */}
-            {/* <form className="input-box" onSubmit={handleSearch}> HANDELINGNG SEARCH */}
             <form className="input-box">
               <input
                 type="text"
@@ -152,7 +192,7 @@ const Navbar = () => {
                 {load && (
                   <img
                     src={LoadIcon}
-                    alt=""
+                    alt="loading"
                     style={{ width: "50px", height: "50px" }}
                   />
                 )}

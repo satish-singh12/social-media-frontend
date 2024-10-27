@@ -24,9 +24,9 @@ const FollowingCard = ({ user }) => {
           width: "1200px",
           maxWidth: "100%",
           margin: "1rem auto",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", // Adjust the number of columns based on card size
-          gap: "2rem", // Adds space between the cards
-          gridAutoFlow: "row", // Ensures that items are placed row by row
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "2rem",
+          gridAutoFlow: "row",
         }}
       >
         {user.length > 0 &&

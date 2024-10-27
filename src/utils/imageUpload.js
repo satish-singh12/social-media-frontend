@@ -2,7 +2,6 @@ export const checkImage = (file) => {
   let err = "";
   if (!file) return (err = "file not found");
 
-  // File size limit: 1 MB for images, 10 MB for videos
   const isImage = file.type.startsWith("image/");
   const isVideo = file.type.startsWith("video/");
 
@@ -45,7 +44,6 @@ export const imageUpload = async (images) => {
     formData.append("upload_preset", "iuiqlvok");
     formData.append("cloud_name", cloudName);
 
-    // Set resource type to auto for both image and video support
     const res = await fetch(
       `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, // 'auto' supports both images and videos
       {

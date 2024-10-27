@@ -1,18 +1,15 @@
-
-  /* Profile About Container */
   .profile-about {
-    /* width: 100%; */
     max-width: 300px;
-    margin: 1rem auto;
+    margin: .4rem auto;
     
-    padding: 20px;
+    padding: 5px;
     background-color: #cde950;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .about-container {
-    padding: 20px;
+    padding: 5px;
     margin-bottom: 20px;
     border-bottom: 2px solid rgb(126, 122, 122);
   }
@@ -24,13 +21,7 @@
     width:100%;
   }
   
-  /* .profile-about-content-center-story {
-    font-size: 15px;
-    color: #555;
-    margin-top: 20px;
-  }
-   */
-  .profile-about-content-center p {
+   .profile-about-content-center p {
     font-size: 15px;
     color: #666;
     margin-top: 10px;
@@ -61,8 +52,7 @@
     color: #555;
   }
   
-  /* Desktop Styles (default) */
-  @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: 1024px) {
     .profile-about {
       padding: 30px;
     }
@@ -96,7 +86,6 @@
     }
   }
   
-  /* Tablet Styles */
   @media only screen and (max-width: 1023px) and (min-width: 768px) {
     .profile-about {
       padding: 20px;
@@ -127,7 +116,6 @@
     }
   }
   
-  /* Mobile Styles */
   @media only screen and (max-width: 767px) {
     .profile-about {
       padding: 15px;

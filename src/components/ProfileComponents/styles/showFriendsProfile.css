@@ -1,31 +1,28 @@
-/* General styling for the component */
 .show-friends-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background-color: #f9f9f9;
+    padding: 10px;
+    min-width: 100%;
+    margin-top: 2px;
     background-color: rgb(32, 190, 26);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+
   }
   
-  /* Header styling */
-  .show-friends-profile h4 {
+    .show-friends-profile h4 {
     font-size: 1.5rem;
     margin-bottom: 20px;
     text-align: center;
     color: #333;
   }
   
-  /* Span for the following count */
-  .show-friends-profile h4 span {
+    .show-friends-profile h4 span {
     color: #007bff;
     font-weight: bold;
   }
   
-  /* Style for GlobalShortCard container */
   .global-short-card {
     display: flex;
     flex-direction: column;
@@ -39,7 +36,6 @@
     width: 100%;
   }
   
-  /* Larger screens (desktops) */
   @media (min-width: 1024px) {
     .show-friends-profile {
       width: 80%;
@@ -57,7 +53,6 @@
     }
   }
   
-  /* Medium screens (tablets) */
   @media (min-width: 768px) and (max-width: 1023px) {
     .show-friends-profile {
       width: 90%;
@@ -73,7 +68,6 @@
     }
   }
   
-  /* Small screens (phones) */
   @media (max-width: 767px) {
     .show-friends-profile {
       width: 65%;
