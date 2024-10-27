@@ -37,44 +37,6 @@ const Notifications = () => {
     }
   };
 
-  // Memoizing the notifications list to prevent re-renders when notifications data doesn't change
-  // const memoizedNotifications = useMemo(() => {
-  //   return notification?.data?.map((dt) => (
-  //     <div className="notification-data" key={dt._id}>
-  //       <Link
-  //         to={`${dt.url}`}
-  //         className="no-decoration"
-  //         onClick={() => isReadNotification(dt)}
-  //       >
-  //         <div className="notification-top">
-  //           <img src={dt.user.avatar} alt="avatar" />
-  //           <div>
-  //             <h4>
-  //               {dt.user.fullname} {dt.text}
-  //             </h4>
-  //             <h6>{dt.content.slice(0, 20)}</h6>
-  //           </div>
-  //           <img src={dt.image} alt="image" />
-  //         </div>
-  //       </Link>
-  //       <div className="notification-bottom">
-  //         <small>{moment(dt.createdAt).fromNow()}</small>
-  //         {dt.isRead ? (
-  //           <CiRead
-  //             className="notification-bottom-read-unread"
-  //             style={{ color: "green" }}
-  //           />
-  //         ) : (
-  //           <CiUnread
-  //             className="notification-bottom-read-unread"
-  //             style={{ color: "red" }}
-  //           />
-  //         )}
-  //       </div>
-  //     </div>
-  //   ));
-  // }, [notification?.data]);
-
   const memoizedNotifications = useMemo(() => {
     return notification?.data?.map((dt) => (
       <div className="notification-data" key={dt._id}>
