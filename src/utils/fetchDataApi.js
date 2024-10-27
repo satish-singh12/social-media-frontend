@@ -17,6 +17,7 @@ export const postDataApi = async (url, post, token) => {
   try {
     const response = await axios.post(
       `https://social-media-backend-sra9.onrender.com/api/${url}`,
+      // `http://localhost:5000/api/${url}`,
       post,
       {
         headers: { Authorization: token ? token : "" },
@@ -33,6 +34,7 @@ export const postDataApi = async (url, post, token) => {
 export const putDataApi = async (url, post, token) => {
   const response = await axios.put(
     `https://social-media-backend-sra9.onrender.com/api/${url}`,
+    // `http://localhost:5000/api/${url}`,
     post,
     {
       headers: { Authorization: token },
@@ -44,6 +46,7 @@ export const putDataApi = async (url, post, token) => {
 export const patchDataApi = async (url, post, token) => {
   const response = await axios.patch(
     `https://social-media-backend-sra9.onrender.com/api/${url}`,
+    // `http://localhost:5000/api/${url}`,
     post,
     {
       headers: { Authorization: token },
@@ -55,6 +58,7 @@ export const patchDataApi = async (url, post, token) => {
 export const deleteDataApi = async (url, token) => {
   const response = await axios.delete(
     `https://social-media-backend-sra9.onrender.com/api/${url}`,
+    // `http://localhost:5000/api/${url}`,
     {
       headers: { Authorization: token },
     }

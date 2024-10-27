@@ -13,25 +13,12 @@ export const NOTIFICATION_TYPES = {
   DELETE_NOTIFICATIONS: "DELETE_NOTIFICATIONS",
 };
 
-// export const createNotification =
-//   ({ msg, auth, socket }) =>
-//   async (dispatch) => {
-//     try {
-//       const res = await postDataApi("notification", msg, auth.token);
-//       socket.emit("createNotification", {
-//         ...res.data.notification,
-//         user: {
-//           username: auth.user.username,
-//           avatar: auth.user.avatar,
-//         },
-//       });
 export const createNotification =
   ({ msg, auth, socket }) =>
   async (dispatch) => {
     try {
       // Create the notification via API
       const res = await postDataApi("notification", msg, auth.token);
-
       // Emit the notification event to the server via socket
       socket.emit("createNotification", {
         ...res.data.notification,
@@ -111,7 +98,6 @@ export const readNotification =
         null,
         auth.token
       );
-      console.log(res);
     } catch (err) {
       // Rollback the optimistic update if the request fails
       dispatch({

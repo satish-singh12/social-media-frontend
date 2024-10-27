@@ -28,7 +28,6 @@ const SocketioClient = () => {
   useEffect(() => {
     if (socket) {
       socket.on("likePostToClient", (newPost) => {
-        console.log("Received new post after like:", newPost); // Debugging log
         dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
       });
     }
