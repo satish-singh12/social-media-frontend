@@ -9,6 +9,7 @@ export const getDataApi = async (url, token) => {
     // `https://social-media-backend-sra9.onrender.com/api/${url}`,
     // {
     headers: { Authorization: token },
+    withCredentials: true,
   });
   return response;
 };
@@ -38,6 +39,7 @@ export const putDataApi = async (url, post, token) => {
     post,
     {
       headers: { Authorization: token },
+      withCredentials: true,
     }
   );
   return response;
@@ -50,6 +52,7 @@ export const patchDataApi = async (url, post, token) => {
     post,
     {
       headers: { Authorization: token },
+      withCredentials: true,
     }
   );
   return response;
@@ -61,6 +64,7 @@ export const deleteDataApi = async (url, token) => {
     `${baseURL}/${url}`,
     {
       headers: { Authorization: token },
+      withCredentials: true,
     }
   );
   return response;

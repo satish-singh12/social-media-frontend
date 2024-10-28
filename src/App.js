@@ -31,6 +31,7 @@ function App() {
     // const newSocket = io("http://localhost:5000", {
     const newSocket = io("https://social-media-backend-sra9.onrender.com", {
       withCredentials: true,
+      transports: ["websocket"], // Use only WebSocket transport
     });
     dispatch({ type: ALERT_TYPES.SOCKET, payload: newSocket });
 
