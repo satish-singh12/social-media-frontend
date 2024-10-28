@@ -28,9 +28,13 @@ function App() {
   useEffect(() => {
     dispatch(refreshToken());
 
-    const newSocket = io("http://localhost:5000", {
-      withCredentials: true,
-    });
+    // const newSocket = io("http://localhost:5000", {
+    const newSocket = io(
+      "https://social-media-frontend-vert-eight.vercel.app",
+      {
+        withCredentials: true,
+      }
+    );
     dispatch({ type: ALERT_TYPES.SOCKET, payload: newSocket });
 
     setSocket(newSocket);
