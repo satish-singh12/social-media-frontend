@@ -22,35 +22,37 @@ export const createPost =
     let media = [];
     try {
       dispatch({ type: "ALERT", payload: { loading: true } });
+      // If there are images, upload them; otherwise, continue with text content only
       if (images.length > 0) {
         media = await imageUpload(images);
-
-        const res = await postDataApi(
-          `posts/${auth.user._id}`,
-          { content, images: media },
-          auth.token
-        );
-        if (!res || !res.data) {
-          throw new Error("No data returned from API");
-        }
-
-        dispatch({
-          type: POST_TYPES.CREATE_POST,
-          payload: { ...res.data.newPosts, user: auth.user },
-        });
-        dispatch({ type: "ALERT", payload: { loading: false } });
-        //notification
-        const msg = {
-          id: res.data.newPosts._id,
-          text: "added a new post",
-          url: `/post/${res.data.newPosts._id}`,
-          recipients: res.data.newPosts.user.friends,
-          content,
-          image: media[0].secure_url,
-        };
-        dispatch(createNotification({ msg, auth, socket }));
-        // }
       }
+
+      const res = await postDataApi(
+        `posts/${auth.user._id}`,
+        { content, images: media },
+        auth.token
+      );
+      if (!res || !res.data) {
+        throw new Error("No data returned from API");
+      }
+
+      dispatch({
+        type: POST_TYPES.CREATE_POST,
+        payload: { ...res.data.newPosts, user: auth.user },
+      });
+      dispatch({ type: "ALERT", payload: { loading: false } });
+
+      //notification
+      const msg = {
+        id: res.data.newPosts._id,
+        text: "added a new post",
+        url: `/post/${res.data.newPosts._id}`,
+        recipients: res.data.newPosts.user.friends,
+        content,
+        image: media.length > 0 ? media[0].secure_url : "", // Set image only if present
+      };
+      dispatch(createNotification({ msg, auth, socket }));
+      // }
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -85,38 +87,48 @@ export const updatePost =
     let media = [];
     let newImgUrl = images?.filter((img) => !img.secure_url);
     let oldImgUrl = images?.filter((img) => img.secure_url);
+
+    // Check if both content and images remain unchanged
     if (
       status.content === content &&
       newImgUrl.length === 0 &&
       oldImgUrl.length === status.images.length
     )
       return;
+
     try {
       dispatch({ type: "ALERT", payload: { loading: true } });
+
+      // Upload new images if present
       if (newImgUrl.length > 0) {
         media = await imageUpload(newImgUrl);
-
-        const res = await patchDataApi(
-          `post/${status._id}`,
-          { content, images: [...oldImgUrl, ...media] },
-          auth.token
-        );
-        if (res && res.data && res.data.newPosts) {
-          dispatch({
-            type: "ALERT",
-            payload: { success: res.data.message },
-          });
-          dispatch({
-            type: POST_TYPES.UPDATE_POST,
-            payload: res.data.newPosts,
-          });
-        }
       }
+
+      const res = await patchDataApi(
+        `post/${status._id}`,
+        {
+          content: content || status.content, // Keep current content if no new content provided
+          images: newImgUrl.length > 0 ? [...oldImgUrl, ...media] : oldImgUrl, // Keep existing images if no new ones
+        },
+        auth.token
+      );
+
+      if (res && res.data && res.data.newPost) {
+        dispatch({
+          type: "ALERT",
+          payload: { success: res.data.message },
+        });
+        dispatch({
+          type: POST_TYPES.UPDATE_POST,
+          payload: res.data.newPost,
+        });
+      }
+
       dispatch({ type: "ALERT", payload: { loading: false } });
     } catch (err) {
       dispatch({
         type: "ALERT",
-        payload: { error: err.response.data.message },
+        payload: { error: err.response?.data?.message || err.message },
       });
     }
   };

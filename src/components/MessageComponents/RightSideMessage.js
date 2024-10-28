@@ -142,31 +142,6 @@ const RightSideMessage = () => {
         )}
       </div>
 
-      <div
-        className="right-side-content-input-msg-mediadiv"
-        style={{ display: media.length > 0 ? "grid" : "none" }}
-      >
-        {media.length > 0 &&
-          media.map((item, index) => (
-            <div
-              className="right-side-content-input-msg-media-divitem"
-              key={index}
-            >
-              {console.log(item)}
-              {item.type.match(/video/i)
-                ? videoshow(URL.createObjectURL(item))
-                : imageshow(URL.createObjectURL(item))}
-              <span
-                className="right-side-content-input-msg-media-divitem-delete"
-                onClick={() => deleteimage(index)}
-              >
-                {" "}
-                x{" "}
-              </span>
-            </div>
-          ))}
-      </div>
-
       <div className="right-side-content-messages">
         <div className="right-side-content-messages-chatbox">
           {message.data
@@ -201,6 +176,30 @@ const RightSideMessage = () => {
             </div>
           )}
         </div>
+      </div>
+
+      <div
+        className="right-side-content-input-msg-mediadiv"
+        style={{ display: media.length > 0 ? "grid" : "none" }}
+      >
+        {media.length > 0 &&
+          media.map((item, index) => (
+            <div
+              className="right-side-content-input-msg-media-divitem"
+              key={index}
+            >
+              {item.type.match(/video/i)
+                ? videoshow(URL.createObjectURL(item))
+                : imageshow(URL.createObjectURL(item))}
+              <span
+                className="right-side-content-input-msg-media-divitem-delete"
+                onClick={() => deleteimage(index)}
+              >
+                {" "}
+                x{" "}
+              </span>
+            </div>
+          ))}
       </div>
 
       <form className="right-side-content-input" onSubmit={handleSubmit}>

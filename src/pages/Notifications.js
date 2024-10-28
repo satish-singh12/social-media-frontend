@@ -53,7 +53,7 @@ const Notifications = () => {
               </h4>
               <h6>{dt.content.slice(0, 20)}</h6>
             </div>
-            <img src={dt.image} alt="image" />
+            {dt.image ? <img src={dt.image} alt="image" /> : ""}
           </div>
         </Link>
         <div className="notification-bottom">

@@ -1,12 +1,8 @@
 import {
-  patchDataApi,
   postDataApi,
   deleteDataApi,
   getDataApi,
 } from "../../utils/fetchDataApi";
-import { POST_TYPES } from "./postActions";
-import { EditData, DeleteData } from "./alertActions";
-// import { createNotify, removeNotify } from "./notifyActions";
 
 export const MESS_TYPE = {
   ADD_USER: "ADD_USER",
@@ -91,21 +87,21 @@ export const getMessages =
   };
 
 // export const deleteMessage =
-//   ({ message, data, auth }) =>
+//   ({ message, data, auth, socket }) =>
 //   async (dispatch) => {
-//     const newData = DeleteData(message.data, data._id);
+//     // Filter out the message directly from the Redux state
 //     dispatch({
 //       type: MESS_TYPE.DELETE_MESSAGE,
-//       payload: { newData, _id: data.recipient },
+//       payload: { messageId: data._id, _id: data.recipient }, // Send only necessary IDs
 //     });
+//     socket.emit("getMessage", data);
 //     try {
+//       // Call API to delete message on backend
 //       await deleteDataApi(`message/${data._id}`, auth.token);
 //     } catch (err) {
 //       dispatch({
 //         type: "ALERT",
-//         payload: {
-//           error: "there is a error",
-//         },
+//         payload: { error: "There was an error deleting the message." },
 //       });
 //     }
 //   };
@@ -113,20 +109,38 @@ export const getMessages =
 export const deleteMessage =
   ({ message, data, auth, socket }) =>
   async (dispatch) => {
-    // Filter out the message directly from the Redux state
-    dispatch({
-      type: MESS_TYPE.DELETE_MESSAGE,
-      payload: { messageId: data._id, _id: data.recipient }, // Send only necessary IDs
-    });
-    socket.emit("getMessage", data);
     try {
-      // Call API to delete message on backend
-      await deleteDataApi(`message/${data._id}`, auth.token);
+      // Dispatch to update Redux state optimistically
+      dispatch({
+        type: MESS_TYPE.DELETE_MESSAGE,
+        payload: { messageId: data._id, _id: data.recipient },
+      });
+
+      // Emit message deletion to socket
+      socket.emit("getMessage", data);
+
+      // Check if the message contains media files
+      if (data.media && data.media.length > 0) {
+        // Optionally: Implement media deletion logic (e.g., send media URLs to backend)
+        const mediaUrls = data.media.map((file) => file.secure_url);
+
+        await deleteDataApi(`message/${data._id}`, auth.token, {
+          media: mediaUrls,
+        });
+      } else {
+        // For text-only messages, delete directly
+        await deleteDataApi(`message/${data._id}`, auth.token);
+      }
+
+      // Emit notification to other users (if needed)
+      socket.emit("messageDeleted", data._id);
     } catch (err) {
+      // Revert state and display error message
       dispatch({
         type: "ALERT",
         payload: { error: "There was an error deleting the message." },
       });
+      console.error("Delete message error:", err);
     }
   };
 

@@ -104,8 +104,13 @@ const Status = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (images.length === 0)
-      return dispatch({ type: "ALERT", payload: { error: "Add your image" } });
+    // if (images.length === 0)
+    if (content.trim() === "" && images.length === 0) {
+      return dispatch({
+        type: "ALERT",
+        payload: { error: "Please add some text or an image." },
+      });
+    }
 
     if (status.edit) {
       dispatch(updatePost({ content, images, auth, status, socket }));

@@ -23,6 +23,8 @@ const Post = () => {
     }
   }, [detailPost, auth, id, dispatch]);
 
+  console.log("test1");
+
   return (
     <div
       className="profile-post"

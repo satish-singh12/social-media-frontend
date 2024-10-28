@@ -238,6 +238,17 @@ padding-top: 10rem;
   margin-left: 10px;
 }
 
+@media (max-width: 1050px) {
+  .input-box {
+    height: 50px;
+    margin: 0 8px;
+    width: 470px;
+  }
+  .input-box input {
+    padding: 0 90px 0 50px;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -262,6 +273,11 @@ padding-top: 10rem;
     justify-content: center;
     width: 100%;
   }
+  .input-box {
+    height: 40px;
+    margin: 0 8px;
+    width: 270px;
+  }
   } 
 
  @media (max-width: 480px) {
@@ -272,8 +288,8 @@ padding-top: 10rem;
     
   }
   .logo-img{
-    width: 110px;
-    height: 50px;
+    width: 90px;
+    height: 45px;
   }
 
   .navbar-section{
@@ -281,21 +297,7 @@ padding-top: 10rem;
     align-content: center;
     margin: auto;
   }
-  .navbar {
-    flex-direction: column;
-    
-    max-width: 100%;
-  }
-
-
- .navbar-tag-line{
- display: none;
-}
-
-  .search-bar {
-    display: block; 
-    
-  }
+   
   .user-icons {
     flex-direction: column;
     justify-content: space-around;
@@ -315,13 +317,14 @@ padding-top: 10rem;
   .input-box {
     height: 40px;
     margin: 0 8px;
+    width: 250px;
   }
   .input-box i {
     left: 12px;
     font-size: 25px;
   }
   .input-box input {
-    padding: 0 112px 0 50px;
+    padding: 0 70px 0 50px;
   }
 }
 

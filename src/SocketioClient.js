@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { POST_TYPES } from "./redux/actions/postActions";
 import { NOTIFICATION_TYPES } from "./redux/actions/notificationActions";
@@ -9,6 +9,24 @@ const SocketioClient = () => {
   const auth = useSelector((state) => state.auth);
   const socket = useSelector((state) => state.socket);
   const dispatch = useDispatch();
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  // One-time event listener for user interaction
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setUserInteracted(true);
+      document.removeEventListener("click", handleUserInteraction);
+      document.removeEventListener("keydown", handleUserInteraction);
+    };
+
+    document.addEventListener("click", handleUserInteraction);
+    document.addEventListener("keydown", handleUserInteraction);
+
+    return () => {
+      document.removeEventListener("click", handleUserInteraction);
+      document.removeEventListener("keydown", handleUserInteraction);
+    };
+  }, []);
 
   useEffect(() => {
     if (!socket) return;
@@ -23,7 +41,6 @@ const SocketioClient = () => {
       socket.off("getOnlineUsers");
     };
   }, [socket, auth.user._id, dispatch]);
-  // }, [socket, auth.user._id]);
 
   useEffect(() => {
     if (socket) {
@@ -83,8 +100,11 @@ const SocketioClient = () => {
     if (!socket) return;
 
     const handleCreateNotification = (msg) => {
-      const sound = new Audio(notify);
-      sound.play();
+      if (userInteracted) {
+        const sound = new Audio(notify);
+        sound.play();
+      }
+      console.log("test");
       dispatch({
         type: NOTIFICATION_TYPES.CREATE_NOTIFICATIONS,
         payload: msg,

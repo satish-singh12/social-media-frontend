@@ -1,8 +1,6 @@
-import { EditData, DeleteData } from "./alertActions";
-// import { ALERT_TYPES } from "./alertActions";
+import { DeleteData } from "./alertActions";
 import { getDataApi, patchDataApi } from "../../utils/fetchDataApi";
 import { imageUpload } from "../../utils/imageUpload";
-// import axios from "axios";
 import { createNotification, removeNotification } from "./notificationActions";
 
 export const PROFILE_TYPES = {
@@ -57,7 +55,6 @@ export const getProfileUsersData =
         payload: { error: errorMessage },
       });
     } finally {
-      // Always turn off loading state, even if an error occurs
       dispatch({
         type: PROFILE_TYPES.LOADING,
         payload: { loading: false },
@@ -156,6 +153,16 @@ export const resetPassword =
 export const addFriends =
   ({ users, user, auth, socket }) =>
   async (dispatch) => {
+    const alreadyFriends = user.friends.some(
+      (friend) => friend._id === auth.user._id
+    );
+
+    if (alreadyFriends) {
+      return dispatch({
+        type: "ALERT",
+        payload: { error: "You are already friends with this user." },
+      });
+    }
     const newUser = { ...users, friends: [...user.friends, auth.user] };
 
     dispatch({
@@ -197,10 +204,15 @@ export const addFriends =
 export const unFriends =
   ({ users, user, auth, socket }) =>
   async (dispatch) => {
+    // Remove auth.user from the user's friends list and newUser from auth.user's following list
+    const updatedFriendsList = DeleteData(user.friends, auth.user._id);
+    const updatedFollowingList = DeleteData(auth.user.following, user._id);
+
     const newUser = {
       ...users,
-      friends: DeleteData(user.friends, auth.user._id),
+      friends: updatedFriendsList,
     };
+
     dispatch({
       type: PROFILE_TYPES.UNFRIEND,
       payload: newUser,
@@ -212,7 +224,7 @@ export const unFriends =
         ...auth,
         user: {
           ...auth.user,
-          following: DeleteData(auth.user.following, newUser._id),
+          following: updatedFollowingList,
         },
       },
     });

@@ -74,6 +74,54 @@ const Navbar = () => {
           <Link to="/" className="navbar-link-logo-img">
             <img src={logoImage} alt="Logo" className="logo-img" />
           </Link>
+          {/* Section 2: Search Bar */}
+          <form className="input-box">
+            <input
+              type="text"
+              placeholder="Search Profiles"
+              value={search}
+              className="search-input"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button
+              className="button"
+              style={{
+                fontSize: "25px",
+                opacity: users.length > 0 ? "0" : "1",
+              }}
+            >
+              <i className="fa fa-search"></i>
+            </button>
+            <span className="search-close-btn">
+              <span
+                style={{
+                  fontSize: "30px",
+                  opacity: users.length > 0 ? "1" : "0",
+                }}
+                onClick={handleClose}
+              >
+                &times;
+              </span>
+            </span>
+
+            <div className="search-lists">
+              {load && (
+                <img
+                  src={LoadIcon}
+                  alt="loading"
+                  style={{ width: "50px", height: "50px" }}
+                />
+              )}
+              {users.length > 0 &&
+                users.map((user) => (
+                  <UserCard
+                    user={user}
+                    key={user._id}
+                    handleClose={handleClose}
+                  />
+                ))}
+            </div>
+          </form>
           <button
             className="navbar-toggler"
             type="button"
@@ -82,6 +130,7 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+
           <div
             className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
             id="navbarSupportedContent"
@@ -158,54 +207,7 @@ const Navbar = () => {
                 ></i>
               </li>
             </ul>
-            {/* Section 2: Search Bar */}
-            <form className="input-box">
-              <input
-                type="text"
-                placeholder="Search Profiles"
-                value={search}
-                className="search-input"
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <button
-                className="button"
-                style={{
-                  fontSize: "25px",
-                  opacity: users.length > 0 ? "0" : "1",
-                }}
-              >
-                <i className="fa fa-search"></i>
-              </button>
-              <span className="search-close-btn">
-                <span
-                  style={{
-                    fontSize: "30px",
-                    opacity: users.length > 0 ? "1" : "0",
-                  }}
-                  onClick={handleClose}
-                >
-                  &times;
-                </span>
-              </span>
-
-              <div className="search-lists">
-                {load && (
-                  <img
-                    src={LoadIcon}
-                    alt="loading"
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                )}
-                {users.length > 0 &&
-                  users.map((user) => (
-                    <UserCard
-                      user={user}
-                      key={user._id}
-                      handleClose={handleClose}
-                    />
-                  ))}
-              </div>
-            </form>
+            {/* ---------- */}
           </div>
         </div>
       </nav>

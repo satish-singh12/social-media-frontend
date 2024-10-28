@@ -67,22 +67,6 @@ export const getNotification = (auth) => async (dispatch) => {
   }
 };
 
-// export const readNotification =
-//   ({ dt, auth }) =>
-//   async (dispatch) => {
-//     dispatch({
-//       type: NOTIFICATION_TYPES.UPDATE_NOTIFICATIONS,
-//       payload: { ...dt, isRead: true },
-//     });
-//     try {
-//       await patchDataApi(`isreadnotification/${dt._id}`, null, auth.token);
-//     } catch (err) {
-//       dispatch({
-//         type: "ALERT",
-//         payload: { error: err.response.data.message },
-//       });
-//     }
-//   };
 export const readNotification =
   ({ dt, auth }) =>
   async (dispatch) => {
