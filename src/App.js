@@ -29,12 +29,9 @@ function App() {
     dispatch(refreshToken());
 
     // const newSocket = io("http://localhost:5000", {
-    const newSocket = io(
-      "https://social-media-frontend-vert-eight.vercel.app",
-      {
-        withCredentials: true,
-      }
-    );
+    const newSocket = io("https://social-media-backend-sra9.onrender.com", {
+      withCredentials: true,
+    });
     dispatch({ type: ALERT_TYPES.SOCKET, payload: newSocket });
 
     setSocket(newSocket);
