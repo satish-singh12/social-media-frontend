@@ -162,25 +162,31 @@ const SocketioClient = () => {
           payload: { id }, // Dispatch action to remove all messages with this user ID
         });
       });
+
+      socket.on("getMessageToClient", (msg) => {
+        // Dispatch the message to update the state in Redux
+        dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: msg });
+      });
     }
     // Cleanup socket events when component unmounts
     return () => {
       socket.off("addMessageToClient");
       socket.off("deleteMessageToClient");
       socket.off("deleteAllMessagesToClient");
+      socket.off("getMessageToClient");
     };
   }, [socket, dispatch, auth]);
 
-  useEffect(() => {
-    if (socket) {
-      socket.on("getMessageToClient", (msg) => {
-        // Dispatch the message to update the state in Redux
-        dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: msg });
-      });
-    }
-    // Clean up socket event when component unmounts
-    return () => socket.off("getMessageToClient");
-  }, [socket, dispatch]);
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.on("getMessageToClient", (msg) => {
+  //       // Dispatch the message to update the state in Redux
+  //       dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: msg });
+  //     });
+  //   }
+  //   // Clean up socket event when component unmounts
+  //   return () => socket.off("getMessageToClient");
+  // }, [socket, dispatch]);
 
   return <></>;
 };
