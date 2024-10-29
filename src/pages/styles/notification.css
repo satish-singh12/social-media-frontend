@@ -78,10 +78,8 @@
     margin: 0;
   }
   
-  /* Media Queries */
-  
-  /* For devices with width up to 768px (tablets and smaller) */
-  @media (max-width: 768px) {
+    
+    @media (max-width: 768px) {
     .notifications {
       padding: 15px;
       max-width: 90%;

@@ -102,9 +102,9 @@ const SocketioClient = () => {
     const handleCreateNotification = (msg) => {
       if (userInteracted) {
         const sound = new Audio(notify);
-        sound.play();
+        sound.play().catch((err) => console.log("Failed to play sound:", err));
       }
-      console.log("test");
+
       dispatch({
         type: NOTIFICATION_TYPES.CREATE_NOTIFICATIONS,
         payload: msg,

@@ -52,7 +52,6 @@ export const createPost =
         image: media.length > 0 ? media[0].secure_url : "", // Set image only if present
       };
       dispatch(createNotification({ msg, auth, socket }));
-      // }
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -248,17 +247,13 @@ export const deletePost =
     dispatch({ type: POST_TYPES.DELETE_POST, payload: pos });
     try {
       const res = await deleteDataApi(`post/${pos._id}`, auth.token);
-      //  console.log({ res });
-      //notification
       const msg = {
         id: pos._id,
         text: "post deleted",
         recipients: res.data.newPosts.user.friends,
         url: `/post/${pos._id}`,
       };
-      //console.log({ msg });
       dispatch(removeNotification({ msg, auth, socket }));
-      // dispatch({ type: "ALERT", payload: { loading: false } });
     } catch (err) {
       dispatch({
         type: "ALERT",

@@ -19,7 +19,6 @@ const Notifications = () => {
   const isReadNotification = (dt) => {
     dispatch(readNotification({ dt, auth }));
   };
-  //console.log(notification.data);
   const handleDeleteAll = () => {
     const newArr =
       notification?.data?.filter((item) => item.isRead === false) || [];
@@ -72,7 +71,7 @@ const Notifications = () => {
         </div>
       </div>
     ));
-  }, [notification?.data]); // Ensure memoization depends on notification?.data
+  }, [notification?.data, auth]);
 
   return (
     <div className="notifications">

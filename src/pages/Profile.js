@@ -53,7 +53,7 @@ const Profile = () => {
         // Dispatch action to fetch the profile user data if not found
         dispatch(
           getProfileUsersData({
-            users: profile.users || [], // Fallback to empty array
+            users: profile.users || [],
             id,
             auth,
           })
@@ -69,7 +69,7 @@ const Profile = () => {
         const newPosts = profile?.userposts.find((post) => post._id === id);
         setUserPosts(newPosts); // Directly set posts if they exist
       } else {
-        dispatch(getProfileUsersData({ id, auth })); // Fetch user posts from API
+        dispatch(getProfileUsersData({ id, auth }));
       }
     } else {
       // Fetch other user's posts only if they haven't been fetched yet

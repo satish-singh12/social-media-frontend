@@ -44,6 +44,15 @@ const postReducer = (state = initialState, action) => {
         ...state,
         post: DeleteData(state.post, action.payload._id),
       };
+    case POST_TYPES.GET_POST:
+      // Add the post only if it's not already in detailPost
+      if (!state.detailPost.some((post) => post._id === action.payload._id)) {
+        return {
+          ...state,
+          detailPost: [action.payload],
+        };
+      }
+      return state;
     default:
       return state;
   }
