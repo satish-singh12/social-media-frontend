@@ -139,7 +139,7 @@ const SocketioClient = () => {
         handleDeleteAllNotifications
       );
     };
-  }, [socket, dispatch, auth]);
+  }, [socket, dispatch, userInteracted, auth]);
 
   useEffect(() => {
     if (socket) {

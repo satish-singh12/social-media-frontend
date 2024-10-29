@@ -140,7 +140,7 @@ export const likePost =
     socket.emit("likePost", newPost);
 
     try {
-      const res = await patchDataApi(`post/${pos._id}/like`, null, auth.token);
+      await patchDataApi(`post/${pos._id}/like`, null, auth.token);
       const msg = {
         id: auth.user._id,
         text: "like the post",
@@ -168,11 +168,7 @@ export const unlikePost =
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     socket.emit("unlikePost", newPost);
     try {
-      const res = await patchDataApi(
-        `post/${pos._id}/unlike`,
-        null,
-        auth.token
-      );
+      await patchDataApi(`post/${pos._id}/unlike`, null, auth.token);
       const msg = {
         id: auth.user._id,
         text: "unlike the post",
@@ -213,7 +209,7 @@ export const savedPost =
 
     dispatch({ type: "AUTH", payload: { ...auth, user: newUser } });
     try {
-      const res = await patchDataApi(`save/${pos._id}`, null, auth.token);
+      await patchDataApi(`save/${pos._id}`, null, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -232,7 +228,7 @@ export const unSavedPost =
 
     dispatch({ type: "AUTH", payload: { ...auth, user: newUser } });
     try {
-      const res = await patchDataApi(`unsave/${pos._id}`, null, auth.token);
+      await patchDataApi(`unsave/${pos._id}`, null, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",

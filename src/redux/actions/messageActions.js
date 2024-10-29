@@ -86,56 +86,29 @@ export const getMessages =
     }
   };
 
-// export const deleteMessage =
-//   ({ message, data, auth, socket }) =>
-//   async (dispatch) => {
-//     // Filter out the message directly from the Redux state
-//     dispatch({
-//       type: MESS_TYPE.DELETE_MESSAGE,
-//       payload: { messageId: data._id, _id: data.recipient }, // Send only necessary IDs
-//     });
-//     socket.emit("getMessage", data);
-//     try {
-//       // Call API to delete message on backend
-//       await deleteDataApi(`message/${data._id}`, auth.token);
-//     } catch (err) {
-//       dispatch({
-//         type: "ALERT",
-//         payload: { error: "There was an error deleting the message." },
-//       });
-//     }
-//   };
-
 export const deleteMessage =
   ({ message, data, auth, socket }) =>
   async (dispatch) => {
     try {
-      // Dispatch to update Redux state optimistically
       dispatch({
         type: MESS_TYPE.DELETE_MESSAGE,
         payload: { messageId: data._id, _id: data.recipient },
       });
 
-      // Emit message deletion to socket
       socket.emit("getMessage", data);
 
-      // Check if the message contains media files
       if (data.media && data.media.length > 0) {
-        // Optionally: Implement media deletion logic (e.g., send media URLs to backend)
         const mediaUrls = data.media.map((file) => file.secure_url);
 
         await deleteDataApi(`message/${data._id}`, auth.token, {
           media: mediaUrls,
         });
       } else {
-        // For text-only messages, delete directly
         await deleteDataApi(`message/${data._id}`, auth.token);
       }
 
-      // Emit notification to other users (if needed)
       socket.emit("messageDeleted", data._id);
     } catch (err) {
-      // Revert state and display error message
       dispatch({
         type: "ALERT",
         payload: { error: "There was an error deleting the message." },
@@ -154,7 +127,7 @@ export const deleteAllMessages =
     socket.emit("deleteAllMessages", { id });
 
     try {
-      await deleteDataApi(`messages/${id}`, auth.token); // Ensure your backend API supports bulk deletion
+      await deleteDataApi(`messages/${id}`, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",

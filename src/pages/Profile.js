@@ -80,7 +80,7 @@ const Profile = () => {
         setUserPosts(newPosts ? newPosts : []);
       }
     }
-  }, [profile.userposts, id, auth, dispatch]);
+  }, [profile.userposts, profile.ids, id, auth, dispatch]);
 
   useEffect(() => {
     const newProfileImages = profile?.userposts?.filter(

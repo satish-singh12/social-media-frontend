@@ -17,7 +17,7 @@ const Post = () => {
 
   useEffect(() => {
     dispatch(getPostSingle({ detailPost, auth, id }));
-  }, [id, auth, dispatch]);
+  }, [id, detailPost, auth, dispatch]);
 
   useEffect(() => {
     if (detailPost?.length > 0) {

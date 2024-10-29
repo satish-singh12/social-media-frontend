@@ -83,6 +83,7 @@ const messageReducer = (state = initialState, action) => {
           ),
         };
       }
+      return state;
     default:
       return state;
   }
