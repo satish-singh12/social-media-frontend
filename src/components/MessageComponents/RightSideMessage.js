@@ -33,7 +33,7 @@ const RightSideMessage = () => {
     if (newData) {
       setUser(newData);
     }
-  }, [message.users, id]);
+  }, [message.users, id, message.data]);
 
   useEffect(() => {
     if (refDisplay.current) {
