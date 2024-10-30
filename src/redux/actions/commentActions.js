@@ -1,5 +1,4 @@
 import {
-  getDataApi,
   postDataApi,
   patchDataApi,
   deleteDataApi,
@@ -53,11 +52,7 @@ export const updateComment =
 
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newComment });
     try {
-      const res = await patchDataApi(
-        `comment/${comment._id}`,
-        { content },
-        auth.token
-      );
+      await patchDataApi(`comment/${comment._id}`, { content }, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -69,17 +64,12 @@ export const updateComment =
 export const likeComment =
   ({ comment, pos, auth }) =>
   async (dispatch) => {
-    // console.log({ comment, pos, auth });
     const newComment = { ...comment, likes: [...comment.likes, auth.user] };
     const newComments = EditData(pos.comments, comment._id, newComment);
     const newPost = { ...pos, comments: newComments };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     try {
-      const res = await patchDataApi(
-        `comment/${comment._id}/like`,
-        null,
-        auth.token
-      );
+      await patchDataApi(`comment/${comment._id}/like`, null, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -99,11 +89,7 @@ export const unlikeComment =
     const newPost = { ...pos, comments: newComments };
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost });
     try {
-      const res = await patchDataApi(
-        `comment/${comment._id}/unlike`,
-        null,
-        auth.token
-      );
+      await patchDataApi(`comment/${comment._id}/unlike`, null, auth.token);
     } catch (err) {
       dispatch({
         type: "ALERT",

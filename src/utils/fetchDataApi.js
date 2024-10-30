@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// const baseURL = "http://localhost:5000/api";
-// const baseURL = "https://social-media-backend-sra9.onrender.com/api";
 const baseURL =
   `${process.env.REACT_APP_BASE_URL}/api` || "http://localhost:5000/api";
 

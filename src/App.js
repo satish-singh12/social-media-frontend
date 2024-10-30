@@ -28,8 +28,6 @@ function App() {
   useEffect(() => {
     dispatch(refreshToken());
 
-    // const newSocket = io("http://localhost:5000", {
-    // const newSocket = io("https://social-media-backend-sra9.onrender.com", {
     const newSocket = io(
       process.env.REACT_APP_BASE_URL || "http://localhost:5000",
       {

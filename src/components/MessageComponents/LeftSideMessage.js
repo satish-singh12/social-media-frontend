@@ -86,7 +86,10 @@ const LeftSideMessage = () => {
               <UserCardMessages user={user} msg={true}>
                 {message?.onlineUsers.includes(user._id) && (
                   <MdFiberManualRecord
-                    style={{ color: "yellow", fontSize: "20px" }}
+                    style={{
+                      color: "green",
+                      fontSize: "25px",
+                    }}
                   />
                 )}
               </UserCardMessages>

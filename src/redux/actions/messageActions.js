@@ -134,6 +134,7 @@ export const deleteAllMessages =
 
     try {
       await deleteDataApi(`messages/${id}`, auth.token);
+      dispatch(getMessages({ auth, id }));
     } catch (err) {
       dispatch({
         type: "ALERT",

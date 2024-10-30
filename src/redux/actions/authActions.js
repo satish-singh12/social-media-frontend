@@ -108,7 +108,7 @@ export const register = (data) => async (dispatch) => {
 
     const res = await postDataApi("register", data);
     localStorage.setItem("login", true);
-    console.log("ACCESS TOKEN ON REGISTER", res.data.accessToken);
+    // console.log("ACCESS TOKEN ON REGISTER", res.data.accessToken);
 
     dispatch({
       type: "AUTH",

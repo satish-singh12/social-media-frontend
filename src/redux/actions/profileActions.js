@@ -91,7 +91,7 @@ export const updatedProfile =
       let media;
       dispatch({ type: "ALERT", payload: { loading: true } });
       if (avatar) media = await imageUpload([avatar]);
-      console.log(avatar, media[0].secure_url);
+      // console.log(avatar, media[0].secure_url);
 
       const res = await patchDataApi(
         `user/${auth?.user._id}`,
@@ -114,7 +114,6 @@ export const updatedProfile =
         },
       });
       if (res && res.data) {
-        console.log(res);
         dispatch({ type: "ALERT", payload: { loading: false } });
       }
     } catch (err) {

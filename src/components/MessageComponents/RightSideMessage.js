@@ -136,6 +136,7 @@ const RightSideMessage = () => {
         {user.length !== 0 && (
           <UserCardMessages user={user}>
             <RiDeleteBin6Fill
+              className="delete-message-chat"
               style={{ color: "salmon" }}
               onClick={handleDeleteAllMsgs}
             />
