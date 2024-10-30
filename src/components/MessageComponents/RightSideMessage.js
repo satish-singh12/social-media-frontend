@@ -15,6 +15,7 @@ import {
   deleteAllMessages,
 } from "../../redux/actions/messageActions";
 import loadIcon from "../../images/loading.gif";
+
 const RightSideMessage = () => {
   const [user, setUser] = useState([]);
   const dispatch = useDispatch();

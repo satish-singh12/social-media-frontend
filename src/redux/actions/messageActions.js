@@ -36,6 +36,8 @@ export const addMessage =
     socket.emit("addMessage", msg);
     try {
       await postDataApi("message", msg, auth.token);
+
+      dispatch(getMessages({ auth, id: msg.recipient }));
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -77,7 +79,6 @@ export const getMessages =
     try {
       const res = await getDataApi(`message/${id}`, auth.token);
       dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: res.data });
-      console.log({ res });
     } catch (err) {
       dispatch({
         type: "ALERT",
@@ -92,16 +93,19 @@ export const deleteMessage =
   ({ message, data, auth, socket }) =>
   async (dispatch) => {
     try {
+      if (!data || !data._id) {
+        throw new Error("Message ID is missing.");
+      }
+
+      // Dispatch delete action
       dispatch({
         type: MESS_TYPE.DELETE_MESSAGE,
         payload: { messageId: data._id, _id: data.recipient },
       });
-
       socket.emit("getMessage", data);
-
+      // Delete message from API, with media check
       if (data.media && data.media.length > 0) {
         const mediaUrls = data.media.map((file) => file.secure_url);
-
         await deleteDataApi(`message/${data._id}`, auth.token, {
           media: mediaUrls,
         });
@@ -123,8 +127,8 @@ export const deleteAllMessages =
   ({ id, auth, socket }) =>
   async (dispatch) => {
     dispatch({
-      type: MESS_TYPE.DELETE_MESSAGE,
-      payload: { id }, // Send the userId to delete all messages
+      type: MESS_TYPE.DELETE_ALL_MESSAGES,
+      payload: { id },
     });
     socket.emit("deleteAllMessages", { id });
 

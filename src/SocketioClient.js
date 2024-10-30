@@ -178,17 +178,6 @@ const SocketioClient = () => {
     };
   }, [socket, dispatch, auth]);
 
-  // useEffect(() => {
-  //   if (socket) {
-  //     socket.on("getMessageToClient", (msg) => {
-  //       // Dispatch the message to update the state in Redux
-  //       dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: msg });
-  //     });
-  //   }
-  //   // Clean up socket event when component unmounts
-  //   return () => socket.off("getMessageToClient");
-  // }, [socket, dispatch]);
-
   return <></>;
 };
 
