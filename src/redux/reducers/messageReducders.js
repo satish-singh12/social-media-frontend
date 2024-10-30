@@ -59,31 +59,47 @@ const messageReducer = (state = initialState, action) => {
         resultData: action.payload.result || 0,
       };
 
+    // case MESS_TYPE.DELETE_MESSAGE:
+    //   if (action.payload.messageId) {
+    //     return {
+    //       ...state,
+    //       data: state.data.map((conversation) =>
+    //         conversation._id === action.payload._id
+    //           ? {
+    //               ...conversation,
+    //               messages: conversation.messages.filter(
+    //                 (msg) => msg._id !== action.payload.messageId
+    //               ),
+    //             }
+    //           : conversation
+    //       ),
+    //     };
+    //   } else if (action.payload.userId) {
+    //     // Delete all messages with the user
+    //     return {
+    //       ...state,
+    //       data: state.data.filter(
+    //         (msg) => msg.recipient !== action.payload.userId
+    //       ),
+    //     };
+    //   }
+    // return state;
+
     case MESS_TYPE.DELETE_MESSAGE:
-      if (action.payload.messageId) {
-        return {
-          ...state,
-          data: state.data.map((conversation) =>
-            conversation._id === action.payload._id
-              ? {
-                  ...conversation,
-                  messages: conversation.messages.filter(
-                    (msg) => msg._id !== action.payload.messageId
-                  ),
-                }
-              : conversation
-          ),
-        };
-      } else if (action.payload.userId) {
-        // Delete all messages with the user
-        return {
-          ...state,
-          data: state.data.filter(
-            (msg) => msg.recipient !== action.payload.userId
-          ),
-        };
-      }
-      return state;
+      return {
+        ...state,
+        data: state.data.filter((msg) => msg._id !== action.payload.messageId),
+      };
+
+    case MESS_TYPE.DELETE_ALL_MESSAGES:
+      return {
+        ...state,
+        data: state.data.filter(
+          (msg) =>
+            msg.recipient !== action.payload.id &&
+            msg.sender !== action.payload.id
+        ),
+      };
     default:
       return state;
   }

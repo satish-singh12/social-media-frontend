@@ -164,6 +164,7 @@ const SocketioClient = () => {
       });
 
       socket.on("getMessageToClient", (msg) => {
+        console.log({ msg });
         // Dispatch the message to update the state in Redux
         dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: msg });
       });

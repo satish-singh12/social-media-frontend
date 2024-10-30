@@ -29,10 +29,14 @@ function App() {
     dispatch(refreshToken());
 
     // const newSocket = io("http://localhost:5000", {
-    const newSocket = io("https://social-media-backend-sra9.onrender.com", {
-      withCredentials: true,
-      transports: ["websocket"], // Use only WebSocket transport
-    });
+    // const newSocket = io("https://social-media-backend-sra9.onrender.com", {
+    const newSocket = io(
+      process.env.REACT_APP_BASE_URL || "http://localhost:5000",
+      {
+        withCredentials: true,
+        transports: ["websocket"], // Use only WebSocket transport
+      }
+    );
     dispatch({ type: ALERT_TYPES.SOCKET, payload: newSocket });
 
     setSocket(newSocket);

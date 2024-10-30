@@ -10,6 +10,7 @@ export const MESS_TYPE = {
   GET_CONVERSATION: "GET_CONVERSATION",
   GET_MESSAGE: "GET_MESSAGE",
   DELETE_MESSAGE: "DELETE_MESSAGE",
+  DELETE_ALL_MESSAGES: "DELETE_ALL_MESSAGES",
   UPDATE_ONLINE_USERS: "UPDATE_ONLINE_USERS",
 };
 
@@ -76,6 +77,7 @@ export const getMessages =
     try {
       const res = await getDataApi(`message/${id}`, auth.token);
       dispatch({ type: MESS_TYPE.GET_MESSAGE, payload: res.data });
+      console.log({ res });
     } catch (err) {
       dispatch({
         type: "ALERT",
