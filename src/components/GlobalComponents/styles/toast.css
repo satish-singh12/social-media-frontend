@@ -39,7 +39,7 @@
 @media only screen and (max-width: 600px) {
     .toast {
         max-width: 120px;
-        height: 60px;
+        height: 40px;
         }
 }
 
