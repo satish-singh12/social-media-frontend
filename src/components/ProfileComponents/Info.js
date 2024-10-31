@@ -34,14 +34,22 @@ const Info = ({ userData, profile, auth, id }) => {
         userData.map((user, index) => (
           <div className="profile-info-container" key={index}>
             <div className="profile-info-top">
-              <img src={user.avatar} alt="user.username" />
+              <img src={user.avatar} alt={user.username} />
             </div>
             <div className="profile-info-center">
-              <img
-                className="profile-info-center-avatar"
-                src={user.avatar}
-                alt={user.username}
-              />
+              {user.avatar ? (
+                <img
+                  className="profile-info-center-avatar"
+                  src={user.avatar}
+                  alt={user.username}
+                />
+              ) : (
+                <i
+                  className="fa fa-user default-avatar-icon"
+                  style={{ fontSize: "50px" }}
+                ></i>
+              )}
+
               {user._id && auth && user._id === auth.user._id ? (
                 <button
                   className="profile-info-center-button"

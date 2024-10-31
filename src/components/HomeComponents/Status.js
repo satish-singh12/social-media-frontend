@@ -146,7 +146,14 @@ const Status = () => {
     <div className={status.edit ? "edit-status" : "status"}>
       <form onSubmit={handleSubmit}>
         <div className="status-header">
-          <img src={auth.user && auth.user.avatar} alt="" />
+          {auth?.user.avatar ? (
+            <img src={auth.user && auth.user.avatar} alt="" />
+          ) : (
+            <i
+              className="fa fa-user default-avatar-icon"
+              style={{ fontSize: "30px" }}
+            ></i>
+          )}
           <h4>Status</h4>
         </div>
         <div className="status-middle">

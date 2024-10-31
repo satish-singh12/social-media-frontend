@@ -143,12 +143,23 @@ const Navbar = () => {
                   onClick={() => setMenuOpen(false)}
                 >
                   <div className="user-profile-icon">
-                    <img
+                    {/* <img
                       src={
                         auth?.user?.avatar || '<i className="fa fa-user"></i> '
                       }
                       alt="auth?.user?.fullname"
-                    />
+                    /> */}
+                    {auth?.user?.avatar ? (
+                      <img
+                        src={auth.user.avatar}
+                        alt={auth.user.fullname || "User Avatar"}
+                      />
+                    ) : (
+                      <i
+                        className="fa fa-user default-avatar-icon"
+                        style={{ fontSize: "25px", color: "black" }}
+                      ></i>
+                    )}
                   </div>
                   <h6
                     style={{
@@ -180,7 +191,8 @@ const Navbar = () => {
                     title="Notification"
                   ></i>
                   <span className="notification-counter">
-                    {notification && notification.data.length}
+                    {notification &&
+                      notification?.data.filter((n) => !n.isRead).length}
                   </span>
                 </Link>
               </li>

@@ -24,7 +24,11 @@ const GlobalCard = ({ user }) => {
     <div className="global-card">
       <div className="global-card-content">
         <div className="global-card-content-top">
-          <img src={user.avatar} alt="" />
+          {user.avatar ? (
+            <img src={user.avatar} alt="" />
+          ) : (
+            <IoPerson style={{ fontSize: "40px" }} />
+          )}
         </div>
         <div className="global-card-content-middle">
           <img src={user.avatar} alt="" />

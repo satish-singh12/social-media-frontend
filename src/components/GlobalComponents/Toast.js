@@ -10,7 +10,7 @@ const Toast = ({ msg, handleShow, bgColor }) => {
     setShow(true); // Reset show to true whenever msg changes
     const timer = setTimeout(() => {
       setShow(false);
-    }, 10000);
+    }, 4000);
     return () => clearTimeout(timer);
   }, [msg]);
 
