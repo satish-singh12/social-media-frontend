@@ -32,7 +32,7 @@ function App() {
       process.env.REACT_APP_BASE_URL || "http://localhost:5000",
       {
         withCredentials: true,
-        transports: ["websocket"], // Use only WebSocket transport
+        // transports: ["websocket"], // Use only WebSocket transport
       }
     );
     dispatch({ type: ALERT_TYPES.SOCKET, payload: newSocket });
