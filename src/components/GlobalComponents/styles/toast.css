@@ -6,7 +6,7 @@
     z-index: 50;
     min-width: 260px;
     color: rgb(11, 11, 109);
-    border-radius: 10px;
+    border-radius: 10px; 
     
     }
      
@@ -34,3 +34,24 @@
           font-weight: 800;
           
         }
+
+/* Mobile (up to 600px) */
+@media only screen and (max-width: 600px) {
+    .toast {
+        min-width: 160px;
+        }
+}
+
+/* Tablet (601px to 768px) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .toast {
+        min-width: 180px;
+        }
+}
+
+/* Desktop (769px and up) */
+@media only screen and (min-width: 769px) {
+    .toast {
+        min-width: 220px;
+        }
+}
