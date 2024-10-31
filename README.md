@@ -117,20 +117,21 @@ npx create-react-app the-gram-frontend
 
 ## API Endpoints
 
-- GET: http://localhost:5000/api/:url - Fetch data from the backend.
-- POST: http://localhost:5000/api/:url - Send new data to the backend.
-- PUT: http://localhost:5000/api/:url - Update existing data.
-- PATCH: http://localhost:5000/api/:url - Partially update data.
-- DELETE: http://localhost:5000/api/:url - Remove data from the backend.
+- GET: https://social-media-backend-sra9.onrender.com/api/:url - Fetch data from the backend.
+- POST: https://social-media-backend-sra9.onrender.com/api/:url - Send new data to the backend.
+- PUT: https://social-media-backend-sra9.onrender.com/api/:url - Update existing data.
+- PATCH: https://social-media-backend-sra9.onrender.com/api/:url - Partially update data.
+- DELETE: https://social-media-backend-sra9.onrender.com/api/:url - Remove data from the backend.
 
 ## Project Structure
 
 ```bash
 the-gram-frontend/
-├── public/
+├── public/                       # Contains static files like index.html, favicons, etc.
 ├── src/
-│   ├── assets/                   # Stores static assets like images, icons, and styles
-│   ├── components/               # Reusable UI components
+│   ├── assets/                   # Stores static assets like images, icons, and stylesheets
+│
+│   ├── components/               # Reusable UI components, organized by feature or functionality
 │   │   ├── GlobalComponents/
 │   │   │   ├── Alert.js
 │   │   │   ├── Loading.js
@@ -160,20 +161,20 @@ the-gram-frontend/
 │   │   │   ├── ProfileVideoShow.js
 │   │   │   ├── SavedPost.js
 │   │   │   ├── ShowFriendsProfile.js
-│   │   │   └── ShowFollowingProfile.js
-│   │   ├── MessageComponents/
-│   │   │   ├── Conversation.js
-│   │   │   ├── LeftSideMessage.js
-│   │   │   ├── RightSideMessage.js
-│   │   │   ├── UserCardMessages.js
-│   │   │   └── MessageDisplay.js
-│   │   └── Global/
-│   │       ├── FollowingCard.js
-│   │       ├── FriendsCard.js
-│   │       ├── GlobalCard.js
-│   │       ├── GlobalFriendBtn.js
-│   │       ├── GlobalShortCard.js
-│   │       └── ResetPassword.js
+│   │   │   ├── ShowFollowingProfile.js
+│   │   │   ├── FollowingCard.js
+│   │   │   ├── FriendsCard.js
+│   │   │   ├── GlobalCard.js
+│   │   │   ├── GlobalFriendBtn.js
+│   │   │   ├── GlobalShortCard.js
+│   │   │   └── ResetPassword.js
+│   │   └── MessageComponents/
+│   │       ├── Conversation.js
+│   │       ├── LeftSideMessage.js
+│   │       ├── RightSideMessage.js
+│   │       ├── UserCardMessages.js
+│   │       └── MessageDisplay.js
+│
 │   ├── pages/                    # Main application pages
 │   │   ├── Home.js
 │   │   ├── Login.js
@@ -184,7 +185,8 @@ the-gram-frontend/
 │   │   ├── Post.js
 │   │   ├── Profile.js
 │   │   └── Register.js
-│   ├── redux/                    # Redux store, actions, and reducers
+│
+│   ├── redux/                    # Redux store, actions, and reducers for state management
 │   │   ├── actions/
 │   │   │   ├── alertActions.js
 │   │   │   ├── authActions.js
@@ -205,11 +207,20 @@ the-gram-frontend/
 │   │   │   ├── statusReducers.js
 │   │   │   └── index.js
 │   │   └── store.js
-│   ├── App.js
-│   ├── index.js
-formatting
-├── README.md
-└── package.json
+│
+│   ├── utils/                    # Utility functions and configuration files
+│   │   ├── config.js                     # Configuration settings
+│   │   ├── fetchDataApi.js               # Helper function for making API requests
+│   │   ├── imageUpload.js                # Image upload helper function
+│   │   ├── PrivateRouter.js              # Protected route component for authenticated users
+│   │   └── valid.js                      # Form validation logic
+│
+│   ├── App.js                            # Main app component, defines routes and layout
+│   ├── index.js                          # Entry point for rendering the app, setting up providers
+│   ├── SocketisClient.js                 # Socket.io client setup and management
+│
+├── README.md                     # Project README, documentation, and setup instructions
+└── package.json                  # Project dependencies and scripts
 ```
 
 #### This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -225,11 +236,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
