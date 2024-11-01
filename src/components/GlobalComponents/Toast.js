@@ -3,11 +3,8 @@ import "./styles/toast.css";
 
 const Toast = ({ msg, handleShow, bgColor }) => {
   const [show, setShow] = useState(true);
-
-  console.log({ msg, handleShow, bgColor });
-
   useEffect(() => {
-    setShow(true); // Reset show to true whenever msg changes
+    setShow(true);
     const timer = setTimeout(() => {
       setShow(false);
     }, 4000);
@@ -15,7 +12,7 @@ const Toast = ({ msg, handleShow, bgColor }) => {
   }, [msg]);
 
   // If the toast is not visible, return null to hide it
-  if (!show) return null;
+  if (!msg || !msg.title || !show) return null;
 
   return (
     <div
